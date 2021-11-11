@@ -1,8 +1,5 @@
 {
   "dependencies": {
-    "com.gamee.common": "1.0.0",
-    "com.halodi.halodi-unity-package-creator": "1.0.0",
-    "com.halodi.halodi-unity-package-registry-manager": "https://github.com/Halodi/halodi-unity-package-registry-manager.git",
     "com.unity.2d.animation": "6.0.5",
     "com.unity.2d.pixel-perfect": "5.0.1",
     "com.unity.2d.psdimporter": "5.0.4",
@@ -50,21 +47,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "scopedRegistries": [
-    {
-      "name": "Halodi OSS",
-      "url": "https://artifacts.halodi.com/repository/upm-open-source-group",
-      "scopes": [
-        "com.halodi"
-      ]
-    },
-    {
-      "name": "Gamee",
-      "url": "https://github.com/",
-      "scopes": [
-        "com.gamee"
-      ]
-    }
-  ]
+  }
 }

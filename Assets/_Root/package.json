@@ -10,12 +10,10 @@
     "url": "https://github.com/yenmoc"
   },
   "license": "MIT",
+  "keywords": [ "common","util","useful","upm","unity" ],
   "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/Gamee-Studio/common"
-  },
-  "publishConfig": {
-    "registry": ""
   }
 }
