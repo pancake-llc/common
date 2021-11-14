@@ -1,9 +1,10 @@
 {
-  "name": "com.gamee.common",
+  "name": "com.gameestudio.common",
   "displayName": "Common",
   "description": "Provide common useful script for unity",
   "version": "1.0.0",
   "unity": "2019.1",
+  "category": "gameestudio",
   "author": {
     "name": "yenmoc",
     "email": "phongsoyenmoc.diep@gmail.com",
@@ -14,6 +15,10 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/Gamee-Studio/common"
+    "url": "git@github.com:gameestudio/common.git",
+    "directory": "com.gameestudio.common"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@gameestudio"
   }
 }
