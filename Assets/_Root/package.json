@@ -1,12 +1,12 @@
 {
-  "name": "com.gameestudio.common",
+  "name": "com.snorlax.common",
   "displayName": "Common",
   "description": "Provide common useful script for unity",
   "version": "1.0.0",
   "unity": "2019.1",
-  "category": "gameestudio",
+  "category": "snorlax",
   "author": {
-    "name": "yenmoc",
+    "name": "Snorlax",
     "email": "phongsoyenmoc.diep@gmail.com",
     "url": "https://github.com/yenmoc"
   },
@@ -15,10 +15,10 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git@github.com:gameestudio/common.git",
-    "directory": "com.gameestudio.common"
+    "url": "git@github.com:snorluxe/common.git",
+    "directory": "com.snorlax.common"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@gameestudio"
+    "registry": "https://npm.pkg.github.com/@snorluxe"
   }
 }
