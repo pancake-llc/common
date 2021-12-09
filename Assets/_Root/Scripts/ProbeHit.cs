@@ -1,4 +1,4 @@
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     #if UNITY_EDITOR
     using System;

@@ -1,4 +1,4 @@
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     using System;
     using System.Collections.Generic;

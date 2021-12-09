@@ -25,36 +25,11 @@ MonoBehaviour:
     m_Scopes: []
     m_IsDefault: 1
     m_Capabilities: 7
-  - m_Id: scoped:Halodi OSS
-    m_Name: Halodi OSS
-    m_Url: https://artifacts.halodi.com/repository/upm-open-source-group
-    m_Scopes:
-    - com.halodi
-    m_IsDefault: 0
-    m_Capabilities: 0
-  - m_Id: scoped:Gamee
-    m_Name: Gamee
-    m_Url: https://github.com
-    m_Scopes:
-    - com.gamee
-    m_IsDefault: 0
-    m_Capabilities: 0
-  m_UserSelectedRegistryName: Gamee
+  m_UserSelectedRegistryName: 
   m_UserAddingNewScopedRegistry: 0
   m_RegistryInfoDraft:
-    m_ErrorMessage: 
-    m_Original:
-      m_Id: scoped:Gamee
-      m_Name: Gamee
-      m_Url: https://github.com
-      m_Scopes:
-      - com.gamee
-      m_IsDefault: 0
-      m_Capabilities: 0
     m_Modified: 0
-    m_Name: Gamee
-    m_Url: https://github.com
-    m_Scopes:
-    - com.gamee
-    m_SelectedScopeIndex: 0
+    m_ErrorMessage: 
+    m_UserModificationsInstanceId: -848
+    m_OriginalInstanceId: -852
   m_LoadAssets: 0

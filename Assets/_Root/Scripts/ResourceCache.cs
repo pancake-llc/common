@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     /// <summary>
     /// Helper for cache Resources.Load calls with 2x performance boost.

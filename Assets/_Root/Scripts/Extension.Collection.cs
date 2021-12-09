@@ -1,4 +1,4 @@
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     public static partial class Util
     {

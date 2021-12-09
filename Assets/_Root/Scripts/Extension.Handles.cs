@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     public static partial class Common
     {

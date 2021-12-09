@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     using UnityEngine;
 

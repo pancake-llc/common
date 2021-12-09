@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MEC;
 using UnityEngine;
 
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     public static partial class Util
     {

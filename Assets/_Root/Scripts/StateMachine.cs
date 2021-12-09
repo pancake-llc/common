@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 // ReSharper disable InvalidXmlDocComment
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     public struct StateChangeEvent<T> where T : struct, IComparable, IConvertible, IFormattable
     {

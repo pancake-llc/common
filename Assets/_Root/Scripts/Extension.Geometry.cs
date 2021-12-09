@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     /// <summary>
     /// A helper class to handle geometry related operations    

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     public class InputExtension
     {

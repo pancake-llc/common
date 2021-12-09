@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     using System;
     using System.Collections.Generic;

@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Gamee.Common
+namespace Snorlax.Common
 {
     public sealed class BoxingConveter<TIn, TOut>
     {
