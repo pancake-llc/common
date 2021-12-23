@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Client.Common
+namespace Snorlax.Common
 {
     public static partial class Util
     {
@@ -140,7 +139,7 @@ namespace Client.Common
             GUI.color = c;
             return b;
         }
-        
+
         public static void PickFolderPath(ref string pathResult, string keySave = "")
         {
             GUI.backgroundColor = Color.gray;
@@ -163,4 +162,3 @@ namespace Client.Common
         }
     }
 }
-#endif

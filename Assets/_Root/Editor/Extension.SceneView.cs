@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -36,15 +35,11 @@ namespace Snorlax.Common
             position.height -= EditorStyles.toolbar.fixedHeight;
             return position;
         }
-        
+
         /// <summary>
         /// Render an object on sceneView using sprite renderers
         /// </summary>
-        public static void FakeRenderSprite(
-            GameObject obs,
-            Vector3 position,
-            Vector3 scale,
-            Quaternion rotation)
+        public static void FakeRenderSprite(GameObject obs, Vector3 position, Vector3 scale, Quaternion rotation)
         {
             var rends = obs.GetComponentsInChildren<SpriteRenderer>();
             foreach (var rend in rends)
@@ -54,7 +49,7 @@ namespace Snorlax.Common
                 DrawSprite(rend.sprite, pos, bounds.size.Multiply(scale));
             }
         }
-        
+
         public static System.Type GetInspectorWindowType()
         {
             var editorAsm = typeof(UnityEditor.Editor).Assembly;
@@ -63,4 +58,3 @@ namespace Snorlax.Common
         }
     }
 }
-#endif
