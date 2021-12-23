@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Snorlax.Common
 {
-    public static partial class Common
+    public static partial class Util
     {
         public static bool GetMousePosition(out Vector3 mousePosition, SceneView sceneView)
         {

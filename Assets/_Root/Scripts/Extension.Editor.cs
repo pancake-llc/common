@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Client.Common
 {
-    public static partial class Common
+    public static partial class Util
     {
         /// <summary>
         /// Draw a large separator with optional section header
@@ -139,6 +139,27 @@ namespace Client.Common
             var b = GUILayout.Button(new GUIContent(title), new GUIStyle(EditorStyles.toolbarButton) { fontSize = 11, font = EditorStyles.label.font, }, options);
             GUI.color = c;
             return b;
+        }
+        
+        public static void PickFolderPath(ref string pathResult, string keySave = "")
+        {
+            GUI.backgroundColor = Color.gray;
+            if (GUILayout.Button(new GUIContent("", "Select folder"), EditorStyles.colorField, GUILayout.Width(18), GUILayout.Height(18)))
+            {
+                var path = EditorUtility.OpenFolderPanel("Select folder output", pathResult, "");
+                if (!string.IsNullOrEmpty(path))
+                {
+                    pathResult = path;
+                    if (!string.IsNullOrEmpty(keySave))
+                    {
+                        EditorPrefs.SetString(keySave, pathResult);
+                    }
+                }
+
+                GUI.FocusControl(null);
+            }
+
+            GUI.backgroundColor = Color.white;
         }
     }
 }

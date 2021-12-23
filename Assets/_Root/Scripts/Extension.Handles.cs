@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Snorlax.Common
 {
-    public static partial class Common
+    public static partial class Util
     {
         public static void DrawSprite(Sprite sprite, Vector3 worldSpace, Vector3 size)
         {
