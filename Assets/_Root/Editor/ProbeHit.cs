@@ -1,6 +1,5 @@
 namespace Snorlax.Common
 {
-    #if UNITY_EDITOR
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -355,6 +354,4 @@ namespace Snorlax.Common
             raycast = true, overlap = true, handles = true, proBuilder = true,
         };
     }
-
-#endif
 }

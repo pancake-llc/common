@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Snorlax.Common
 {
-    public static partial class Util
+    public static partial class UtilEditor
     {
         /// <summary>
         /// Draw a large separator with optional section header
