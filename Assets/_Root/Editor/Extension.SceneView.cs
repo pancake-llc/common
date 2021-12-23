@@ -27,6 +27,20 @@ namespace Snorlax.Common
 
             return false;
         }
+        
+        public static bool Get2DMouseScenePosition(out Vector2 omp)
+        {
+            omp = Vector2.zero;
+
+            var cam = Camera.current;
+            var mp = Event.current.mousePosition;
+            mp.y = cam.pixelHeight - mp.y;
+            var ray = cam.ScreenPointToRay(mp);
+            if (ray.direction != Vector3.forward) return false;
+
+            omp = ray.origin;
+            return true;
+        }
 
         public static Rect GetInnerGuiPosition(this SceneView sceneView)
         {
