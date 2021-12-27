@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Snorlax.Common
+namespace Snorlax.Editor
 {
     public static partial class UtilEditor
     {

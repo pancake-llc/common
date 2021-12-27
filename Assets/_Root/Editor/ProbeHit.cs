@@ -1,4 +1,6 @@
-namespace Snorlax.Common
+using Snorlax.Common;
+
+namespace Snorlax.Editor
 {
     using System;
     using System.Collections;

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Snorlax.Common;
 using UnityEditor;
 using UnityEngine;
 
-namespace Snorlax.Common
+namespace Snorlax.Editor
 {
     public static partial class UtilEditor
     {
