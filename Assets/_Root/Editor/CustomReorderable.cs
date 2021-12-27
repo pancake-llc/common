@@ -1,10 +1,11 @@
-using System;
+
 
 namespace Snorlax.Editor
 {
     using UnityEditor;
     using UnityEditorInternal;
     using UnityEngine;
+    
 
     public class CustomReorderable
     {
@@ -32,28 +33,38 @@ namespace Snorlax.Editor
         /// 
         /// </summary>
         /// <param name="property"></param>
-        /// <param name="actionUpdateSize"></param>
+        /// <param name="onAddCallback"></param>
+        /// <param name="onRemoveCallback"></param>
+        /// <param name="onReorderCallbackWithDetails"></param>
+        /// <param name="onChangedCallback"></param>
         /// <param name="actionCreateCustomButton"></param>
-        /// <param name="actionUpdateReorder"></param>
         public CustomReorderable(
             SerializedProperty property,
-            Action<int> actionUpdateSize = null,
-            CreateButtonDelegate actionCreateCustomButton = null,
-            Action<int, int> actionUpdateReorder = null)
+            ReorderableList.AddCallbackDelegate onAddCallback = null,
+            ReorderableList.RemoveCallbackDelegate onRemoveCallback = null,
+            ReorderableList.ReorderCallbackDelegateWithDetails onReorderCallbackWithDetails = null,
+            ReorderableList.ChangedCallbackDelegate onChangedCallback = null,
+            CreateButtonDelegate actionCreateCustomButton = null)
         {
-            _reorderableList = CreateInstance(property, actionUpdateSize, actionCreateCustomButton, actionUpdateReorder);
+            _reorderableList = CreateInstance(property,
+                onAddCallback,
+                onRemoveCallback,
+                onReorderCallbackWithDetails,
+                onChangedCallback,
+                actionCreateCustomButton);
         }
 
         /// <summary>
-        /// 
         /// </summary>
         public void DoLayoutList() { _reorderableList.DoLayoutList(); }
 
         private ReorderableList CreateInstance(
             SerializedProperty property,
-            Action<int> actionUpdateSize,
-            CreateButtonDelegate actionCreateCustomButton,
-            Action<int, int> actionUpdateReorder)
+            ReorderableList.AddCallbackDelegate onAddCallback,
+            ReorderableList.RemoveCallbackDelegate onRemoveCallback,
+            ReorderableList.ReorderCallbackDelegateWithDetails onReorderCallbackWithDetails,
+            ReorderableList.ChangedCallbackDelegate onChangedCallback,
+            CreateButtonDelegate actionCreateCustomButton)
         {
             return new ReorderableList(property.serializedObject,
                 property,
@@ -65,14 +76,13 @@ namespace Snorlax.Editor
                 drawHeaderCallback = rect =>
                 {
                     EditorGUI.LabelField(rect, $"{property.displayName}: {property.arraySize}", EditorStyles.boldLabel);
-                    var position = new Rect(rect.width - Math.Max(EditorGUI.indentLevel - property.depth, 1) * 15f, rect.y, 20f, 13f);
+                    var position = new Rect(rect.width - System.Math.Max(EditorGUI.indentLevel - property.depth, 1) * 15f, rect.y, 20f, 13f);
                     if (GUI.Button(position, Style.AddContent, Style.AddStyle))
                     {
                         property.serializedObject.UpdateIfRequiredOrScript();
                         property.InsertArrayElementAtIndex(property.arraySize);
                         property.serializedObject.ApplyModifiedProperties();
-                        actionUpdateSize?.Invoke(property.arraySize);
-                        // save again
+                        onAddCallback?.Invoke(_reorderableList);
                     }
                 },
                 drawElementCallback = (rect, index, _, _) =>
@@ -91,8 +101,7 @@ namespace Snorlax.Editor
                         property.serializedObject.UpdateIfRequiredOrScript();
                         property.DeleteArrayElementAtIndex(index);
                         property.serializedObject.ApplyModifiedProperties();
-                        actionUpdateSize?.Invoke(property.arraySize);
-                        // save again
+                        onRemoveCallback?.Invoke(_reorderableList);
                     }
 
                     // todo
@@ -103,7 +112,8 @@ namespace Snorlax.Editor
                         actionCreateCustomButton.Invoke(rect, ref property, index);
                     }
                 },
-                onReorderCallbackWithDetails = (_, index, newIndex) => { actionUpdateReorder?.Invoke(index, newIndex); },
+                onChangedCallback = list => { onChangedCallback?.Invoke(list); },
+                onReorderCallbackWithDetails = (list, index, newIndex) => { onReorderCallbackWithDetails?.Invoke(list, index, newIndex); },
                 drawFooterCallback = _ => { },
                 footerHeight = 0f,
                 elementHeightCallback = index =>
