@@ -519,6 +519,33 @@ namespace Snorlax.Common
 #endif
         }
 
+        /// <summary>
+        /// swap value of <paramref name="keyA"/> and <paramref name="keyB"/>
+        /// </summary>
+        /// <param name="keyA"></param>
+        /// <param name="keyB"></param>
+        public static void SwapPlayerPrefs<T>(string keyA, string keyB)
+        {
+            switch (typeof(T))
+            {
+                case { } intType when intType == typeof(int):
+                    int tempInt = PlayerPrefs.GetInt(keyA);
+                    PlayerPrefs.SetInt(keyA, PlayerPrefs.GetInt(keyB));
+                    PlayerPrefs.SetInt(keyB, tempInt);
+                    break;
+                case { } stringType when stringType == typeof(string):
+                    string tempString = PlayerPrefs.GetString(keyA);
+                    PlayerPrefs.SetString(keyA, PlayerPrefs.GetString(keyB));
+                    PlayerPrefs.SetString(keyB, tempString);
+                    break;
+                case { } floatType when floatType == typeof(float):
+                    float tempFloat = PlayerPrefs.GetFloat(keyA);
+                    PlayerPrefs.SetFloat(keyA, PlayerPrefs.GetFloat(keyB));
+                    PlayerPrefs.SetFloat(keyB, tempFloat);
+                    break;
+            }
+        }
+
         #endregion
     }
 }
