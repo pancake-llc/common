@@ -528,17 +528,17 @@ namespace Snorlax.Common
         {
             switch (typeof(T))
             {
-                case { } intType when intType == typeof(int):
+                case Type intType when intType == typeof(int):
                     int tempInt = PlayerPrefs.GetInt(keyA);
                     PlayerPrefs.SetInt(keyA, PlayerPrefs.GetInt(keyB));
                     PlayerPrefs.SetInt(keyB, tempInt);
                     break;
-                case { } stringType when stringType == typeof(string):
+                case Type stringType when stringType == typeof(string):
                     string tempString = PlayerPrefs.GetString(keyA);
                     PlayerPrefs.SetString(keyA, PlayerPrefs.GetString(keyB));
                     PlayerPrefs.SetString(keyB, tempString);
                     break;
-                case { } floatType when floatType == typeof(float):
+                case Type floatType when floatType == typeof(float):
                     float tempFloat = PlayerPrefs.GetFloat(keyA);
                     PlayerPrefs.SetFloat(keyA, PlayerPrefs.GetFloat(keyB));
                     PlayerPrefs.SetFloat(keyB, tempFloat);

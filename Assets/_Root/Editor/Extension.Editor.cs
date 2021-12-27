@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Snorlax.Editor
 {
@@ -188,17 +190,17 @@ namespace Snorlax.Editor
         {
             switch (typeof(T))
             {
-                case { } intType when intType == typeof(int):
+                case Type intType when intType == typeof(int):
                     int tempInt = EditorPrefs.GetInt(keyA);
                     EditorPrefs.SetInt(keyA, EditorPrefs.GetInt(keyB));
                     EditorPrefs.SetInt(keyB, tempInt);
                     break;
-                case { } stringType when stringType == typeof(string):
+                case Type stringType when stringType == typeof(string):
                     string tempString = EditorPrefs.GetString(keyA);
                     EditorPrefs.SetString(keyA, EditorPrefs.GetString(keyB));
                     EditorPrefs.SetString(keyB, tempString);
                     break;
-                case { } floatType when floatType == typeof(float):
+                case Type floatType when floatType == typeof(float):
                     float tempFloat = EditorPrefs.GetFloat(keyA);
                     EditorPrefs.SetFloat(keyA, EditorPrefs.GetFloat(keyB));
                     EditorPrefs.SetFloat(keyB, tempFloat);
