@@ -43,14 +43,12 @@ namespace Snorlax.Editor
             ReorderableList.AddCallbackDelegate onAddCallback = null,
             ReorderableList.RemoveCallbackDelegate onRemoveCallback = null,
             ReorderableList.ReorderCallbackDelegateWithDetails onReorderCallbackWithDetails = null,
-            ReorderableList.ChangedCallbackDelegate onChangedCallback = null,
             CreateButtonDelegate actionCreateCustomButton = null)
         {
             _reorderableList = CreateInstance(property,
                 onAddCallback,
                 onRemoveCallback,
                 onReorderCallbackWithDetails,
-                onChangedCallback,
                 actionCreateCustomButton);
         }
 
@@ -63,7 +61,6 @@ namespace Snorlax.Editor
             ReorderableList.AddCallbackDelegate onAddCallback,
             ReorderableList.RemoveCallbackDelegate onRemoveCallback,
             ReorderableList.ReorderCallbackDelegateWithDetails onReorderCallbackWithDetails,
-            ReorderableList.ChangedCallbackDelegate onChangedCallback,
             CreateButtonDelegate actionCreateCustomButton)
         {
             return new ReorderableList(property.serializedObject,
@@ -112,7 +109,6 @@ namespace Snorlax.Editor
                         actionCreateCustomButton.Invoke(rect, ref property, index);
                     }
                 },
-                onChangedCallback = list => { onChangedCallback?.Invoke(list); },
                 onReorderCallbackWithDetails = (list, index, newIndex) => { onReorderCallbackWithDetails?.Invoke(list, index, newIndex); },
                 drawFooterCallback = _ => { },
                 footerHeight = 0f,
