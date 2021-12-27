@@ -54,7 +54,7 @@ namespace Snorlax.Common
 
             return collection.Count == 0 ? default : collection[UnityEngine.Random.Range(0, collection.Count - 1)];
         }
-        
+
         /// <summary>
         /// Indicates the random value in the <paramref name="collection"/>
         /// if <paramref name="collection"/> is empty return default vaule of T
@@ -90,7 +90,7 @@ namespace Snorlax.Common
             collection.RemoveAt(i);
             return value;
         }
-        
+
         /// <summary>
         /// Indicates the random value in the <paramref name="collection"/> and also remove that element and return index of element
         /// if <paramref name="collection"/> is empty return default vaule of T
@@ -294,7 +294,7 @@ namespace Snorlax.Common
         /// <param name="data">string</param>
         public static void CopyToClipboard(this string data)
         {
-            var textEditor = new TextEditor {text = data};
+            var textEditor = new TextEditor { text = data };
             textEditor.SelectAll();
             textEditor.Copy();
         }
@@ -369,8 +369,8 @@ namespace Snorlax.Common
             if (len > 15)
             {
                 var n = (len - 16) / 3;
-                var firstChar = (char) (65 + n / 26);
-                var secondChar = (char) (65 + n % 26);
+                var firstChar = (char)(65 + n / 26);
+                var secondChar = (char)(65 + n % 26);
                 stringBuilder.Append(firstChar);
                 stringBuilder.Append(secondChar);
             }
@@ -436,8 +436,8 @@ namespace Snorlax.Common
             if (len > 15)
             {
                 var n = (len - 16) / 3;
-                var firstChar = (char) (65 + n / 26);
-                var secondChar = (char) (65 + n % 26);
+                var firstChar = (char)(65 + n / 26);
+                var secondChar = (char)(65 + n % 26);
                 stringBuilder.Append(firstChar);
                 stringBuilder.Append(secondChar);
             }
@@ -463,6 +463,60 @@ namespace Snorlax.Common
             }
 #endif
             return 1.0f - Mathf.Exp(-dampening * elapsed);
+        }
+
+        /// <summary>
+        /// swap element in array <paramref name="source"/> parameter (<paramref name="oldIndex"/> swap for <paramref name="newIndex"/>)
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="oldIndex">old index</param>
+        /// <param name="newIndex">new index</param>
+        /// <typeparam name="T">type</typeparam>
+        public static void Swap<T>(this T[] source, int oldIndex, int newIndex)
+        {
+            if (oldIndex < 0 || newIndex < 0 || oldIndex > source.Length || newIndex > source.Length)
+            {
+#if UNITY_EDITOR
+                Debug.LogError("Index out of range!");
+#endif
+                return;
+            }
+
+            if (oldIndex == newIndex) return;
+#if CSHARP_7_3_OR_NEWER
+            (source[oldIndex], source[newIndex]) = (source[newIndex], source[oldIndex]);
+#else
+            T temp = source[oldIndex];
+            source[oldIndex] = source[newIndex];
+            source[newIndex] = temp;
+#endif
+        }
+
+        /// <summary>
+        /// swap element in array <paramref name="source"/> parameter (<paramref name="oldIndex"/> swap for <paramref name="newIndex"/>)
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="oldIndex">old index</param>
+        /// <param name="newIndex">new index</param>
+        /// <typeparam name="T">type</typeparam>
+        public static void Swap<T>(this IList<T> source, int oldIndex, int newIndex)
+        {
+            if (oldIndex < 0 || newIndex < 0 || oldIndex > source.Count || newIndex > source.Count)
+            {
+#if UNITY_EDITOR
+                Debug.LogError("Index out of range!");
+#endif
+                return;
+            }
+
+            if (oldIndex == newIndex) return;
+#if CSHARP_7_3_OR_NEWER
+            (source[oldIndex], source[newIndex]) = (source[newIndex], source[oldIndex]);
+#else
+            T temp = source[oldIndex];
+            source[oldIndex] = source[newIndex];
+            source[newIndex] = temp;
+#endif
         }
 
         #endregion
