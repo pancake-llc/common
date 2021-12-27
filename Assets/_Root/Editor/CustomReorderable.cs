@@ -82,7 +82,7 @@ namespace Snorlax.Editor
                         onAddCallback?.Invoke(_reorderableList);
                     }
                 },
-                drawElementCallback = (rect, index, _, _) =>
+                drawElementCallback = (rect, index, isActive, _) =>
                 {
                     if (property.arraySize <= index)
                         return;
