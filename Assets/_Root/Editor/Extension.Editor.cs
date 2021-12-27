@@ -108,6 +108,12 @@ namespace Snorlax.Common
             return l;
         }
 
+        /// <summary>
+        /// Find all asset has type <typeparamref name="T"></typeparamref> in folder <paramref name="path"/>
+        /// </summary>
+        /// <param name="path">path find asset</param>
+        /// <typeparam name="T">type</typeparam>
+        /// <returns></returns>
         public static T[] FindAllAssetsWithPath<T>(string path)
         {
             ArrayList al = new ArrayList();
@@ -131,15 +137,27 @@ namespace Snorlax.Common
             return result;
         }
 
+        /// <summary>
+        /// Create button in editor gui
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="color"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public static bool Button(string title, Color? color = null, params GUILayoutOption[] options)
         {
             var c = GUI.color;
             GUI.color = color ?? c;
-            var b = GUILayout.Button(new GUIContent(title), new GUIStyle(EditorStyles.toolbarButton) { fontSize = 11, font = EditorStyles.label.font, }, options);
+            bool b = GUILayout.Button(new GUIContent(title), new GUIStyle(EditorStyles.toolbarButton) { fontSize = 11, font = EditorStyles.label.font, }, options);
             GUI.color = c;
             return b;
         }
 
+        /// <summary>
+        /// Show panel to pickup folder
+        /// </summary>
+        /// <param name="pathResult"></param>
+        /// <param name="keySave"></param>
         public static void PickFolderPath(ref string pathResult, string keySave = "")
         {
             GUI.backgroundColor = Color.gray;
@@ -159,6 +177,33 @@ namespace Snorlax.Common
             }
 
             GUI.backgroundColor = Color.white;
+        }
+
+        /// <summary>
+        /// Swap value of <paramref name="keyA"/> and <paramref name="keyB"/>
+        /// </summary>
+        /// <param name="keyA"></param>
+        /// <param name="keyB"></param>
+        public static void SwapEditorPrefs<T>(string keyA, string keyB)
+        {
+            switch (typeof(T))
+            {
+                case { } intType when intType == typeof(int):
+                    int tempInt = EditorPrefs.GetInt(keyA);
+                    EditorPrefs.SetInt(keyA, EditorPrefs.GetInt(keyB));
+                    EditorPrefs.SetInt(keyB, tempInt);
+                    break;
+                case { } stringType when stringType == typeof(string):
+                    string tempString = EditorPrefs.GetString(keyA);
+                    EditorPrefs.SetString(keyA, EditorPrefs.GetString(keyB));
+                    EditorPrefs.SetString(keyB, tempString);
+                    break;
+                case { } floatType when floatType == typeof(float):
+                    float tempFloat = EditorPrefs.GetFloat(keyA);
+                    EditorPrefs.SetFloat(keyA, EditorPrefs.GetFloat(keyB));
+                    EditorPrefs.SetFloat(keyB, tempFloat);
+                    break;
+            }
         }
     }
 }
