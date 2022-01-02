@@ -185,14 +185,15 @@ namespace Snorlax.Editor
         /// Show panel to pickup file
         /// </summary>
         /// <param name="pathResult"></param>
+        /// <param name="extension">extension type of file</param>
         /// <param name="keySave"></param>
-        /// <param name="style"></param>
-        public static void PickFilePath(ref string pathResult, string keySave = "", GUIStyle style = null)
+        /// <param name="style">gui style to draw button pick file</param>
+        public static void PickFilePath(ref string pathResult, string extension = ".db", string keySave = "", GUIStyle style = null)
         {
             GUI.backgroundColor = Color.gray;
             if (GUILayout.Button(new GUIContent("", "Select File"), style, GUILayout.Width(18), GUILayout.Height(18)))
             {
-                var path = EditorUtility.OpenFilePanel("Select file", pathResult, ".db");
+                var path = EditorUtility.OpenFilePanel("Select file", pathResult, extension);
                 if (!string.IsNullOrEmpty(path))
                 {
                     pathResult = path;
