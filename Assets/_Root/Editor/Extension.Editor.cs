@@ -165,7 +165,7 @@ namespace Snorlax.Editor
             GUI.backgroundColor = Color.gray;
             if (GUILayout.Button(new GUIContent("", "Select folder"), EditorStyles.colorField, GUILayout.Width(18), GUILayout.Height(18)))
             {
-                var path = EditorUtility.OpenFolderPanel("Select folder output", pathResult, "");
+                var path = EditorUtility.OpenFolderPanel("Select folder", pathResult, "");
                 if (!string.IsNullOrEmpty(path))
                 {
                     pathResult = path;
@@ -180,7 +180,31 @@ namespace Snorlax.Editor
 
             GUI.backgroundColor = Color.white;
         }
+        
+        /// <summary>
+        /// Show panel to pickup file
+        /// </summary>
+        /// <param name="pathResult"></param>
+        /// <param name="keySave"></param>
+        /// <param name="style"></param>
+        public static void PickFilePath(ref string pathResult, string keySave = "", GUIStyle style = null)
+        {
+            GUI.backgroundColor = Color.gray;
+            if (GUILayout.Button(new GUIContent("", "Select File"), style, GUILayout.Width(18), GUILayout.Height(18)))
+            {
+                var path = EditorUtility.OpenFilePanel("Select file", pathResult, ".db");
+                if (!string.IsNullOrEmpty(path))
+                {
+                    pathResult = path;
+                    if (!string.IsNullOrEmpty(keySave)) EditorPrefs.SetString(keySave, pathResult);
+                }
 
+                GUI.FocusControl(null);
+            }
+
+            GUI.backgroundColor = Color.white;
+        }
+        
         /// <summary>
         /// Swap value of <paramref name="keyA"/> and <paramref name="keyB"/>
         /// </summary>
