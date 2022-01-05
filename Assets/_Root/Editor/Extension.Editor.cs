@@ -159,13 +159,14 @@ namespace Snorlax.Editor
         /// Show panel to pickup folder
         /// </summary>
         /// <param name="pathResult"></param>
+        /// <param name="defaultPath"></param>
         /// <param name="keySave"></param>
-        public static void PickFolderPath(ref string pathResult, string keySave = "")
+        public static void PickFolderPath(ref string pathResult, string defaultPath = "", string keySave = "")
         {
             GUI.backgroundColor = Color.gray;
             if (GUILayout.Button(new GUIContent("", "Select folder"), EditorStyles.colorField, GUILayout.Width(18), GUILayout.Height(18)))
             {
-                var path = EditorUtility.OpenFolderPanel("Select folder", pathResult, "");
+                var path = EditorUtility.OpenFolderPanel("Select folder", string.IsNullOrEmpty(pathResult) ? defaultPath : pathResult, "");
                 if (!string.IsNullOrEmpty(path))
                 {
                     pathResult = path;
@@ -185,15 +186,16 @@ namespace Snorlax.Editor
         /// Show panel to pickup file
         /// </summary>
         /// <param name="pathResult"></param>
+        /// <param name="defaultPath"></param>
         /// <param name="extension">extension type of file</param>
         /// <param name="keySave"></param>
         /// <param name="style">gui style to draw button pick file</param>
-        public static void PickFilePath(ref string pathResult, string extension = ".db", string keySave = "", GUIStyle style = null)
+        public static void PickFilePath(ref string pathResult, string defaultPath = "", string extension = "db", string keySave = "", GUIStyle style = null)
         {
             GUI.backgroundColor = Color.gray;
             if (GUILayout.Button(new GUIContent("", "Select File"), style, GUILayout.Width(18), GUILayout.Height(18)))
             {
-                var path = EditorUtility.OpenFilePanel("Select file", pathResult, extension);
+                var path = EditorUtility.OpenFilePanel("Select file", string.IsNullOrEmpty(pathResult) ? defaultPath : pathResult, extension);
                 if (!string.IsNullOrEmpty(path))
                 {
                     pathResult = path;
