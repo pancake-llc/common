@@ -181,7 +181,7 @@ namespace Snorlax.Editor
 
             GUI.backgroundColor = Color.white;
         }
-        
+
         /// <summary>
         /// Show panel to pickup file
         /// </summary>
@@ -207,7 +207,7 @@ namespace Snorlax.Editor
 
             GUI.backgroundColor = Color.white;
         }
-        
+
         /// <summary>
         /// Swap value of <paramref name="keyA"/> and <paramref name="keyB"/>
         /// </summary>
@@ -234,5 +234,101 @@ namespace Snorlax.Editor
                     break;
             }
         }
+
+        /// <summary>
+        /// Current event type is equal repaint or not
+        /// </summary>
+        public static bool IsRepaint => Event.current.type == EventType.Repaint;
+
+        /// <summary>
+        /// Current event type is equal layout or not
+        /// </summary>
+        public static bool IsLayout => Event.current.type == EventType.Layout;
+
+        /// <summary>
+        /// Draw vertical group
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public static void Vertical(Action callback, params GUILayoutOption[] options)
+        {
+            EditorGUILayout.BeginVertical(options);
+            callback();
+            EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>
+        /// Draw vertical group
+        /// </summary>
+        /// <param name="style"></param>
+        /// <param name="callback"></param>
+        public static void Vertical(GUIStyle style, Action callback)
+        {
+            EditorGUILayout.BeginVertical(style);
+            callback();
+            EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>
+        /// Draw vertical group
+        /// </summary>
+        /// <param name="style"></param>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public static void Vertical(GUIStyle style, Action callback, params GUILayoutOption[] options)
+        {
+            EditorGUILayout.BeginVertical(style, options);
+            callback();
+            EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>
+        /// Draw horizontal group
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public static void Horizontal(Action callback, params GUILayoutOption[] options)
+        {
+            EditorGUILayout.BeginHorizontal(options);
+            callback();
+            EditorGUILayout.EndHorizontal();
+        }
+
+        /// <summary>
+        /// Draw horizontal group
+        /// </summary>
+        /// <param name="style"></param>
+        /// <param name="callback"></param>
+        public static void Horizontal(GUIStyle style, Action callback)
+        {
+            EditorGUILayout.BeginHorizontal(style);
+            callback();
+            EditorGUILayout.EndHorizontal();
+        }
+
+        /// <summary>
+        /// Draw horizontal group
+        /// </summary>
+        /// <param name="style"></param>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public static void Horizontal(GUIStyle style, Action callback, params GUILayoutOption[] options)
+        {
+            EditorGUILayout.BeginHorizontal(style, options);
+            callback();
+            EditorGUILayout.EndHorizontal();
+        }
+
+        /// <summary>
+        /// Copy <paramref name="value"/> to clipboard
+        /// </summary>
+        /// <param name="value"></param>
+        public static void CopyToClipboard(string value) { EditorGUIUtility.systemCopyBuffer = value; }
+
+        /// <summary>
+        /// Get current value store in clipboard
+        /// </summary>
+        /// <returns></returns>
+        public static string GetClipboardValue() { return EditorGUIUtility.systemCopyBuffer; }
     }
 }
