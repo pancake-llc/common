@@ -32,7 +32,7 @@ namespace Snorlax.Editor
         /// <summary>
         /// Disable groups
         /// </summary>
-        public static void DisabledSection(System.Action onGUI = null, System.Func<bool> isDisabled = null)
+        public static void DisabledSection(Action onGUI = null, Func<bool> isDisabled = null)
         {
             EditorGUI.BeginDisabledGroup(isDisabled?.Invoke() ?? true);
             onGUI?.Invoke();
@@ -60,7 +60,7 @@ namespace Snorlax.Editor
         /// <summary>
         /// Draw a boxed section for all ...GUI... calls in the callback
         /// </summary>
-        public static bool MiniBoxedSection(string header = null, System.Action onGUI = null)
+        public static bool MiniBoxedSection(string header = null, Action onGUI = null)
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             if (header != null)
@@ -123,7 +123,7 @@ namespace Snorlax.Editor
 
             foreach (string fileName in fileEntries)
             {
-                int assetPathIndex = fileName.IndexOf("Assets");
+                int assetPathIndex = fileName.IndexOf("Assets", StringComparison.Ordinal);
                 string localPath = fileName.Substring(assetPathIndex);
 
                 Object t = AssetDatabase.LoadAssetAtPath(localPath, typeof(T));
