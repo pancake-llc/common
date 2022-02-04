@@ -545,7 +545,9 @@ namespace Snorlax.Common
                     break;
             }
         }
-
+        
+        public static string Format(this string fmt, params object[] args) => string.Format(System.Globalization.CultureInfo.InvariantCulture.NumberFormat, fmt, args);
+        
         #endregion
     }
 }
