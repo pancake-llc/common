@@ -396,7 +396,7 @@ namespace Snorlax.Common
                 (byte) Mathf.Clamp(Mathf.RoundToInt(color.b * (float) byte.MaxValue), 0, (int) byte.MaxValue),
                 (byte) 1);
 
-            return "{0:X2}{1:X2}{2:X2}".Format((object) color32.r, (object) color32.g, (object) color32.b);
+            return "#{0:X2}{1:X2}{2:X2}".Format((object) color32.r, (object) color32.g, (object) color32.b);
         }
 
         /// <summary>
@@ -413,7 +413,7 @@ namespace Snorlax.Common
                 (byte) Mathf.Clamp(Mathf.RoundToInt(color.b * (float) byte.MaxValue), 0, (int) byte.MaxValue),
                 (byte) Mathf.Clamp(Mathf.RoundToInt(color.a * (float) byte.MaxValue), 0, (int) byte.MaxValue));
 
-            return "{0:X2}{1:X2}{2:X2}{3:X2}".Format((object) color32.r, (object) color32.g, (object) color32.b, (object) color32.a);
+            return "#{0:X2}{1:X2}{2:X2}{3:X2}".Format((object) color32.r, (object) color32.g, (object) color32.b, (object) color32.a);
         }
 
         public static bool TryParseHtmlString(this string htmlString, out Color color)
