@@ -62,7 +62,7 @@ namespace Snorlax.Common
         /// <param name="formatProvider">An object that specifies culture-specific formatting.</param>
         /// <param name="resultFormat">result string format</param>
         /// <returns></returns>
-        public static string ParseToString(this Vector2Int source, IFormatProvider formatProvider, string numberFormat = "F1", string resultFormat = "{0}:{1}")
+        public static string ParseToString(this Vector2Int source, IFormatProvider formatProvider, string numberFormat = null, string resultFormat = "{0}:{1}")
         {
             string str = string.Format(resultFormat, source.x.ToString(numberFormat, formatProvider), source.y.ToString(numberFormat, formatProvider));
             return "{\"$v2Int\":\"" + str + "\"}";
@@ -157,7 +157,7 @@ namespace Snorlax.Common
         /// <param name="formatProvider">An object that specifies culture-specific formatting.</param>
         /// <param name="resultFormat">result string format</param>
         /// <returns></returns>
-        public static string ParseToString(this Vector3Int source, IFormatProvider formatProvider, string numberFormat = "F1", string resultFormat = "{0}:{1}:{2}")
+        public static string ParseToString(this Vector3Int source, IFormatProvider formatProvider, string numberFormat = null, string resultFormat = "{0}:{1}:{2}")
         {
             if (string.IsNullOrEmpty(numberFormat)) numberFormat = "F1";
 
