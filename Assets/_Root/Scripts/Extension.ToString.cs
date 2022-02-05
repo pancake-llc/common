@@ -15,11 +15,12 @@ namespace Snorlax.Common
         /// <param name="formatProvider">An object that specifies culture-specific formatting.</param>
         /// <param name="resultFormat">result string format</param>
         /// <returns></returns>
-        public static string ParseToString(this Vector2 source, string numberFormat, IFormatProvider formatProvider, string resultFormat = "{\"$v2\":\"{0}:{1}\"}")
+        public static string ParseToString(this Vector2 source, string numberFormat, IFormatProvider formatProvider, string resultFormat = "{0}:{1}")
         {
             if (string.IsNullOrEmpty(numberFormat)) numberFormat = "F1";
 
-            return string.Format(resultFormat, (object) source.x.ToString(numberFormat, formatProvider), (object) source.y.ToString(numberFormat, formatProvider));
+            string str = string.Format(resultFormat, (object) source.x.ToString(numberFormat, formatProvider), (object) source.y.ToString(numberFormat, formatProvider));
+            return "{\"$v2\":\"" + str + "\"}";
         }
 
         /// <summary>
