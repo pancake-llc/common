@@ -20,11 +20,11 @@ namespace Snorlax.Common
             bool displaySeconds = true,
             bool displayMilliseconds = false)
         {
-            int intTime = (int) t;
+            int intTime = (int)t;
             int hours = intTime / 3600;
             int minutes = intTime / 60;
             int seconds = intTime % 60;
-            float milliseconds = (t * 1000) % 1000;
+            float milliseconds = t * 1000 % 1000;
 
             if (displayHours && displayMinutes && displaySeconds && displayMilliseconds)
             {
@@ -75,7 +75,7 @@ namespace Snorlax.Common
                 throw new Exception("The time in the TimeStringToFloat method must be specified using a hh:mm:ss:SSS syntax");
             }
 
-            string[] timeStringArray = timeInStringNotation.Split(new string[] {":"}, StringSplitOptions.None);
+            string[] timeStringArray = timeInStringNotation.Split(new string[] { ":" }, StringSplitOptions.None);
 
             float startTime = 0f;
             float result;
@@ -101,5 +101,13 @@ namespace Snorlax.Common
 
             return startTime;
         }
+
+        /// <summary>
+        /// Converts both DateTime objects to local time and subtracts the <paramref name="timeB"/> from the <paramref name="timeA"/>.
+        /// </summary>
+        /// <returns>The timespan difference between two datetime objects.</returns>
+        /// <param name="timeA">time A. need bigger than time B</param>
+        /// <param name="timeB">time end.</param>
+        public static TimeSpan SameTimeZoneSubtract(this DateTime timeA, DateTime timeB) { return timeA.ToLocalTime().Subtract(timeB.ToLocalTime()); }
     }
 }
