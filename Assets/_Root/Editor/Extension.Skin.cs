@@ -17,11 +17,11 @@ namespace Pancake.Editor
         private static GUIStyle uppercaseSectionHeaderCollapse;
         private static Texture2D chevronUp;
         private static Texture2D chevronDown;
-        public const int CHEVRON_ICON_WIDTH = 10;
-        public const int CHEVRON_ICON_RIGHT_MARGIN = 5;
-        public const float SPACE_ONE_LINE = 4f;
-        public const float SPACE_TWO_LINE = 8f;
-        public const float SPACE_THREE_LINE = 12f;
+        private const int CHEVRON_ICON_WIDTH = 10;
+        private const int CHEVRON_ICON_RIGHT_MARGIN = 5;
+        private const float SPACE_ONE_LINE = 4f;
+        private const float SPACE_TWO_LINE = 8f;
+        private const float SPACE_THREE_LINE = 12f;
 
         public static GUIStyle UppercaseSectionHeaderExpand { get { return uppercaseSectionHeaderExpand ??= GetCustomStyle("Uppercase Section Header"); } }
 
@@ -350,5 +350,9 @@ namespace Pancake.Editor
         /// <param name="message"></param>
         /// <param name="type"></param>
         public static void HelpBox(string message, MessageType type = MessageType.None) { EditorGUILayout.HelpBox(message, type); }
+
+        public static void SpaceOneLine() => GUILayout.Space(SPACE_ONE_LINE);
+        public static void SpaceTwoLine() => GUILayout.Space(SPACE_TWO_LINE);
+        public static void SpaceThreeLine() => GUILayout.Space(SPACE_THREE_LINE);
     }
 }
