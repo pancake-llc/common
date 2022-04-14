@@ -19,6 +19,9 @@ namespace Pancake.Editor
         private static Texture2D chevronDown;
         public const int CHEVRON_ICON_WIDTH = 10;
         public const int CHEVRON_ICON_RIGHT_MARGIN = 5;
+        public const float SPACE_ONE_LINE = 4f;
+        public const float SPACE_TWO_LINE = 8f;
+        public const float SPACE_THREE_LINE = 12f;
 
         public static GUIStyle UppercaseSectionHeaderExpand { get { return uppercaseSectionHeaderExpand ??= GetCustomStyle("Uppercase Section Header"); } }
 
