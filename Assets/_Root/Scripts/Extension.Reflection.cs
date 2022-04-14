@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     using System;
 

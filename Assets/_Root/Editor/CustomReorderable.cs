@@ -1,6 +1,6 @@
 
 
-namespace Snorlax.Editor
+namespace Pancake.Editor
 {
     using UnityEditor;
     using UnityEditorInternal;

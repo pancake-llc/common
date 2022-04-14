@@ -1,6 +1,6 @@
 using System;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     /// <summary>
     /// Id is 16 bytes, based on Guid generation, used to uniquely identify some object 

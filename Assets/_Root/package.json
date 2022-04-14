@@ -1,12 +1,12 @@
 {
-  "name": "com.snorlax.common",
+  "name": "com.pancake.common",
   "displayName": "Common",
   "description": "Provide common useful script for unity",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "unity": "2019.1",
-  "category": "snorlax",
+  "category": "pancake",
   "author": {
-    "name": "Snorlax",
+    "name": "yenmoc",
     "email": "phongsoyenmoc.diep@gmail.com",
     "url": "https://github.com/yenmoc"
   },
@@ -15,10 +15,10 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git@github.com:snorluxe/common.git",
-    "directory": "com.snorlax.common"
+    "url": "git@github.com:pancake/common.git",
+    "directory": "com.pancake.common"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@snorluxe"
+    "registry": "https://npm.pkg.github.com/@pancake"
   }
 }

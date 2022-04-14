@@ -4,7 +4,7 @@ using UnityEditor;
 
 #endif
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     public class SnowflakeAttribute : PropertyAttribute
     {

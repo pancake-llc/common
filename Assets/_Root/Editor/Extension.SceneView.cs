@@ -1,8 +1,8 @@
-using Snorlax.Common;
+using Pancake.Common;
 using UnityEditor;
 using UnityEngine;
 
-namespace Snorlax.Editor
+namespace Pancake.Editor
 {
     public static partial class UtilEditor
     {

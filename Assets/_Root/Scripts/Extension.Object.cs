@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     using UnityEngine;
 

@@ -1,6 +1,6 @@
-using Snorlax.Common;
+using Pancake.Common;
 
-namespace Snorlax.Editor
+namespace Pancake.Editor
 {
     using System;
     using System.Collections;

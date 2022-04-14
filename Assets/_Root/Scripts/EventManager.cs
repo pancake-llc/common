@@ -9,7 +9,7 @@ using UnityEngine;
 #endif
 
 // ReSharper disable InvalidXmlDocComment
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     /// <summary>
     /// GameEvent are used throughout the game for general game events (game started, game ended, life lost, etc.)

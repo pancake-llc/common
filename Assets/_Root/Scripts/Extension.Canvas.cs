@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MEC;
 using UnityEngine;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     public static partial class Util
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     /// <summary>
     /// Generated id is composed of

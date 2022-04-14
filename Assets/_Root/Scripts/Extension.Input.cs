@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     public class InputExtension
     {

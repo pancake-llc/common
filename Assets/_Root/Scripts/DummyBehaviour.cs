@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     using System;
     using System.Collections.Generic;

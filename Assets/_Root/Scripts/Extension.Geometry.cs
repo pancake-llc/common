@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     /// <summary>
     /// A helper class to handle geometry related operations    

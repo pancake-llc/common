@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     /// <summary>
     /// This interface represents ID generator.

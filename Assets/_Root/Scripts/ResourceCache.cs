@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     /// <summary>
     /// Helper for cache Resources.Load calls with 2x performance boost.

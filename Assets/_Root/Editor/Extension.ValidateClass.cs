@@ -1,7 +1,7 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace Snorlax.Editor
+namespace Pancake.Editor
 {
     public static partial class UtilEditor
     {

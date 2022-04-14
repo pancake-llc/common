@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     /// <summary>
     /// A decentralized, k-ordered id generator

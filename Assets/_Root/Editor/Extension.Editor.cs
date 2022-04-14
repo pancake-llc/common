@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Snorlax.Editor
+namespace Pancake.Editor
 {
     public static partial class UtilEditor
     {

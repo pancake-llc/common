@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     public static partial class Util
     {

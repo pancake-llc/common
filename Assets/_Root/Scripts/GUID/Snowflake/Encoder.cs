@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Snorlax.Common
+namespace Pancake.Common
 {
     internal sealed class Encoder
     {
