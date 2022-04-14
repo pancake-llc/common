@@ -245,23 +245,34 @@ namespace Pancake.Editor
         /// Create button in editor gui
         /// </summary>
         /// <param name="label"></param>
+        /// <param name="callback"></param>
         /// <param name="color"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static bool Button(string label, Color? color = null, params GUILayoutOption[] options)
+        public static bool Button(string label, Action callback = null, Color? color = null, params GUILayoutOption[] options)
         {
             var c = GUI.color;
             GUI.color = color ?? c;
             bool b = GUILayout.Button(new GUIContent(label), options);
+            if (b) callback?.Invoke();
             GUI.color = c;
             return b;
         }
 
-        public static bool MiniButton(string label, Color? color = null, params GUILayoutOption[] options)
+        /// <summary>
+        /// create mini button
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="callback"></param>
+        /// <param name="color"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static bool MiniButton(string label, Action callback = null, Color? color = null, params GUILayoutOption[] options)
         {
             var c = GUI.color;
             GUI.color = color ?? c;
             bool b = GUILayout.Button(new GUIContent(label), new GUIStyle(EditorStyles.miniButton) {fontSize = 11, font = EditorStyles.label.font}, options);
+            if (b) callback?.Invoke();
             GUI.color = c;
             return b;
         }
