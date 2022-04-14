@@ -1591,8 +1591,8 @@ MonoBehaviour:
       m_Top: 6
       m_Bottom: 6
     m_Margin:
-      m_Left: 0
-      m_Right: 10
+      m_Left: 5
+      m_Right: 5
       m_Top: 2
       m_Bottom: 2
     m_Padding:
