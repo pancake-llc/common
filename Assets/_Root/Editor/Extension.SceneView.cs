@@ -65,11 +65,9 @@ namespace Pancake.Editor
             }
         }
 
-        public static System.Type GetInspectorWindowType()
-        {
-            var editorAsm = typeof(UnityEditor.Editor).Assembly;
-            var inspWndType = editorAsm.GetType("UnityEditor.InspectorWindow");
-            return inspWndType;
-        }
+        /// <summary>
+        /// get inspector type to display window
+        /// </summary>
+        public static System.Type InspectorWindow => typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.InspectorWindow");
     }
 }
