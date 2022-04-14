@@ -15,7 +15,7 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git@github.com:pancake/common.git",
+    "url": "git@github.com:pancake-llc/common.git",
     "directory": "com.pancake.common"
   },
   "publishConfig": {
