@@ -208,6 +208,46 @@ namespace Pancake.Editor
         }
 
         /// <summary>
+        /// Draw vertical group
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public static void VerticalScope(Action callback, params GUILayoutOption[] options)
+        {
+            using (new EditorGUILayout.VerticalScope(options))
+            {
+                callback();
+            }
+        }
+
+        /// <summary>
+        /// Draw vertical group
+        /// </summary>
+        /// <param name="style"></param>
+        /// <param name="callback"></param>
+        public static void VerticalScope(GUIStyle style, Action callback)
+        {
+            using (new EditorGUILayout.VerticalScope(style))
+            {
+                callback();
+            }
+        }
+
+        /// <summary>
+        /// Draw vertical group
+        /// </summary>
+        /// <param name="style"></param>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public static void VerticalScope(GUIStyle style, Action callback, params GUILayoutOption[] options)
+        {
+            using (new EditorGUILayout.VerticalScope(style, options))
+            {
+                callback();
+            }
+        }
+
+        /// <summary>
         /// Draw horizontal group
         /// </summary>
         /// <param name="callback"></param>
@@ -245,6 +285,46 @@ namespace Pancake.Editor
         }
 
         /// <summary>
+        /// Draw horizontal scope
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public static void HorizontalScope(Action callback, params GUILayoutOption[] options)
+        {
+            using (new EditorGUILayout.HorizontalScope(options))
+            {
+                callback();
+            }
+        }
+
+        /// <summary>
+        /// Draw horizontal scope
+        /// </summary>
+        /// <param name="style"></param>
+        /// <param name="callback"></param>
+        public static void HorizontalScope(GUIStyle style, Action callback)
+        {
+            using (new EditorGUILayout.HorizontalScope(style))
+            {
+                callback();
+            }
+        }
+
+        /// <summary>
+        /// Draw horizontal scope
+        /// </summary>
+        /// <param name="style"></param>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public static void HorizontalScope(GUIStyle style, Action callback, params GUILayoutOption[] options)
+        {
+            using (new EditorGUILayout.HorizontalScope(style, options))
+            {
+                callback();
+            }
+        }
+
+        /// <summary>
         /// Create button in editor gui
         /// </summary>
         /// <param name="label"></param>
@@ -254,9 +334,22 @@ namespace Pancake.Editor
         /// <returns></returns>
         public static bool Button(string label, Action callback = null, Color? color = null, params GUILayoutOption[] options)
         {
+            return Button(new GUIContent(label), callback, color, options);
+        }
+
+        /// <summary>
+        /// Create button in editor gui
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="callback"></param>
+        /// <param name="color"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static bool Button(GUIContent content, Action callback = null, Color? color = null, params GUILayoutOption[] options)
+        {
             var c = GUI.color;
             GUI.color = color ?? c;
-            bool b = GUILayout.Button(new GUIContent(label), options);
+            bool b = GUILayout.Button(content, options);
             if (b) callback?.Invoke();
             GUI.color = c;
             return b;
