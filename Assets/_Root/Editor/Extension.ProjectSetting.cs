@@ -13,7 +13,7 @@ namespace Pancake.Editor
         /// T need has attribute [Serializable]
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ProjectSetting<T> where T : class
+        public class ProjectSetting<T> where T : class, new()
         {
             private T _settings;
 
@@ -48,7 +48,7 @@ namespace Pancake.Editor
 
             public void LoadSetting()
             {
-                _settings = default;
+                _settings = new T();
                 string path = string.Format(DEFAULT_PROJECT_SETTING_PATH, nameof(T));
                 if (!path.FileExists()) return;
                 string json = File.ReadAllText(path);
