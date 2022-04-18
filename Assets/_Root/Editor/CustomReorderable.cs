@@ -1,12 +1,9 @@
-
-
 namespace Pancake.Editor
 {
     using UnityEditor;
     using UnityEditorInternal;
     using UnityEngine;
     
-
     public class CustomReorderable
     {
         public delegate void CreateButtonDelegate(Rect rect, ref SerializedProperty property, int index);
