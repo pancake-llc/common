@@ -11,6 +11,7 @@ namespace Pancake.Editor
 
         /// <summary>
         /// T need has attribute [Serializable]
+        /// T need has contructor (use for init data)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         public class ProjectSetting<T> where T : class, new()

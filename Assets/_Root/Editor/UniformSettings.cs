@@ -7,5 +7,7 @@ namespace Pancake.Editor
     public class UniformSettings
     {
         public Dictionary<string, bool> uppercaseSectionsFoldoutStates;
+
+        public UniformSettings() { uppercaseSectionsFoldoutStates = new Dictionary<string, bool>(); }
     }
 }
