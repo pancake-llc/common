@@ -39,18 +39,18 @@ namespace Pancake.Editor
 
                 try
                 {
-                    File.WriteAllText(string.Format(DEFAULT_PROJECT_SETTING_PATH, nameof(T)), JsonUtility.ToJson(_settings, true));
+                    File.WriteAllText(string.Format(DEFAULT_PROJECT_SETTING_PATH, typeof(T).Name), JsonUtility.ToJson(_settings, true));
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError($"Unable to save {nameof(T)} to ProjectSettings!\n" + e.Message);
+                    Debug.LogError($"Unable to save {typeof(T).Name} to ProjectSettings!\n" + e.Message);
                 }
             }
 
             public void LoadSetting()
             {
                 _settings = new T();
-                string path = string.Format(DEFAULT_PROJECT_SETTING_PATH, nameof(T));
+                string path = string.Format(DEFAULT_PROJECT_SETTING_PATH, typeof(T).Name);
                 if (!path.FileExists()) return;
                 string json = File.ReadAllText(path);
                 _settings = JsonUtility.FromJson<T>(json);
