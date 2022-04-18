@@ -23,7 +23,7 @@ namespace Pancake.Editor
         private const float SPACE_TWO_LINE = 8f;
         private const float SPACE_THREE_LINE = 12f;
 
-        public static UtilEditor.ProjectSetting<UniformSettings> UniformSettings { get; set; } = new UtilEditor.ProjectSetting<UniformSettings>();
+        public static UtilEditor.ProjectSetting<UniformFoldoutState> FoldoutSettings { get; set; } = new UtilEditor.ProjectSetting<UniformFoldoutState>();
 
         public static GUIStyle UppercaseSectionHeaderExpand { get { return uppercaseSectionHeaderExpand ??= GetCustomStyle("Uppercase Section Header"); } }
 
@@ -107,17 +107,16 @@ namespace Pancake.Editor
         /// <param name="defaultFoldout"></param>
         public static void DrawUppercaseSection(string key, string sectionName, Action drawer, Texture2D sectionIcon = null, bool defaultFoldout = true)
         {
-            if (!UniformSettings.Settings.uppercaseSectionsFoldoutStates.ContainsKey(key))
-                UniformSettings.Settings.uppercaseSectionsFoldoutStates.Add(key, defaultFoldout);
+            if (!FoldoutSettings.Settings.ContainsKey(key)) FoldoutSettings.Settings.Add(key, defaultFoldout);
 
-            bool foldout = UniformSettings.Settings.uppercaseSectionsFoldoutStates[key];
+            bool foldout = FoldoutSettings.Settings[key];
 
             EditorGUILayout.BeginVertical(GetCustomStyle("Uppercase Section Box"), GUILayout.MinHeight(foldout ? 30 : 0));
             EditorGUILayout.BeginHorizontal(foldout ? UppercaseSectionHeaderExpand : UppercaseSectionHeaderCollapse);
 
             // Header label (and button).
             if (GUILayout.Button(sectionName, GetCustomStyle("Uppercase Section Header Label")))
-                UniformSettings.Settings.uppercaseSectionsFoldoutStates[key] = !UniformSettings.Settings.uppercaseSectionsFoldoutStates[key];
+                FoldoutSettings.Settings[key] = !FoldoutSettings.Settings[key];
 
             // The expand/collapse icon.
             var buttonRect = GUILayoutUtility.GetLastRect();
