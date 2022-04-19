@@ -16,6 +16,9 @@ namespace Pancake.Editor
         private static GUIStyle uppercaseSectionHeaderCollapse;
         private static Texture2D chevronUp;
         private static Texture2D chevronDown;
+        private static Texture2D eraserIcon;
+        private static Texture2D pinIcon;
+        private static Texture2D extrudeIcon;
         private const int CHEVRON_ICON_WIDTH = 10;
         private const int CHEVRON_ICON_RIGHT_MARGIN = 5;
         private const float SPACE_HALF_LINE = 2f;
@@ -89,7 +92,46 @@ namespace Pancake.Editor
                 return chevronUp;
             }
         }
+        
+        public static Texture2D PinIcon
+        {
+            get
+            {
+                if (pinIcon != null) return pinIcon;
+                const string upmPath = UPM_SKIN_PATH + "Icons/pin.png";
+                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/pin.png" : upmPath;
+                pinIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
 
+                return pinIcon;
+            }
+        }
+        
+        public static Texture2D ExtrudeIcon
+        {
+            get
+            {
+                if (extrudeIcon != null) return extrudeIcon;
+                const string upmPath = UPM_SKIN_PATH + "Icons/extrude.png";
+                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/extrude.png" : upmPath;
+                extrudeIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+
+                return extrudeIcon;
+            }
+        }
+
+        public static Texture2D EraserIcon
+        {
+            get
+            {
+                if (eraserIcon != null) return eraserIcon;
+                const string upmPath = UPM_SKIN_PATH + "Icons/eraser.png";
+                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/eraser.png" : upmPath;
+                eraserIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+
+                return eraserIcon;
+            }
+        }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -181,7 +223,7 @@ namespace Pancake.Editor
         }
 
         /// <summary>
-        /// 
+        /// Icon content
         /// </summary>
         /// <param name="name"></param>
         /// <param name="tooltip"></param>
