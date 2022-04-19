@@ -1,16 +1,11 @@
-using Pancake.Common;
-
 namespace Pancake.Editor
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using UnityEditor;
     using UnityEngine;
-    using UnityEngine.Profiling;
-    using UnityEngine.Rendering;
+    using Common;
 
     public delegate void ProbeHitSelectHandler(bool add);
 
@@ -78,7 +73,7 @@ namespace Pancake.Editor
             }
             else
             {
-                //Highlight
+                Probe.Highlight(gameObject);
             }
         }
 
@@ -90,7 +85,7 @@ namespace Pancake.Editor
             }
             else
             {
-                //ClearHighlight
+                Probe.ClearHighlight();
             }
         }
     }
@@ -142,9 +137,6 @@ namespace Pancake.Editor
             var overlapHits = ArrayPool<Collider2D>.New(limit);
             var handleHits = HashSetPool<GameObject>.New();
             var ancestorHits = HashSetPool<ProbeHit>.New();
-#if PROBUILDER_4_OR_NEWER
-			var proBuilderHits = ListPool<ProbeHit>.New();
-#endif
 
             var gameObjectHits = DictionaryPool<GameObject, ProbeHit>.New();
 
@@ -327,7 +319,7 @@ namespace Pancake.Editor
 
         private static Vector3 DefaultPoint(SceneView sceneView, Vector2 guiPosition)
         {
-            var screenPosition = (Vector3)HandleUtility.GUIPointToScreenPixelCoordinate(guiPosition);
+            var screenPosition = (Vector3) HandleUtility.GUIPointToScreenPixelCoordinate(guiPosition);
             screenPosition.z = sceneView.cameraDistance;
             return sceneView.camera.ScreenToWorldPoint(screenPosition);
         }
@@ -340,6 +332,19 @@ namespace Pancake.Editor
         private static Event e => Event.current;
 
         private static Vector2? pressPosition;
+        private static GameObject highlight { get; set; }
+
+        public static void Highlight(GameObject selection)
+        {
+            highlight = selection;
+            SceneView.RepaintAll();
+        }
+
+        public static void ClearHighlight()
+        {
+            highlight = null;
+            SceneView.RepaintAll();
+        }
 
         #endregion
     }
