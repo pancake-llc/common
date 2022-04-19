@@ -71,8 +71,8 @@ namespace Pancake.Common
 
             var tx = v.x;
             var ty = v.y;
-            v.x = (cos * tx) - (sin * ty);
-            v.y = (sin * tx) + (cos * ty);
+            v.x = cos * tx - sin * ty;
+            v.y = sin * tx + cos * ty;
 
             return v;
         }
@@ -112,22 +112,6 @@ namespace Pancake.Common
         /// <param name="vector">The Vector2.</param>
         /// <returns>The rotation of the Vector2 in degrees.</returns>
         public static float GetAngleDeg(this Vector2 vector) { return vector.GetAngleRad() * Mathf.Rad2Deg; }
-
-        /// <summary>
-        /// set new value of <paramref name="pivot"/> for <paramref name="rectTransform"/>
-        /// </summary>
-        /// <param name="rectTransform"></param>
-        /// <param name="pivot"></param>
-        public static void SetPivot(this RectTransform rectTransform, Vector2 pivot)
-        {
-            if (rectTransform == null) return;
-
-            var size = rectTransform.rect.size;
-            var deltaPivot = rectTransform.pivot - pivot;
-            var deltaPosition = new Vector3(deltaPivot.x * size.x, deltaPivot.y * size.y);
-            rectTransform.pivot = pivot;
-            rectTransform.localPosition -= deltaPosition;
-        }
 
         /// <summary>
         /// Sets the x/y/z transform.position using optional parameters, keeping all undefined values as they were before. Can be
@@ -238,6 +222,10 @@ namespace Pancake.Common
         /// <returns></returns>
         public static Transform Reset(this Transform transform)
         {
+#if UNITY_EDITOR
+            UnityEditor.Undo.RecordObject(transform, "Transform Reset");
+#endif
+
             transform.localScale = Vector3.one;
             transform.localPosition = Vector3.zero;
             transform.localEulerAngles = Vector3.zero;
@@ -250,7 +238,11 @@ namespace Pancake.Common
         /// <param name="transform"></param>
         public static void RemoveAllChildren(this Transform transform)
         {
-            for (var i = transform.childCount - 1; i >= 0; i--)
+#if UNITY_EDITOR
+            UnityEditor.Undo.RecordObject(transform, "Transform RemoveAllChildren");
+#endif
+
+            for (int i = transform.childCount - 1; i >= 0; i--)
             {
                 if (Application.isPlaying)
                 {

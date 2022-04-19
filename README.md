@@ -2,9 +2,9 @@
 
 Add 
 
-- for version 1.0.14
+- for version 1.0.15
 ```csharp
-"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.0.14",
+"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.0.15",
 ```
 
 

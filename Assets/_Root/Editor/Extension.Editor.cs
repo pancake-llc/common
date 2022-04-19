@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Pancake.Common;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -72,7 +73,7 @@ namespace Pancake.Editor
 
             T[] result = new T[al.Count];
             for (int i = 0; i < al.Count; i++)
-                result[i] = (T) al[i];
+                result[i] = (T)al[i];
 
             return result;
         }
@@ -125,5 +126,15 @@ namespace Pancake.Editor
         /// </summary>
         /// <returns></returns>
         public static string GetClipboardValue() { return EditorGUIUtility.systemCopyBuffer; }
+
+        [MenuItem("GameObject/Self Filling", false, 1)]
+        private static void AnchorFillinSelectedUIObjects()
+        {
+            foreach (var obj in Selection.gameObjects)
+            {
+                var rectTransform = obj.GetComponent<RectTransform>();
+                if (rectTransform) rectTransform.SelfFilling();
+            }
+        }
     }
 }
