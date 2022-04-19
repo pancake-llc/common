@@ -29,7 +29,7 @@ namespace Pancake.Editor
 
         public static GUIStyle UppercaseSectionHeaderCollapse
         {
-            get { return uppercaseSectionHeaderCollapse ??= new GUIStyle(GetCustomStyle("Uppercase Section Header")) {normal = new GUIStyleState()}; }
+            get { return uppercaseSectionHeaderCollapse ??= new GUIStyle(GetCustomStyle("Uppercase Section Header")) { normal = new GUIStyleState() }; }
         }
 
         public static GUIStyle GetCustomStyle(string styleName)
@@ -98,14 +98,13 @@ namespace Pancake.Editor
         public static Texture2D GetChevronIcon(bool foldout) { return foldout ? ChevronUp : ChevronDown; }
 
         /// <summary>
-        /// 
+        /// Draw group selection with header
         /// </summary>
         /// <param name="key"></param>
         /// <param name="sectionName"></param>
         /// <param name="drawer"></param>
-        /// <param name="sectionIcon"></param>
         /// <param name="defaultFoldout"></param>
-        public static void DrawUppercaseSection(string key, string sectionName, Action drawer, Texture2D sectionIcon = null, bool defaultFoldout = true)
+        public static void DrawUppercaseSection(string key, string sectionName, Action drawer, bool defaultFoldout = true)
         {
             if (!FoldoutSettings.Settings.ContainsKey(key)) FoldoutSettings.Settings.Add(key, defaultFoldout);
 
@@ -117,6 +116,52 @@ namespace Pancake.Editor
             // Header label (and button).
             if (GUILayout.Button(sectionName, GetCustomStyle("Uppercase Section Header Label")))
                 FoldoutSettings.Settings[key] = !FoldoutSettings.Settings[key];
+
+            // The expand/collapse icon.
+            var buttonRect = GUILayoutUtility.GetLastRect();
+            var iconRect = new Rect(buttonRect.x + buttonRect.width - CHEVRON_ICON_WIDTH - CHEVRON_ICON_RIGHT_MARGIN,
+                buttonRect.y,
+                CHEVRON_ICON_WIDTH,
+                buttonRect.height);
+            GUI.Label(iconRect, GetChevronIcon(foldout), GetCustomStyle("Uppercase Section Header Chevron"));
+
+            EditorGUILayout.EndHorizontal();
+
+            // Draw the section content.
+            if (foldout) GUILayout.Space(5);
+            if (foldout && drawer != null) drawer();
+
+            EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>
+        /// Draw group selection with header
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="sectionName"></param>
+        /// <param name="drawer"></param>
+        /// <param name="actionRightClick"></param>
+        /// <param name="defaultFoldout"></param>
+        public static void DrawUppercaseSectionWithRightClick(string key, string sectionName, Action drawer, Action actionRightClick, bool defaultFoldout = true)
+        {
+            if (!FoldoutSettings.Settings.ContainsKey(key)) FoldoutSettings.Settings.Add(key, defaultFoldout);
+
+            bool foldout = FoldoutSettings.Settings[key];
+
+            EditorGUILayout.BeginVertical(GetCustomStyle("Uppercase Section Box"), GUILayout.MinHeight(foldout ? 30 : 0));
+            EditorGUILayout.BeginHorizontal(foldout ? UppercaseSectionHeaderExpand : UppercaseSectionHeaderCollapse);
+
+            // Header label (and button).
+            if (GUILayout.Button(sectionName, GetCustomStyle("Uppercase Section Header Label")))
+            {
+                if (Event.current.button == 1)
+                {
+                    actionRightClick?.Invoke();
+                    return;
+                }
+
+                FoldoutSettings.Settings[key] = !FoldoutSettings.Settings[key];
+            }
 
             // The expand/collapse icon.
             var buttonRect = GUILayoutUtility.GetLastRect();
@@ -366,7 +411,7 @@ namespace Pancake.Editor
         {
             var c = GUI.color;
             GUI.color = color ?? c;
-            bool b = GUILayout.Button(new GUIContent(label), new GUIStyle(EditorStyles.miniButton) {fontSize = 11, font = EditorStyles.label.font}, options);
+            bool b = GUILayout.Button(new GUIContent(label), new GUIStyle(EditorStyles.miniButton) { fontSize = 11, font = EditorStyles.label.font }, options);
             if (b) callback?.Invoke();
             GUI.color = c;
             return b;
