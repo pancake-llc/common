@@ -14,6 +14,7 @@ namespace Pancake.Editor
         private const string UPM_SKIN_PATH = "Packages/com.pancake.common/Editor/GUISkins/";
         private static GUIStyle uppercaseSectionHeaderExpand;
         private static GUIStyle uppercaseSectionHeaderCollapse;
+        private static GUIStyle toggleButtonToolbar;
         private static Texture2D chevronUp;
         private static Texture2D chevronDown;
         private static Texture2D eraserIcon;
@@ -32,8 +33,10 @@ namespace Pancake.Editor
 
         public static GUIStyle UppercaseSectionHeaderCollapse
         {
-            get { return uppercaseSectionHeaderCollapse ??= new GUIStyle(GetCustomStyle("Uppercase Section Header")) { normal = new GUIStyleState() }; }
+            get { return uppercaseSectionHeaderCollapse ??= new GUIStyle(GetCustomStyle("Uppercase Section Header")) {normal = new GUIStyleState()}; }
         }
+
+        public static GUIStyle ToggleButtonToolbar { get { return toggleButtonToolbar ??= new GUIStyle(GetCustomStyle("ToggleButton")); } }
 
         public static GUIStyle GetCustomStyle(string styleName)
         {
@@ -92,7 +95,7 @@ namespace Pancake.Editor
                 return chevronUp;
             }
         }
-        
+
         public static Texture2D PinIcon
         {
             get
@@ -105,7 +108,7 @@ namespace Pancake.Editor
                 return pinIcon;
             }
         }
-        
+
         public static Texture2D ExtrudeIcon
         {
             get
@@ -131,7 +134,7 @@ namespace Pancake.Editor
                 return eraserIcon;
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -453,7 +456,7 @@ namespace Pancake.Editor
         {
             var c = GUI.color;
             GUI.color = color ?? c;
-            bool b = GUILayout.Button(new GUIContent(label), new GUIStyle(EditorStyles.miniButton) { fontSize = 11, font = EditorStyles.label.font }, options);
+            bool b = GUILayout.Button(new GUIContent(label), new GUIStyle(EditorStyles.miniButton) {fontSize = 11, font = EditorStyles.label.font}, options);
             if (b) callback?.Invoke();
             GUI.color = c;
             return b;
