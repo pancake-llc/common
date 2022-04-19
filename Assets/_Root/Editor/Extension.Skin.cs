@@ -15,6 +15,7 @@ namespace Pancake.Editor
         private static GUIStyle uppercaseSectionHeaderExpand;
         private static GUIStyle uppercaseSectionHeaderCollapse;
         private static GUIStyle toggleButtonToolbar;
+        private static GUIStyle boxArea;
         private static Texture2D chevronUp;
         private static Texture2D chevronDown;
         private static Texture2D eraserIcon;
@@ -37,6 +38,8 @@ namespace Pancake.Editor
         }
 
         public static GUIStyle ToggleButtonToolbar { get { return toggleButtonToolbar ??= new GUIStyle(GetCustomStyle("ToggleButton")); } }
+        
+        public static GUIStyle BoxArea { get { return boxArea ??= new GUIStyle(GetCustomStyle("BoxArea")); } }
 
         public static GUIStyle GetCustomStyle(string styleName)
         {
