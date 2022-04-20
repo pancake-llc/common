@@ -6,32 +6,28 @@ namespace Pancake.Editor
 {
     public static partial class UtilEditor
     {
-        public static bool GetMousePosition(out Vector3 mousePosition, SceneView sceneView)
+        public static ProbeHit? GetMousePosition(out Vector3 mousePosition, SceneView sceneView)
         {
-            Event e = Event.current;
+            var e = Event.current;
             var position = sceneView.GetInnerGuiPosition();
 
             mousePosition = Vector3.zero;
             if (position.Contains(e.mousePosition))
             {
-                var filter = ProbeFilter.@default;
-                filter.proBuilder = false; // Too slow and useless here anyway
+                var filter = ProbeFilter.Default;
+                filter.ProBuilder = false; // Too slow and useless here anyway
                 var hit = Probe.Pick(filter, sceneView, e.mousePosition, out var point);
+                if (e.type == EventType.MouseDown && e.button == 0) mousePosition = point;
 
-                if (e.type == EventType.MouseDown && e.button == 0)
-                {
-                    mousePosition = point;
-                }
-
-                return true;
+                return hit;
             }
 
-            return false;
+            return null;
         }
-        
-        public static bool Get2DMouseScenePosition(out Vector2 omp)
+
+        public static bool Get2DMouseScenePosition(out Vector2 result)
         {
-            omp = Vector2.zero;
+            result = Vector2.zero;
 
             var cam = Camera.current;
             var mp = Event.current.mousePosition;
@@ -39,7 +35,7 @@ namespace Pancake.Editor
             var ray = cam.ScreenPointToRay(mp);
             if (ray.direction != Vector3.forward) return false;
 
-            omp = ray.origin;
+            result = ray.origin;
             return true;
         }
 

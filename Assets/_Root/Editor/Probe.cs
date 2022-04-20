@@ -25,9 +25,9 @@ namespace Pancake.Editor
 
         public Action lostFocusHandler;
 
-        public Transform transform { get => gameObject.transform; set => gameObject = value.gameObject; }
+        public Transform Transform { get => gameObject.transform; set => gameObject = value.gameObject; }
 
-        public RectTransform rectTransform { get => gameObject.GetComponent<RectTransform>(); set => gameObject = value.gameObject; }
+        public RectTransform RectTransform { get => gameObject.GetComponent<RectTransform>(); set => gameObject = value.gameObject; }
 
         public GameObject groupGameObject;
 
@@ -94,11 +94,11 @@ namespace Pancake.Editor
     {
         #region Object Picking
 
-        public const int DefaultLimit = 100;
+        public const int DEFAULT_LIMIT = 100;
 
-        public static bool canPickHandles =>
-            e != null && (e.type == EventType.MouseMove || e.type == EventType.MouseDown || e.type == EventType.MouseUp || e.type == EventType.MouseDrag ||
-                          e.type == EventType.MouseEnterWindow || e.type == EventType.MouseLeaveWindow);
+        public static bool CanPickHandles =>
+            E != null && (E.type == EventType.MouseMove || E.type == EventType.MouseDown || E.type == EventType.MouseUp || E.type == EventType.MouseDrag ||
+                          E.type == EventType.MouseEnterWindow || E.type == EventType.MouseLeaveWindow);
 
         public static ProbeHit? Pick(ProbeFilter filter, SceneView sceneView, Vector2 guiPosition, out Vector3 point)
         {
@@ -125,8 +125,14 @@ namespace Pancake.Editor
                 results.Free();
             }
         }
-
-        public static void PickAllNonAlloc(List<ProbeHit> hits, ProbeFilter filter, SceneView sceneView, Vector2 guiPosition, int limit = DefaultLimit)
+        
+        public static ProbeHit[] PickAll(ProbeFilter filter, SceneView sceneView, Vector2 guiPosition, int limit = DEFAULT_LIMIT)
+        {
+            var results = new List<ProbeHit>();
+            PickAllNonAlloc(results, filter, sceneView, guiPosition, limit);
+            return results.ToArray();
+        }
+        public static void PickAllNonAlloc(List<ProbeHit> hits, ProbeFilter filter, SceneView sceneView, Vector2 guiPosition, int limit = DEFAULT_LIMIT)
         {
             var screenPosition = HandleUtility.GUIPointToScreenPixelCoordinate(guiPosition);
             var ray3D = HandleUtility.GUIPointToWorldRay(guiPosition);
@@ -143,7 +149,7 @@ namespace Pancake.Editor
             try
             {
                 // Raycast (3D)
-                if (filter.raycast)
+                if (filter.Raycast)
                 {
                     var raycastHitCount = Physics.RaycastNonAlloc(ray3D, raycastHits, Mathf.Infinity, layerMask);
 
@@ -173,7 +179,7 @@ namespace Pancake.Editor
                 }
 
                 // Overlap (2D)
-                if (filter.overlap)
+                if (filter.Overlap)
                 {
                     var overlapHitCount = Physics2D.OverlapPointNonAlloc(worldPosition, overlapHits, layerMask);
 
@@ -202,7 +208,7 @@ namespace Pancake.Editor
                 }
 
                 // Handles (Editor Default)
-                if (filter.handles && canPickHandles)
+                if (filter.Handles && CanPickHandles)
                 {
                     PickAllHandlesNonAlloc(handleHits, guiPosition, limit);
 
@@ -237,7 +243,7 @@ namespace Pancake.Editor
 
                         var parentHit = new ProbeHit(parentGameObject);
                         parentHit.groupGameObject = gameObject;
-                        parentHit.distance = hit.distance ?? Vector3.Distance(parentHit.transform.position, worldPosition);
+                        parentHit.distance = hit.distance ?? Vector3.Distance(parentHit.Transform.position, worldPosition);
                         parentHit.groupOrder = 1000 + depth;
 
                         ancestorHits.Add(parentHit);
@@ -262,7 +268,7 @@ namespace Pancake.Editor
                 }
 
                 // Sort by distance
-                hits.Sort(compareHits);
+                hits.Sort(CompareHits);
             }
             finally
             {
@@ -275,16 +281,16 @@ namespace Pancake.Editor
             }
         }
 
-        private static void PickAllHandlesNonAlloc(HashSet<GameObject> results, Vector2 position, int limit = DefaultLimit)
+        private static void PickAllHandlesNonAlloc(HashSet<GameObject> results, Vector2 position, int limit = DEFAULT_LIMIT)
         {
-            if (!canPickHandles)
+            if (!CanPickHandles)
             {
                 // HandleUtility.PickGameObject is not supported in those contexts
-                Debug.LogWarning($"Cannot pick game objects in the current event: {e?.ToString() ?? "null"}");
+                Debug.LogWarning($"Cannot pick game objects in the current event: {E?.ToString() ?? "null"}");
                 return;
             }
 
-            GameObject result = null;
+            GameObject result;
 
             var count = 0;
 
@@ -308,9 +314,9 @@ namespace Pancake.Editor
             } while (result != null && count++ < limit);
         }
 
-        private static readonly Comparison<ProbeHit> compareHits = CompareHits;
+        private static readonly Comparison<ProbeHit> CompareHits = CompareProbeHit;
 
-        private static int CompareHits(ProbeHit a, ProbeHit b)
+        private static int CompareProbeHit(ProbeHit a, ProbeHit b)
         {
             var distanceA = a.distance ?? Mathf.Infinity;
             var distanceB = b.distance ?? Mathf.Infinity;
@@ -325,14 +331,13 @@ namespace Pancake.Editor
         }
 
         #endregion
-
-
+        
         #region Scene View Integration
 
-        private static Event e => Event.current;
+        private static Event E => Event.current;
 
         private static Vector2? pressPosition;
-        private static GameObject highlight { get; set; }
+        private static GameObject highlight;
 
         public static void Highlight(GameObject selection)
         {
@@ -351,14 +356,14 @@ namespace Pancake.Editor
 
     public struct ProbeFilter
     {
-        public bool raycast { get; set; }
-        public bool overlap { get; set; }
-        public bool handles { get; set; }
-        public bool proBuilder { get; set; }
+        public bool Raycast { get; set; }
+        public bool Overlap { get; set; }
+        public bool Handles { get; set; }
+        public bool ProBuilder { get; set; }
 
-        public static ProbeFilter @default { get; } = new ProbeFilter
+        public static ProbeFilter Default { get; } = new ProbeFilter
         {
-            raycast = true, overlap = true, handles = true, proBuilder = true,
+            Raycast = true, Overlap = true, Handles = true, ProBuilder = true,
         };
     }
 }
