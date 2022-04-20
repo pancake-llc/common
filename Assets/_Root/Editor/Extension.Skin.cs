@@ -21,6 +21,7 @@ namespace Pancake.Editor
         private static Texture2D eraserIcon;
         private static Texture2D pinIcon;
         private static Texture2D extrudeIcon;
+        private static Texture2D prefabIcon;
         private const int CHEVRON_ICON_WIDTH = 10;
         private const int CHEVRON_ICON_RIGHT_MARGIN = 5;
         private const float SPACE_HALF_LINE = 2f;
@@ -135,6 +136,19 @@ namespace Pancake.Editor
                 eraserIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
 
                 return eraserIcon;
+            }
+        }
+        
+        public static Texture2D PrefabIcon
+        {
+            get
+            {
+                if (prefabIcon != null) return prefabIcon;
+                const string upmPath = UPM_SKIN_PATH + "Icons/prefab-default.png";
+                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/prefab-default.png" : upmPath;
+                prefabIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+
+                return prefabIcon;
             }
         }
 
