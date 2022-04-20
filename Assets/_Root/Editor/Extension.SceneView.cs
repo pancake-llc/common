@@ -16,7 +16,6 @@ namespace Pancake.Editor
             if (position.Contains(e.mousePosition))
             {
                 var filter = ProbeFilter.Default;
-                filter.ProBuilder = false; // Too slow and useless here anyway
                 var hit = Probe.Pick(filter, sceneView, e.mousePosition, out var point);
                 if (e.type == EventType.MouseDown && e.button == 0) mousePosition = point;
 

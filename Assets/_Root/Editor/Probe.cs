@@ -359,11 +359,10 @@ namespace Pancake.Editor
         public bool Raycast { get; set; }
         public bool Overlap { get; set; }
         public bool Handles { get; set; }
-        public bool ProBuilder { get; set; }
 
         public static ProbeFilter Default { get; } = new ProbeFilter
         {
-            Raycast = true, Overlap = true, Handles = true, ProBuilder = true,
+            Raycast = true, Overlap = true, Handles = true
         };
     }
 }
