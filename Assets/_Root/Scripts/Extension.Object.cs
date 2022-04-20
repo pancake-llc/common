@@ -440,6 +440,26 @@ namespace Pancake.Common
 
             return new Bounds() { min = new Vector3(minX, minY, minZ), max = new Vector3(maxX, maxY, maxZ) };
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bounds"></param>
+        /// <param name="array"></param>
+        public static void GetPointsNoAlloc(this Bounds bounds, Vector3[] array)
+        {
+            var min = bounds.min;
+            var max = bounds.max;
+
+            array[0] = new Vector3(min.x, min.y, min.z);
+            array[1] = new Vector3(min.x, min.y, max.z);
+            array[2] = new Vector3(min.x, max.y, min.z);
+            array[3] = new Vector3(min.x, max.y, max.z);
+            array[4] = new Vector3(max.x, min.y, min.z);
+            array[5] = new Vector3(max.x, min.y, max.z);
+            array[6] = new Vector3(max.x, max.y, min.z);
+            array[7] = new Vector3(max.x, max.y, max.z);
+        }
 
         /// <summary>
         /// Get all components of specified Layer in childs

@@ -297,5 +297,48 @@ namespace Pancake.Common
             var position = source.position;
             return new Rect(position.x - rectTransformWidth / 2f, position.y - rectTransformHeight / 2f, rectTransformWidth, rectTransformHeight);
         }
+        
+        public static Rect Encompass(this Rect rect, float x, float y)
+        {
+            if (rect.xMin > x) rect.xMin = x;
+            if (rect.yMin > y) rect.yMin = y;
+            if (rect.xMax < x) rect.xMax = x;
+            if (rect.yMax < y) rect.yMax = y;
+            return rect;
+        }
+
+        public static Rect Encompass(this Rect rect, Vector2 point) { return rect.Encompass(point.x, point.y); }
+
+        public static Rect Encompass(this Rect? rect, Vector2 point) { return rect?.Encompass(point) ?? new Rect(point.x, point.y, 0, 0); }
+
+        public static Rect Encompass(this Rect? rect, Rect other) { return rect?.Encompass(other) ?? other; }
+
+        public static Rect? Encompass(this Rect? rect, Rect? other)
+        {
+            if (rect == null) return other;
+            return other == null ? rect : rect.Value.Encompass(other.Value);
+        }
+
+        public static Rect Encompass(this Rect rect, Rect other)
+        {
+            // Micro-optim
+            var xMin = other.xMin;
+            var xMax = other.xMax;
+            var yMin = other.yMin;
+            var yMax = other.yMax;
+
+            rect = rect.Encompass(xMin, yMin);
+            rect = rect.Encompass(xMin, yMax);
+            rect = rect.Encompass(xMax, yMin);
+            rect = rect.Encompass(xMax, yMax);
+
+            return rect;
+        }
+
+        public static bool Encompasses(this Rect rect, Rect other)
+        {
+            return rect.Contains(new Vector2(other.xMin, other.yMin)) && rect.Contains(new Vector2(other.xMin, other.yMax)) &&
+                   rect.Contains(new Vector2(other.xMax, other.yMin)) && rect.Contains(new Vector2(other.xMax, other.yMax));
+        }
     }
 }
