@@ -73,7 +73,7 @@ namespace Pancake.Editor
 
             T[] result = new T[al.Count];
             for (int i = 0; i < al.Count; i++)
-                result[i] = (T)al[i];
+                result[i] = (T) al[i];
 
             return result;
         }
@@ -126,6 +126,20 @@ namespace Pancake.Editor
         /// </summary>
         /// <returns></returns>
         public static string GetClipboardValue() { return EditorGUIUtility.systemCopyBuffer; }
+
+        /// <summary>
+        /// Show popup dialog
+        /// </summary>
+        /// <param name="title">title dialog</param>
+        /// <param name="message">message dialog</param>
+        /// <param name="strOk">name button ok display</param>
+        /// <param name="strCancel">name button cancel display</param>
+        /// <param name="actionOk">callback button ok</param>
+        /// <returns></returns>
+        public static void ShowDialog(string title, string message, string strOk, string strCancel, Action actionOk)
+        {
+            if (EditorUtility.DisplayDialog(title, message, strOk, strCancel)) actionOk?.Invoke();
+        }
 
         [MenuItem("GameObject/Self Filling", false, 1)]
         private static void AnchorFillinSelectedUIObjects()
