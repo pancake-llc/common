@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Pancake.Common;
@@ -141,7 +142,7 @@ namespace Pancake.Editor
             if (EditorUtility.DisplayDialog(title, message, strOk, strCancel)) actionOk?.Invoke();
         }
 
-        [MenuItem("GameObject/Self Filling", false, 1)]
+        [MenuItem("GameObject/Pancake/Self Filling", false, 1)]
         private static void AnchorFillinSelectedUIObjects()
         {
             foreach (var obj in Selection.gameObjects)
@@ -149,6 +150,20 @@ namespace Pancake.Editor
                 var rectTransform = obj.GetComponent<RectTransform>();
                 if (rectTransform) rectTransform.SelfFilling();
             }
+        }
+
+        public static void Delay(string key, float second)
+        {
+            EditorPrefs.SetString($"{Application.identifier}_{key}_next", DateTime.UtcNow.AddSeconds(second).ToString(CultureInfo.InvariantCulture));
+        }
+
+        public static bool IsCompleteDelay(string key)
+        {
+            var now = DateTime.UtcNow;
+            var next = DateTime.Parse(EditorPrefs.GetString($"{Application.identifier}_{key}_next", DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)));
+
+            var diff = now - next;
+            return diff.TotalSeconds >= 0;
         }
     }
 }
