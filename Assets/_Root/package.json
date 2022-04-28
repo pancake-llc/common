@@ -12,7 +12,9 @@
   },
   "license": "MIT",
   "keywords": [ "common","util","useful","upm","unity" ],
-  "dependencies": {},
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.0.1"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:pancake-llc/common.git",
