@@ -28,6 +28,20 @@ namespace Pancake.Editor
         private const float SPACE_ONE_LINE = 4f;
         private const float SPACE_TWO_LINE = 8f;
         private const float SPACE_THREE_LINE = 12f;
+        
+        public class Property
+        {
+            public SerializedProperty property;
+            public GUIContent content;
+
+            public Property(SerializedProperty property, GUIContent content)
+            {
+                this.property = property;
+                this.content = content;
+            }
+
+            public Property(GUIContent content) { this.content = content; }
+        }
 
         public static UtilEditor.ProjectSetting<UniformFoldoutState> FoldoutSettings { get; set; } = new UtilEditor.ProjectSetting<UniformFoldoutState>();
 
