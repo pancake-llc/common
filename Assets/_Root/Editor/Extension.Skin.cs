@@ -22,13 +22,33 @@ namespace Pancake.Editor
         private static Texture2D pinIcon;
         private static Texture2D extrudeIcon;
         private static Texture2D prefabIcon;
+        private static Texture2D alignLeft;
+        private static Texture2D alignCenter;
+        private static Texture2D alignRight;
+        private static Texture2D alignBottom;
+        private static Texture2D alignMiddle;
+        private static Texture2D alignTop;
+        private static Texture2D distributeHorizontal;
+        private static Texture2D distributeVertical;
+        private static Texture2D snapAllPic;
+        private static Texture2D snapVerticalPic;
+        private static Texture2D snapHorizontalPic;
+        private static Texture2D freeParentModeOnPic;
+        private static Texture2D freeParentModeOffPic;
+        private static Texture2D allBorderPic;
+        private static Texture2D pointPic;
+        private static Texture2D verticalPointPic;
+        private static Texture2D horizontalPointPic;
+        private static Texture2D verticalBorderPic;
+        private static Texture2D horizontalBorderPic;
+
         private const int CHEVRON_ICON_WIDTH = 10;
         private const int CHEVRON_ICON_RIGHT_MARGIN = 5;
         private const float SPACE_HALF_LINE = 2f;
         private const float SPACE_ONE_LINE = 4f;
         private const float SPACE_TWO_LINE = 8f;
         private const float SPACE_THREE_LINE = 12f;
-        
+
         public class Property
         {
             public SerializedProperty property;
@@ -53,7 +73,7 @@ namespace Pancake.Editor
         }
 
         public static GUIStyle ToggleButtonToolbar { get { return toggleButtonToolbar ??= new GUIStyle(GetCustomStyle("ToggleButton")); } }
-        
+
         public static GUIStyle BoxArea { get { return boxArea ??= new GUIStyle(GetCustomStyle("BoxArea")); } }
 
         public static GUIStyle GetCustomStyle(string styleName)
@@ -73,17 +93,20 @@ namespace Pancake.Editor
             return null;
         }
 
+        private static void G<T>(ref T t, string sourcePath) where T : class
+        {
+            if (t != null) return;
+            string upmPath = UPM_SKIN_PATH + sourcePath;
+            string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + sourcePath : upmPath;
+            t = AssetDatabase.LoadAssetAtPath(path, typeof(T)) as T;
+        }
+
         public static GUISkin Skin
         {
             get
             {
-                if (skin != null) return skin;
-
-                const string upmPath = UPM_SKIN_PATH + "Dark.guiskin";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Dark.guiskin" : upmPath;
-                skin = AssetDatabase.LoadAssetAtPath(path, typeof(GUISkin)) as GUISkin;
-
-                if (skin == null) Debug.LogError("Couldn't load the GUISkin at " + path);
+                if (skin == null) G(ref skin, "Dark.guiskin");
+                if (skin == null) Debug.LogError("Couldn't load the Dark.guiskin at GUISkins");
 
                 return skin;
             }
@@ -93,10 +116,7 @@ namespace Pancake.Editor
         {
             get
             {
-                if (chevronDown != null) return chevronDown;
-                const string upmPath = UPM_SKIN_PATH + "Icons/icon-chevron-down-dark.psd";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/icon-chevron-down-dark.psd" : upmPath;
-                chevronDown = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+                if (chevronDown == null) G(ref chevronDown, "Icons/icon-chevron-down-dark.psd");
                 return chevronDown;
             }
         }
@@ -105,11 +125,7 @@ namespace Pancake.Editor
         {
             get
             {
-                if (chevronUp != null) return chevronUp;
-                const string upmPath = UPM_SKIN_PATH + "Icons/icon-chevron-up-dark.psd";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/icon-chevron-up-dark.psd" : upmPath;
-                chevronUp = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
-
+                if (chevronUp == null) G(ref chevronUp, "Icons/icon-chevron-up-dark.psd");
                 return chevronUp;
             }
         }
@@ -118,11 +134,7 @@ namespace Pancake.Editor
         {
             get
             {
-                if (pinIcon != null) return pinIcon;
-                const string upmPath = UPM_SKIN_PATH + "Icons/pin.png";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/pin.png" : upmPath;
-                pinIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
-
+                if (pinIcon == null) G(ref pinIcon, "Icons/pin.png");
                 return pinIcon;
             }
         }
@@ -131,11 +143,7 @@ namespace Pancake.Editor
         {
             get
             {
-                if (extrudeIcon != null) return extrudeIcon;
-                const string upmPath = UPM_SKIN_PATH + "Icons/extrude.png";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/extrude.png" : upmPath;
-                extrudeIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
-
+                if (extrudeIcon == null) G(ref extrudeIcon, "Icons/extrude.png");
                 return extrudeIcon;
             }
         }
@@ -144,25 +152,188 @@ namespace Pancake.Editor
         {
             get
             {
-                if (eraserIcon != null) return eraserIcon;
-                const string upmPath = UPM_SKIN_PATH + "Icons/eraser.png";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/eraser.png" : upmPath;
-                eraserIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
-
+                if (eraserIcon == null) G(ref eraserIcon, "Icons/eraser.png");
                 return eraserIcon;
             }
         }
-        
+
         public static Texture2D PrefabIcon
         {
             get
             {
-                if (prefabIcon != null) return prefabIcon;
-                const string upmPath = UPM_SKIN_PATH + "Icons/prefab-default.png";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/prefab-default.png" : upmPath;
-                prefabIcon = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
-
+                if (prefabIcon == null) G(ref prefabIcon, "Icons/prefab-default.png");
                 return prefabIcon;
+            }
+        }
+
+        public static Texture2D AlignLeft
+        {
+            get
+            {
+                if (alignLeft == null) G(ref alignLeft, "Icons/Tools/allign_left.png");
+                return alignLeft;
+            }
+        }
+
+        public static Texture2D AlignCenter
+        {
+            get
+            {
+                if (alignCenter == null) G(ref alignCenter, "Icons/Tools/allign_center.png");
+                return alignCenter;
+            }
+        }
+
+        public static Texture2D AlignRight
+        {
+            get
+            {
+                if (alignRight == null) G(ref alignRight, "Icons/Tools/allign_right.png");
+                return alignRight;
+            }
+        }
+
+        public static Texture2D AlignBottom
+        {
+            get
+            {
+                if (alignBottom == null) G(ref alignBottom, "Icons/Tools/allign_bottom.png");
+                return alignBottom;
+            }
+        }
+
+        public static Texture2D AlignMiddle
+        {
+            get
+            {
+                if (alignMiddle == null) G(ref alignMiddle, "Icons/Tools/allign_middle.png");
+                return alignMiddle;
+            }
+        }
+
+        public static Texture2D AlignTop
+        {
+            get
+            {
+                if (alignTop == null) G(ref alignTop, "Icons/Tools/allign_top.png");
+                return alignTop;
+            }
+        }
+
+        public static Texture2D DistributeHorizontal
+        {
+            get
+            {
+                if (distributeHorizontal == null) G(ref distributeHorizontal, "Icons/Tools/distribute_horizontally.png");
+                return distributeHorizontal;
+            }
+        }
+
+        public static Texture2D DistributeVertical
+        {
+            get
+            {
+                if (distributeVertical == null) G(ref distributeVertical, "Icons/Tools/distribute_vertically.png");
+                return distributeVertical;
+            }
+        }
+
+        public static Texture2D SnapAllPic
+        {
+            get
+            {
+                if (snapAllPic == null) G(ref snapAllPic, "Icons/Tools/snap_to_childs_all.png");
+                return snapAllPic;
+            }
+        }
+
+        public static Texture2D SnapHorizontalPic
+        {
+            get
+            {
+                if (snapHorizontalPic == null) G(ref snapHorizontalPic, "Icons/Tools/snap_to_childs_h.png");
+                return snapHorizontalPic;
+            }
+        }
+
+        public static Texture2D SnapVerticalPic
+        {
+            get
+            {
+                if (snapVerticalPic == null) G(ref snapVerticalPic, "Icons/Tools/snap_to_childs_v.png");
+                return snapVerticalPic;
+            }
+        }
+
+        public static Texture2D FreeParentModeOnPic
+        {
+            get
+            {
+                if (freeParentModeOnPic == null) G(ref freeParentModeOnPic, "Icons/Tools/free_parent_mode_on.png");
+                return freeParentModeOnPic;
+            }
+        }
+
+        public static Texture2D FreeParentModeOffPic
+        {
+            get
+            {
+                if (freeParentModeOffPic == null) G(ref freeParentModeOffPic, "Icons/Tools/free_parent_mode_off.png");
+                return freeParentModeOffPic;
+            }
+        }
+        
+        public static Texture2D AllBorderPic
+        {
+            get
+            {
+                if (allBorderPic == null) G(ref allBorderPic, "Icons/Tools/snap_all_edges.png");
+                return allBorderPic;
+            }
+        }
+        
+        public static Texture2D PointPic
+        {
+            get
+            {
+                if (pointPic == null) G(ref pointPic, "Icons/Tools/snap_all_direction_point.png");
+                return pointPic;
+            }
+        }
+        
+        public static Texture2D HorizontalPointPic
+        {
+            get
+            {
+                if (horizontalPointPic == null) G(ref horizontalPointPic, "Icons/Tools/snap_horizontal_point.png");
+                return horizontalPointPic;
+            }
+        }
+        
+        public static Texture2D VerticalPointPic
+        {
+            get
+            {
+                if (verticalPointPic == null) G(ref verticalPointPic, "Icons/Tools/snap_vertical_point.png");
+                return verticalPointPic;
+            }
+        }
+        
+        public static Texture2D HorizontalBorderPic
+        {
+            get
+            {
+                if (horizontalBorderPic == null) G(ref horizontalBorderPic, "Icons/Tools/snap_horizontal_edges.png");
+                return horizontalBorderPic;
+            }
+        }
+        
+        public static Texture2D VerticalBorderPic
+        {
+            get
+            {
+                if (verticalBorderPic == null) G(ref verticalBorderPic, "Icons/Tools/snap_vertical_edges.png");
+                return verticalBorderPic;
             }
         }
 
