@@ -231,13 +231,14 @@ namespace Pancake.Common
         }
 
         /// <summary>
-        /// 
+        /// Convert to array
         /// </summary>
         /// <param name="segment"></param>
         /// <returns></returns>
         public static byte[] ToArray(this ArraySegment<byte> segment)
         {
-            if (segment.Count == 0) return new byte[0];
+            if (segment.Count == 0) return Array.Empty<byte>(); // new byte[0];
+            if (segment.Array == null) return null;
             var result = new byte[segment.Count];
             Buffer.BlockCopy(segment.Array,
                 segment.Offset,
@@ -246,5 +247,233 @@ namespace Pancake.Common
                 segment.Count);
             return result;
         }
+
+        /// <summary>
+        /// Indicate the location of <paramref name="item"/> in <paramref name="source"/>
+        /// if not exists in <paramref name="source"/>, return -1
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="item"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static int IndexOf<T>(this T[] source, in T item) where T : IEquatable<T>
+        {
+            for (int i = 0; i < source.Length; i++)
+            {
+                if (source[i].Equals(item)) return i;
+            }
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Indicate the location of <paramref name="item"/> in <paramref name="source"/>
+        /// if not exists in <paramref name="source"/>, return -1
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="item"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static int IndexOf<T>(this List<T> source, in T item) where T : IEquatable<T>
+        {
+            for (int i = 0; i < source.Count; i++)
+            {
+                if (source[i].Equals(item)) return i;
+            }
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Indicate the elements that satisfy the condition <paramref name="predicate"/> in <paramref name="source"/>
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="predicate"></param>
+        /// <param name="countFiltered"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TFilterPredicate"></typeparam>
+        /// <returns></returns>
+        public static List<T> Filter<T, TFilterPredicate>(this T[] source, in TFilterPredicate predicate, out int countFiltered)
+            where T : struct where TFilterPredicate : IFilterPredicate<T>
+        {
+            var result = new List<T>();
+            foreach (var temp in source)
+            {
+                if (predicate.Run(temp)) result.Add(temp);
+            }
+
+            countFiltered = result.Count;
+            return result;
+        }
+
+        /// <summary>
+        /// Indicate the elements that satisfy the condition <paramref name="predicate"/> in <paramref name="source"/>
+        /// results are suspected in list <paramref name="output"/>
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="output"></param>
+        /// <param name="predicate"></param>
+        /// <param name="countFiltered"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TFilterPredicate"></typeparam>
+        /// <returns></returns>
+        public static List<T> Filter<T, TFilterPredicate>(this T[] source, List<T> output, in TFilterPredicate predicate, out int countFiltered)
+            where T : struct where TFilterPredicate : IFilterPredicate<T>
+        {
+            foreach (var temp in source)
+            {
+                if (predicate.Run(temp)) output.Add(temp);
+            }
+
+            countFiltered = output.Count;
+            return output;
+        }
+
+        /// <summary>
+        /// Indicate the elements that satisfy the condition <paramref name="predicate"/> in <paramref name="source"/>
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="predicate"></param>
+        /// <param name="countFiltered"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TFilterPredicate"></typeparam>
+        /// <returns></returns>
+        public static List<T> Filter<T, TFilterPredicate>(this List<T> source, in TFilterPredicate predicate, out int countFiltered)
+            where T : struct where TFilterPredicate : IFilterPredicate<T>
+        {
+            var result = new List<T>();
+            foreach (var temp in source)
+            {
+                if (predicate.Run(temp)) result.Add(temp);
+            }
+
+            countFiltered = result.Count;
+            return result;
+        }
+
+        /// <summary>
+        /// Indicate the elements that satisfy the condition <paramref name="predicate"/> in <paramref name="source"/>
+        /// results are suspected in list <paramref name="output"/>
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="output"></param>
+        /// <param name="predicate"></param>
+        /// <param name="countFiltered"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TFilterPredicate"></typeparam>
+        /// <returns></returns>
+        public static List<T> Filter<T, TFilterPredicate>(this List<T> source, List<T> output, in TFilterPredicate predicate, out int countFiltered)
+            where T : struct where TFilterPredicate : IFilterPredicate<T>
+        {
+            foreach (var temp in source)
+            {
+                if (predicate.Run(temp)) output.Add(temp);
+            }
+
+            countFiltered = output.Count;
+            return output;
+        }
+
+        /// <summary>
+        /// Convert all elements in the array according to the condition <paramref name="map"/>
+        /// The result is a new array of the same length as the <paramref name="source"/> array, but the value has been modified
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="map"></param>
+        /// <typeparam name="TFrom"></typeparam>
+        /// <typeparam name="TTo"></typeparam>
+        /// <typeparam name="TMap"></typeparam>
+        /// <returns></returns>
+        public static TTo[] Map<TFrom, TTo, TMap>(this TFrom[] source, in TMap map) where TFrom : struct where TTo : struct where TMap : IMapper<TFrom, TTo>
+        {
+            var output = new TTo[source.Length];
+            for (int i = 0; i < source.Length; i++)
+            {
+                output[i] = map.Map(source[i]);
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        /// Convert all elements in the array according to the condition <paramref name="map"/>
+        /// The result after executing the <paramref name="map"/> will be added to the list <paramref name="output"/>
+        /// Note: that it is possible that the list output may already have the element
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="output"></param>
+        /// <param name="map"></param>
+        /// <typeparam name="TFrom"></typeparam>
+        /// <typeparam name="TTo"></typeparam>
+        /// <typeparam name="TMap"></typeparam>
+        /// <returns></returns>
+        public static List<TTo> Map<TFrom, TTo, TMap>(this TFrom[] source, List<TTo> output, in TMap map)
+            where TFrom : struct where TTo : struct where TMap : IMapper<TFrom, TTo>
+        {
+            if (output == null) output = new List<TTo>();
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                output.Add(map.Map(source[i]));
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        /// Convert all elements in the array according to the condition <paramref name="map"/>
+        /// The result is a new array of the same length as the <paramref name="source"/> array, but the value has been modified
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="map"></param>
+        /// <typeparam name="TFrom"></typeparam>
+        /// <typeparam name="TTo"></typeparam>
+        /// <typeparam name="TMap"></typeparam>
+        /// <returns></returns>
+        public static List<TTo> Map<TFrom, TTo, TMap>(this List<TFrom> source, in TMap map) where TFrom : struct where TTo : struct where TMap : IMapper<TFrom, TTo>
+        {
+            var output = new List<TTo>();
+            for (int i = 0; i < source.Count; i++)
+            {
+                output.Add(map.Map(source[i]));
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        /// Convert all elements in the array according to the condition <paramref name="map"/>
+        /// The result after executing the <paramref name="map"/> will be added to the list <paramref name="output"/>
+        /// Note: that it is possible that the list output may already have the element
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="output"></param>
+        /// <param name="map"></param>
+        /// <typeparam name="TFrom"></typeparam>
+        /// <typeparam name="TTo"></typeparam>
+        /// <typeparam name="TMap"></typeparam>
+        /// <returns></returns>
+        public static List<TTo> Map<TFrom, TTo, TMap>(this List<TFrom> source, List<TTo> output, in TMap map)
+            where TFrom : struct where TTo : struct where TMap : IMapper<TFrom, TTo>
+        {
+            if (output == null) output = new List<TTo>();
+
+            for (int i = 0; i < source.Count; i++)
+            {
+                output.Add(map.Map(source[i]));
+            }
+
+            return output;
+        }
+    }
+
+    public interface IFilterPredicate<T> where T : struct
+    {
+        bool Run(in T item);
+    }
+
+    public interface IMapper<TFrom, out TTo> where TFrom : struct where TTo : struct
+    {
+        TTo Map(in TFrom from);
     }
 }
