@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 //todo: more distinct
 
 namespace Pancake.Linq
 {
     public static partial class R
     {
-       
+
         // --------------------------  LISTS --------------------------------------------
 
 
