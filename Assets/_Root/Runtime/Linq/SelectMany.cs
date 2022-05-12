@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
         // --------------------------  Arrays --------------------------------------------
 
@@ -14,7 +14,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to project.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>A sequence whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
-        public static TResult[] SelectManyF<TSource, TResult>(this TSource[] source, Func<TSource, TResult[]> selector)
+        public static TResult[] SelectMany<TSource, TResult>(this TSource[] source, Func<TSource, TResult[]> selector)
         {
             if (source == null)
             {
@@ -35,6 +35,7 @@ namespace Pancake.Linq
                     result.Add(va[j]);
                 }
             }
+
             return result.ToArray();
         }
 
@@ -45,7 +46,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to project.</param>
         /// <param name="selector">A transform function to apply to each element and it's index.</param>
         /// <returns>A sequence whose elements are the result of invoking the one-to-many transform function on each element and index of the input sequence.</returns>
-        public static TResult[] SelectManyF<TSource, TResult>(this TSource[] source, Func<TSource, int, TResult[]> selector)
+        public static TResult[] SelectMany<TSource, TResult>(this TSource[] source, Func<TSource, int, TResult[]> selector)
         {
             if (source == null)
             {
@@ -66,6 +67,7 @@ namespace Pancake.Linq
                     result.Add(va[j]);
                 }
             }
+
             return result.ToArray();
         }
 
@@ -78,7 +80,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to project.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>A sequence whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
-        public static TResult[] SelectManyF<TSource, TResult>(this Span<TSource> source, Func<TSource, TResult[]> selector)
+        public static TResult[] SelectMany<TSource, TResult>(this Span<TSource> source, Func<TSource, TResult[]> selector)
         {
             if (source == null)
             {
@@ -99,6 +101,7 @@ namespace Pancake.Linq
                     result.Add(va[j]);
                 }
             }
+
             return result.ToArray();
         }
 
@@ -109,7 +112,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to project.</param>
         /// <param name="selector">A transform function to apply to each element and it's index.</param>
         /// <returns>A sequence whose elements are the result of invoking the one-to-many transform function on each element and index of the input sequence.</returns>
-        public static TResult[] SelectManyF<TSource, TResult>(this Span<TSource> source, Func<TSource, int, TResult[]> selector)
+        public static TResult[] SelectMany<TSource, TResult>(this Span<TSource> source, Func<TSource, int, TResult[]> selector)
         {
             if (source == null)
             {
@@ -130,6 +133,7 @@ namespace Pancake.Linq
                     result.Add(va[j]);
                 }
             }
+
             return result.ToArray();
         }
         // --------------------------  LISTS --------------------------------------------
@@ -141,7 +145,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to project.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>A sequence whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
-        public static List<TResult> SelectManyF<TSource, TResult>(this List<TSource> source, Func<TSource, List<TResult>> selector)
+        public static List<TResult> SelectMany<TSource, TResult>(this List<TSource> source, Func<TSource, List<TResult>> selector)
         {
             if (source == null)
             {
@@ -162,6 +166,7 @@ namespace Pancake.Linq
                     result.Add(va[j]);
                 }
             }
+
             return result;
         }
 
@@ -172,7 +177,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to project.</param>
         /// <param name="selector">A transform function to apply to each element and it's index.</param>
         /// <returns>A sequence whose elements are the result of invoking the one-to-many transform function on each element and index of the input sequence.</returns>
-        public static List<TResult> SelectManyF<TSource, TResult>(this List<TSource> source, Func<TSource, int, List<TResult>> selector)
+        public static List<TResult> SelectMany<TSource, TResult>(this List<TSource> source, Func<TSource, int, List<TResult>> selector)
         {
             if (source == null)
             {
@@ -193,6 +198,7 @@ namespace Pancake.Linq
                     result.Add(va[j]);
                 }
             }
+
             return result;
         }
     }

@@ -4,7 +4,7 @@ namespace Pancake.Common
     using System.Collections.Generic;
     using UnityEngine;
 
-    public static partial class Util
+    public static partial class C
     {
         /// <summary>
         /// safe convert the <paramref name="value"/> parameter in range [<paramref name="oldMin"/> to <paramref name="oldMax"/>] to new value in range [<paramref name="newMin"/> to <paramref name="newMax"/>].

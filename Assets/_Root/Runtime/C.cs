@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Pancake.Common
 {
-    public static partial class Util
+    public static partial class C
     {
         #region helper
 
@@ -294,7 +294,7 @@ namespace Pancake.Common
         /// <param name="data">string</param>
         public static void CopyToClipboard(this string data)
         {
-            var textEditor = new TextEditor { text = data };
+            var textEditor = new TextEditor {text = data};
             textEditor.SelectAll();
             textEditor.Copy();
         }
@@ -369,8 +369,8 @@ namespace Pancake.Common
             if (len > 15)
             {
                 var n = (len - 16) / 3;
-                var firstChar = (char)(65 + n / 26);
-                var secondChar = (char)(65 + n % 26);
+                var firstChar = (char) (65 + n / 26);
+                var secondChar = (char) (65 + n % 26);
                 stringBuilder.Append(firstChar);
                 stringBuilder.Append(secondChar);
             }
@@ -436,8 +436,8 @@ namespace Pancake.Common
             if (len > 15)
             {
                 var n = (len - 16) / 3;
-                var firstChar = (char)(65 + n / 26);
-                var secondChar = (char)(65 + n % 26);
+                var firstChar = (char) (65 + n / 26);
+                var secondChar = (char) (65 + n % 26);
                 stringBuilder.Append(firstChar);
                 stringBuilder.Append(secondChar);
             }
@@ -528,16 +528,19 @@ namespace Pancake.Common
         {
             switch (typeof(T))
             {
+                // ReSharper disable once ConvertTypeCheckPatternToNullCheck
                 case Type intType when intType == typeof(int):
                     int tempInt = PlayerPrefs.GetInt(keyA);
                     PlayerPrefs.SetInt(keyA, PlayerPrefs.GetInt(keyB));
                     PlayerPrefs.SetInt(keyB, tempInt);
                     break;
+                // ReSharper disable once ConvertTypeCheckPatternToNullCheck
                 case Type stringType when stringType == typeof(string):
                     string tempString = PlayerPrefs.GetString(keyA);
                     PlayerPrefs.SetString(keyA, PlayerPrefs.GetString(keyB));
                     PlayerPrefs.SetString(keyB, tempString);
                     break;
+                // ReSharper disable once ConvertTypeCheckPatternToNullCheck
                 case Type floatType when floatType == typeof(float):
                     float tempFloat = PlayerPrefs.GetFloat(keyA);
                     PlayerPrefs.SetFloat(keyA, PlayerPrefs.GetFloat(keyB));
@@ -545,9 +548,9 @@ namespace Pancake.Common
                     break;
             }
         }
-        
+
         public static string Format(this string fmt, params object[] args) => string.Format(System.Globalization.CultureInfo.InvariantCulture.NumberFormat, fmt, args);
-        
+
         #endregion
     }
 }

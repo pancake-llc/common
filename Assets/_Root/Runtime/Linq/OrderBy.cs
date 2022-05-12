@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
         /// <summary>
         /// Sorts the elements of a sequence in ascending order according to a key.
@@ -13,7 +13,7 @@ namespace Pancake.Linq
         /// <param name="keySelector">A function to extract a key from an element.</param>
         /// <param name="comparer">A Comparer to compare keys.</param>
         /// <returns>A sequence whose elements are ordered according to a key</returns>
-        public static TSource[] OrderByF<TSource, TKey>(this TSource[] source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
+        public static TSource[] OrderBy<TSource, TKey>(this TSource[] source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
             if (source == null)
             {
@@ -49,7 +49,7 @@ namespace Pancake.Linq
         /// <param name="keySelector">A function to extract a key from an element.</param>
         /// <param name="comparer">A Comparer to compare keys.</param>
         /// <returns>A sequence whose elements are ordered according to a key</returns>
-        public static TSource[] OrderByDescendingF<TSource, TKey>(this TSource[] source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
+        public static TSource[] OrderByDescending<TSource, TKey>(this TSource[] source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
             if (source == null)
             {
@@ -88,7 +88,7 @@ namespace Pancake.Linq
         /// <param name="keySelector">A function to extract a key from an element.</param>
         /// <param name="comparer">A Comparer to compare keys.</param>
         /// <returns>A sequence whose elements are ordered according to a key</returns>
-        public static List<TSource> OrderByF<TSource, TKey>(this List<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
+        public static List<TSource> OrderBy<TSource, TKey>(this List<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
             if (source == null)
             {
@@ -119,7 +119,7 @@ namespace Pancake.Linq
         /// <param name="keySelector">A function to extract a key from an element.</param>
         /// <param name="comparer">A Comparer to compare keys.</param>
         /// <returns>A sequence whose elements are ordered according to a key</returns>
-        public static List<TSource> OrderByDescendingF<TSource, TKey>(this List<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
+        public static List<TSource> OrderByDescending<TSource, TKey>(this List<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
             if (source == null)
             {

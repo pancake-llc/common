@@ -7,7 +7,7 @@ namespace Pancake.Linq
     /// Provides faster array and list specific extension methods with
     /// the same semantics as the Linq extensions methods.
     /// </summary>
-    public static partial class R
+    public static partial class L
     {
         // ------------------------------ Arrays --------------------------
 
@@ -17,7 +17,7 @@ namespace Pancake.Linq
         /// <param name="source">An array to aggregate over.</param>
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <returns>The final accumulator value</returns>
-        public static TSource AggregateF<TSource>(this TSource[] source, Func<TSource, TSource, TSource> func)
+        public static TSource Reduce<TSource>(this TSource[] source, Func<TSource, TSource, TSource> func)
         {
             if (source == null)
             {
@@ -51,7 +51,7 @@ namespace Pancake.Linq
         /// <param name="seed">The initial accumulator value.</param>
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <returns>The final accumulator value</returns>
-        public static TAccumulate AggregateF<TSource, TAccumulate>(this TSource[] source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+        public static TAccumulate Reduce<TSource, TAccumulate>(this TSource[] source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
         {
             if (source == null)
             {
@@ -82,7 +82,7 @@ namespace Pancake.Linq
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
         /// <returns>The transformed final accumulator value</returns>
-        public static TResult AggregateF<TSource, TAccumulate, TResult>(
+        public static TResult Reduce<TSource, TAccumulate, TResult>(
             this TSource[] source,
             TAccumulate seed,
             Func<TAccumulate, TSource, TAccumulate> func,
@@ -120,7 +120,7 @@ namespace Pancake.Linq
         /// <param name="source">An array to aggregate over.</param>
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <returns>The final accumulator value</returns>
-        public static TSource AggregateF<TSource>(this Span<TSource> source, Func<TSource, TSource, TSource> func)
+        public static TSource Reduce<TSource>(this Span<TSource> source, Func<TSource, TSource, TSource> func)
         {
             if (source == null)
             {
@@ -154,7 +154,7 @@ namespace Pancake.Linq
         /// <param name="seed">The initial accumulator value.</param>
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <returns>The final accumulator value</returns>
-        public static TAccumulate AggregateF<TSource, TAccumulate>(this Span<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+        public static TAccumulate Reduce<TSource, TAccumulate>(this Span<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
         {
             if (source == null)
             {
@@ -185,7 +185,7 @@ namespace Pancake.Linq
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
         /// <returns>The transformed final accumulator value</returns>
-        public static TResult AggregateF<TSource, TAccumulate, TResult>(
+        public static TResult Reduce<TSource, TAccumulate, TResult>(
             this Span<TSource> source,
             TAccumulate seed,
             Func<TAccumulate, TSource, TAccumulate> func,
@@ -224,7 +224,7 @@ namespace Pancake.Linq
         /// <param name="source">A List to aggregate over.</param>
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <returns>The final accumulator value</returns>
-        public static TSource AggregateF<TSource>(this List<TSource> source, Func<TSource, TSource, TSource> func)
+        public static TSource Reduce<TSource>(this List<TSource> source, Func<TSource, TSource, TSource> func)
         {
             if (source == null)
             {
@@ -258,7 +258,7 @@ namespace Pancake.Linq
         /// <param name="seed">The initial accumulator value.</param>
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <returns>The final accumulator value</returns>
-        public static TAccumulate AggregateF<TSource, TAccumulate>(this List<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+        public static TAccumulate Reduce<TSource, TAccumulate>(this List<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
         {
             if (source == null)
             {
@@ -289,7 +289,7 @@ namespace Pancake.Linq
         /// <param name="func">An accumulator function to be invoked on each element</param>
         /// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
         /// <returns>The transformed final accumulator value</returns>
-        public static TResult AggregateF<TSource, TAccumulate, TResult>(
+        public static TResult Reduce<TSource, TAccumulate, TResult>(
             this List<TSource> source,
             TAccumulate seed,
             Func<TAccumulate, TSource, TAccumulate> func,

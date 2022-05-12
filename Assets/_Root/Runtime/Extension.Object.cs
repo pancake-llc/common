@@ -7,7 +7,7 @@ namespace Pancake.Common
 {
     using UnityEngine;
 
-    public static partial class Util
+    public static partial class C
     {
         /// thanks for @carloswilkes
         /// <summary>This method allows you to destroy the target object in game and in edit mode, and it returns null.</summary>

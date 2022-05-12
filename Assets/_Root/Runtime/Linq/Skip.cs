@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-   
-    public static partial class R
+    public static partial class L
     {
         /// <summary>
         /// Bypasses a specified number of elements in a sequence and then returns the remaining elements.
@@ -12,12 +11,13 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return elements from.</param>
         /// <param name="count">The number of elements to skip before returning the remaining elements.</param>
         /// <returns>A sequence that contains the elements that occur after the specified index in the input sequence.</returns>
-        public static T[] SkipF<T>(this T[] source, int count)
+        public static T[] Skip<T>(this T[] source, int count)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             if (count < 0)
             {
                 count = 0;
@@ -28,7 +28,11 @@ namespace Pancake.Linq
             }
 
             var result = new T[source.Length - count];
-            Array.Copy(source, count, result, 0, result.Length);
+            Array.Copy(source,
+                count,
+                result,
+                0,
+                result.Length);
             return result;
         }
 
@@ -38,12 +42,13 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return elements from.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A sequence that contains the elements from the input sequence starting at the first element in the linear series that does not pass the test specified by predicate.</returns>
-        public static T[] SkipWhileF<T>(this T[] source, Func<T, bool> predicate)
+        public static T[] SkipWhile<T>(this T[] source, Func<T, bool> predicate)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             if (predicate == null)
             {
                 throw Error.ArgumentNull("predicate");
@@ -54,8 +59,13 @@ namespace Pancake.Linq
             {
                 if (!predicate(source[i])) break;
             }
+
             var result = new T[source.Length - i];
-            Array.Copy(source, i, result, 0, result.Length);
+            Array.Copy(source,
+                i,
+                result,
+                0,
+                result.Length);
             return result;
         }
 
@@ -67,12 +77,13 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return elements from.</param>
         /// <param name="count">The number of elements to skip before returning the remaining elements.</param>
         /// <returns>A sequence that contains the elements that occur after the specified index in the input sequence.</returns>
-        public static T[] SkipF<T>(this Span<T> source, int count)
+        public static T[] Skip<T>(this Span<T> source, int count)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             if (count < 0)
             {
                 count = 0;
@@ -86,7 +97,8 @@ namespace Pancake.Linq
             for (int i = count; i < source.Length; i++)
             {
                 result[i - count] = source[i];
-            }            
+            }
+
             return result;
         }
 
@@ -96,12 +108,13 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return elements from.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A sequence that contains the elements from the input sequence starting at the first element in the linear series that does not pass the test specified by predicate.</returns>
-        public static T[] SkipWhileF<T>(this Span<T> source, Func<T, bool> predicate)
+        public static T[] SkipWhile<T>(this Span<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             if (predicate == null)
             {
                 throw Error.ArgumentNull("predicate");
@@ -112,15 +125,15 @@ namespace Pancake.Linq
             {
                 if (!predicate(source[count])) break;
             }
+
             var result = new T[source.Length - count];
             for (int i = count; i < source.Length; i++)
             {
                 result[i - count] = source[i];
             }
+
             return result;
         }
-
-
 
 
         // ------------- Lists ----------------
@@ -131,12 +144,13 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return elements from.</param>
         /// <param name="count">The number of elements to skip before returning the remaining elements.</param>
         /// <returns>A sequence that contains the elements that occur after the specified index in the input sequence.</returns>
-        public static List<T> SkipF<T>(this List<T> source, int count)
+        public static List<T> Skip<T>(this List<T> source, int count)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             if (count < 0)
             {
                 count = 0;
@@ -151,6 +165,7 @@ namespace Pancake.Linq
             {
                 result.Add(source[i]);
             }
+
             return result;
         }
 
@@ -160,12 +175,13 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return elements from.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A sequence that contains the elements from the input sequence starting at the first element in the linear series that does not pass the test specified by predicate.</returns>
-        public static List<T> SkipWhileF<T>(this List<T> source, Func<T, bool> predicate)
+        public static List<T> SkipWhile<T>(this List<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             if (predicate == null)
             {
                 throw Error.ArgumentNull("predicate");
@@ -174,7 +190,8 @@ namespace Pancake.Linq
             int i = 0;
             for (; i < source.Count; i++)
             {
-                if (!predicate(source[i])) {
+                if (!predicate(source[i]))
+                {
                     break;
                 }
             }
@@ -184,9 +201,8 @@ namespace Pancake.Linq
             {
                 result.Add(source[i]);
             }
+
             return result;
         }
-
-      
     }
 }

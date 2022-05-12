@@ -2,7 +2,7 @@ namespace Pancake.Common
 {
     using UnityEngine;
 
-    public static partial class Util
+    public static partial class C
     {
         public static class Colors
         {

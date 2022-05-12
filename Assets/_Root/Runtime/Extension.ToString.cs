@@ -4,7 +4,7 @@ namespace Pancake.Common
     using System.Globalization;
     using UnityEngine;
 
-    public static partial class Util
+    public static partial class C
     {
         #region vector2
 

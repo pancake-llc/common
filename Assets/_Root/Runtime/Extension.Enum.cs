@@ -2,7 +2,7 @@ namespace Pancake.Common
 {
     using System;
 
-    public static partial class Util
+    public static partial class C
     {
         /// <summary>
         /// return enum by string name <paramref name="value"/>

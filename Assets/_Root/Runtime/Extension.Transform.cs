@@ -4,7 +4,7 @@ namespace Pancake.Common
 {
     using UnityEngine;
 
-    public static partial class Util
+    public static partial class C
     {
         /// <summary>
         /// Makes a copy of the Vector2 with changed x/y values, keeping all undefined values as they were before. Can be

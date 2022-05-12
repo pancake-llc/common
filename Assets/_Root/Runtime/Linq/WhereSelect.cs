@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-
-    public static partial class R
+    public static partial class L
     {
         // --------------------------  ARRAYS --------------------------------------------
-        
+
 
         /// <summary>
         /// Combined Where and Select for optimal performance.
@@ -16,7 +15,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to use to filter the sequence.</param>
         /// <param name="selector">A function to transform the filtered elements.</param>
         /// <returns>A sequence of filtered and transformed elements.</returns>
-        public static TResult[] WhereSelectF<T, TResult>(this T[] source, Func<T, bool> predicate, Func<T, TResult> selector)
+        public static TResult[] FilterMap<T, TResult>(this T[] source, Func<T, bool> predicate, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -43,6 +42,7 @@ namespace Pancake.Linq
                     idx++;
                 }
             }
+
             Array.Resize(ref result, idx);
             return result;
         }
@@ -55,7 +55,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to use to filter the sequence.</param>
         /// <param name="selector">A function to transform the filtered elements.</param>
         /// <returns>A sequence of filtered and transformed elements.</returns>
-        public static TResult[] WhereSelectF<T, TResult>(this T[] source, Func<T, int, bool> predicate, Func<T, int, TResult> selector)
+        public static TResult[] FilterMap<T, TResult>(this T[] source, Func<T, int, bool> predicate, Func<T, int, TResult> selector)
         {
             if (source == null)
             {
@@ -82,6 +82,7 @@ namespace Pancake.Linq
                     idx++;
                 }
             }
+
             Array.Resize(ref result, idx);
             return result;
         }
@@ -97,7 +98,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to use to filter the sequence.</param>
         /// <param name="selector">A function to transform the filtered elements.</param>
         /// <returns>A sequence of filtered and transformed elements.</returns>
-        public static TResult[] WhereSelectF<T, TResult>(this Span<T> source, Func<T, bool> predicate, Func<T, TResult> selector)
+        public static TResult[] FilterMap<T, TResult>(this Span<T> source, Func<T, bool> predicate, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -124,6 +125,7 @@ namespace Pancake.Linq
                     idx++;
                 }
             }
+
             Array.Resize(ref result, idx);
             return result;
         }
@@ -136,7 +138,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to use to filter the sequence.</param>
         /// <param name="selector">A function to transform the filtered elements.</param>
         /// <returns>A sequence of filtered and transformed elements.</returns>
-        public static TResult[] WhereSelectF<T, TResult>(this Span<T> source, Func<T, int, bool> predicate, Func<T, int, TResult> selector)
+        public static TResult[] FilterMap<T, TResult>(this Span<T> source, Func<T, int, bool> predicate, Func<T, int, TResult> selector)
         {
             if (source == null)
             {
@@ -163,6 +165,7 @@ namespace Pancake.Linq
                     idx++;
                 }
             }
+
             Array.Resize(ref result, idx);
             return result;
         }
@@ -177,7 +180,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to use to filter the sequence.</param>
         /// <param name="selector">A function to transform the filtered elements.</param>
         /// <returns>A sequence of filtered and transformed elements.</returns>
-        public static List<TResult> WhereSelectF<T, TResult>(this List<T> source, Func<T, bool> predicate, Func<T, TResult> selector)
+        public static List<TResult> FilterMap<T, TResult>(this List<T> source, Func<T, bool> predicate, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -199,6 +202,7 @@ namespace Pancake.Linq
             {
                 if (predicate(source[i])) r.Add(selector(source[i]));
             }
+
             return r;
         }
 
@@ -210,7 +214,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to use to filter the sequence.</param>
         /// <param name="selector">A function to transform the filtered elements.</param>
         /// <returns>A sequence of filtered and transformed elements.</returns>
-        public static List<TResult> WhereSelectF<T, TResult>(this List<T> source, Func<T, int, bool> predicate, Func<T, int, TResult> selector)
+        public static List<TResult> FilterMap<T, TResult>(this List<T> source, Func<T, int, bool> predicate, Func<T, int, TResult> selector)
         {
             if (source == null)
             {
@@ -231,7 +235,8 @@ namespace Pancake.Linq
             int idx = 0;
             for (int i = 0; i < source.Count; i++)
             {
-                if (predicate(source[i], i)) {
+                if (predicate(source[i], i))
+                {
                     r.Add(selector(source[i], idx));
                     idx++;
                 }
@@ -240,6 +245,5 @@ namespace Pancake.Linq
 
             return r;
         }
-
     }
 }

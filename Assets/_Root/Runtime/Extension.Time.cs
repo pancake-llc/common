@@ -2,7 +2,7 @@ namespace Pancake.Common
 {
     using System;
 
-    public static partial class Util
+    public static partial class C
     {
         /// <summary>
         /// Turns a float (expressed in seconds) into a string displaying hours, minutes, seconds and hundredths optionnally

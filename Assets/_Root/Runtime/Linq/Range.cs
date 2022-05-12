@@ -2,7 +2,7 @@
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
         /// <summary>
         /// Generates a sequence of integral numbers within a specified range.
@@ -10,7 +10,7 @@ namespace Pancake.Linq
         /// <param name="start">The value of the first integer in the sequence.</param>
         /// <param name="count">The number of sequential integers to generate.</param>
         /// <returns>A sequence that contains a range of sequential integral numbers.</returns>
-        public static int[] RangeArrayF(int start, int count)
+        public static int[] RangeArray(int start, int count)
         {
             long max = ((long)start) + count - 1;
             if (count < 0 || max > int.MaxValue)
@@ -35,7 +35,7 @@ namespace Pancake.Linq
         /// <param name="start">The value of the first integer in the sequence.</param>
         /// <param name="count">The number of sequential integers to generate.</param>
         /// <returns>A sequence that contains a range of sequential integral numbers.</returns>
-        public static List<int> RangeListF(int start, int count)
+        public static List<int> RangeList(int start, int count)
         {
             long max = ((long)start) + count - 1;
             if (count < 0 || max > int.MaxValue)

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
-
         // --------------------------  ARRAYS  --------------------------------------------
 
         /// <summary>
@@ -16,7 +15,7 @@ namespace Pancake.Linq
         /// <param name="value">The value to locate.</param>
         /// <param name="comparer">An equality comparer to compare values.</param>
         /// <returns>true if the source sequence contains an element that has the specified value; otherwise, false.</returns>
-        public static bool ContainsF<TSource>(this TSource[] source, TSource value, IEqualityComparer<TSource> comparer = null)
+        public static bool Contains<TSource>(this TSource[] source, TSource value, IEqualityComparer<TSource> comparer = null)
         {
             if (source == null)
             {
@@ -50,7 +49,7 @@ namespace Pancake.Linq
         /// <param name="value">The value to locate.</param>
         /// <param name="comparer">An equality comparer to compare values.</param>
         /// <returns>true if the source sequence contains an element that has the specified value; otherwise, false.</returns>
-        public static bool ContainsF<TSource>(this Span<TSource> source, TSource value, IEqualityComparer<TSource> comparer = null)
+        public static bool Contains<TSource>(this Span<TSource> source, TSource value, IEqualityComparer<TSource> comparer = null)
         {
             if (source == null)
             {
@@ -63,7 +62,7 @@ namespace Pancake.Linq
             }
 
 
-            for (int i = 0; i < source.Length;i++)
+            for (int i = 0; i < source.Length; i++)
             {
                 if (comparer.Equals(source[i], value))
                 {
@@ -85,8 +84,8 @@ namespace Pancake.Linq
         /// <param name="value">The value to locate.</param>
         /// <param name="comparer">An equality comparer to compare values.</param>
         /// <returns>true if the source sequence contains an element that has the specified value; otherwise, false.</returns>
-        public static bool ContainsF<TSource>(this List<TSource> source, TSource value, IEqualityComparer<TSource> comparer = null)
-        {            
+        public static bool Contains<TSource>(this List<TSource> source, TSource value, IEqualityComparer<TSource> comparer = null)
+        {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");

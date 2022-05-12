@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
-
         // --------------------------  ARRAYS --------------------------------------------
 
         /// <summary>
@@ -13,16 +12,16 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">The array to check for emptiness</param>
         /// <returns>true if the source array contains any elements, otherwise, false/</returns>
-        public static bool AnyF<T>(this T[] source)
+        public static bool Any<T>(this T[] source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             return source.Length > 0;
         }
 
-    
 
         /// <summary>
         /// Determines whether any element of an array satisfies a condition.
@@ -30,7 +29,7 @@ namespace Pancake.Linq
         /// <param name="source">An array whose elements to apply the predicate to.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>true if any elements in the source array pass the test in the specified predicate; otherwise, false.</returns>
-        public static bool AnyF<TSource>(this TSource[] source, Predicate<TSource> predicate)
+        public static bool Any<TSource>(this TSource[] source, Predicate<TSource> predicate)
         {
             if (source == null)
             {
@@ -45,7 +44,7 @@ namespace Pancake.Linq
             return Array.Exists(source, predicate);
         }
 
-     
+
         /// <summary>
         /// Determines whether all elements of an array satisfy a condition.
         /// </summary>        
@@ -75,15 +74,15 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">The array to check for emptiness</param>
         /// <returns>true if the source array contains any elements, otherwise, false/</returns>
-        public static bool AnyF<T>(this Span<T> source)
+        public static bool Any<T>(this Span<T> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             return source.Length > 0;
         }
-
 
 
         /// <summary>
@@ -92,7 +91,7 @@ namespace Pancake.Linq
         /// <param name="source">An array whose elements to apply the predicate to.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>true if any elements in the source array pass the test in the specified predicate; otherwise, false.</returns>
-        public static bool AnyF<TSource>(this Span<TSource> source, Predicate<TSource> predicate)
+        public static bool Any<TSource>(this Span<TSource> source, Predicate<TSource> predicate)
         {
             if (source == null)
             {
@@ -108,6 +107,7 @@ namespace Pancake.Linq
             {
                 if (predicate(source[i])) return true;
             }
+
             return false;
         }
 
@@ -135,10 +135,9 @@ namespace Pancake.Linq
             {
                 if (!predicate(source[i])) return false;
             }
+
             return true;
         }
-
-
 
 
         // --------------------------  Lists --------------------------------------------
@@ -147,12 +146,13 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">The list to check for emptiness</param>
         /// <returns>true if the source list contains any elements, otherwise, false/</returns>
-        public static bool AnyF<T>(this List<T> source)
+        public static bool Any<T>(this List<T> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             return source.Count > 0;
         }
 
@@ -162,7 +162,7 @@ namespace Pancake.Linq
         /// <param name="source">An array whose elements to apply the predicate to.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>true if any elements in the source array pass the test in the specified predicate; otherwise, false.</returns>
-        public static bool AnyF<TSource>(this List<TSource> source, Predicate<TSource> predicate)
+        public static bool Any<TSource>(this List<TSource> source, Predicate<TSource> predicate)
         {
             if (source == null)
             {

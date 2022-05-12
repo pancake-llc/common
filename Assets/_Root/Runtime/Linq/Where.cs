@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-
-    public static partial class R
+    public static partial class L
     {
         // --------------------------  ARRAYS --------------------------------------------
 
@@ -14,7 +13,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to filter.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A sequence that contains elements from the input sequence that satisfy the condition.</returns>        
-        public static T[] WhereF<T>(this T[] source, Func<T, bool> predicate)
+        public static T[] Filter<T>(this T[] source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -36,6 +35,7 @@ namespace Pancake.Linq
                     idx++;
                 }
             }
+
             Array.Resize(ref result, idx);
             return result;
         }
@@ -46,7 +46,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to filter.</param>
         /// <param name="predicate">A function to test each element for a condition along with the element's index.</param>
         /// <returns>A sequence that contains elements from the input sequence that satisfy the condition.</returns>
-        public static T[] WhereF<T>(this T[] source, Func<T, int, bool> predicate)
+        public static T[] Filter<T>(this T[] source, Func<T, int, bool> predicate)
         {
             if (source == null)
             {
@@ -57,8 +57,8 @@ namespace Pancake.Linq
             {
                 throw Error.ArgumentNull("predicate");
             }
-            
-            
+
+
             T[] result = new T[source.Length];
             int idx = 0;
             for (int i = 0; i < source.Length; i++)
@@ -69,6 +69,7 @@ namespace Pancake.Linq
                     idx++;
                 }
             }
+
             Array.Resize(ref result, idx);
             return result;
         }
@@ -81,7 +82,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to filter.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A sequence that contains elements from the input sequence that satisfy the condition.</returns>        
-        public static T[] WhereF<T>(this Span<T> source, Func<T, bool> predicate)
+        public static T[] Filter<T>(this Span<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -103,6 +104,7 @@ namespace Pancake.Linq
                     idx++;
                 }
             }
+
             Array.Resize(ref result, idx);
             return result;
         }
@@ -113,7 +115,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to filter.</param>
         /// <param name="predicate">A function to test each element for a condition along with the element's index.</param>
         /// <returns>A sequence that contains elements from the input sequence that satisfy the condition.</returns>
-        public static T[] WhereF<T>(this Span<T> source, Func<T, int, bool> predicate)
+        public static T[] Filter<T>(this Span<T> source, Func<T, int, bool> predicate)
         {
             if (source == null)
             {
@@ -136,10 +138,11 @@ namespace Pancake.Linq
                     idx++;
                 }
             }
+
             Array.Resize(ref result, idx);
             return result;
         }
-        
+
         // --------------------------  LISTS --------------------------------------------
 
         /// <summary>
@@ -148,7 +151,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to filter.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A sequence that contains elements from the input sequence that satisfy the condition.</returns>
-        public static List<T> WhereF<T>(this List<T> source, Predicate<T> predicate)
+        public static List<T> Filter<T>(this List<T> source, Predicate<T> predicate)
         {
             if (source == null)
             {
@@ -158,9 +161,9 @@ namespace Pancake.Linq
             if (predicate == null)
             {
                 throw Error.ArgumentNull("predicate");
-            }            
+            }
 
-            return source.FindAll(predicate);            
+            return source.FindAll(predicate);
         }
 
 
@@ -170,7 +173,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to filter.</param>
         /// <param name="predicate">A function to test each element for a condition along with the element's index.</param>
         /// <returns>A sequence that contains elements from the input sequence that satisfy the condition.</returns>
-        public static List<T> WhereF<T>(this List<T> source, Func<T, int, bool> predicate)
+        public static List<T> Filter<T>(this List<T> source, Func<T, int, bool> predicate)
         {
             if (source == null)
             {
@@ -187,8 +190,8 @@ namespace Pancake.Linq
             {
                 if (predicate(source[i], i)) r.Add(source[i]);
             }
+
             return r;
         }
-
     }
 }

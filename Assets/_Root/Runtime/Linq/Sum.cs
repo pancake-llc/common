@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
         // --------------------------  ARRAYS  --------------------------------------------
 
@@ -13,12 +13,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static int SumF(this int[] source)
+        public static int Sum(this int[] source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             int sum = 0;
             checked
             {
@@ -27,6 +28,7 @@ namespace Pancake.Linq
                     sum += v;
                 }
             }
+
             return sum;
         }
 
@@ -36,7 +38,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static int SumF<T>(this T[] source, Func<T, int> selector)
+        public static int Sum<T>(this T[] source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -56,6 +58,7 @@ namespace Pancake.Linq
                     sum += selector(v);
                 }
             }
+
             return sum;
         }
 
@@ -64,12 +67,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static long SumF(this long[] source)
+        public static long Sum(this long[] source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             long sum = 0;
             checked
             {
@@ -78,6 +82,7 @@ namespace Pancake.Linq
                     sum += v;
                 }
             }
+
             return sum;
         }
 
@@ -87,7 +92,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static long SumF<T>(this T[] source, Func<T, long> selector)
+        public static long Sum<T>(this T[] source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -107,6 +112,7 @@ namespace Pancake.Linq
                     sum += selector(v);
                 }
             }
+
             return sum;
         }
 
@@ -115,12 +121,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static float SumF(this float[] source)
+        public static float Sum(this float[] source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             double sum = 0;
 
             foreach (var v in source)
@@ -128,7 +135,7 @@ namespace Pancake.Linq
                 sum += v;
             }
 
-            return (float)sum;
+            return (float) sum;
         }
 
         /// <summary>
@@ -137,7 +144,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static float SumF<T>(this T[] source, Func<T, float> selector)
+        public static float Sum<T>(this T[] source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -155,7 +162,7 @@ namespace Pancake.Linq
                 sum += selector(v);
             }
 
-            return (float)sum;
+            return (float) sum;
         }
 
         /// <summary>
@@ -163,12 +170,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static double SumF(this double[] source)
+        public static double Sum(this double[] source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             double sum = 0;
             foreach (var v in source)
             {
@@ -184,7 +192,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static double SumF<T>(this T[] source, Func<T, double> selector)
+        public static double Sum<T>(this T[] source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -210,12 +218,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static decimal SumF(this decimal[] source)
+        public static decimal Sum(this decimal[] source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             decimal sum = 0;
 
             foreach (var v in source)
@@ -232,7 +241,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static decimal SumF<T>(this T[] source, Func<T, decimal> selector)
+        public static decimal Sum<T>(this T[] source, Func<T, decimal> selector)
         {
             if (source == null)
             {
@@ -254,18 +263,19 @@ namespace Pancake.Linq
         }
 
         /*---- Spans ---*/
-        
+
         /// <summary>
         ///  Adds a sequence of values.
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static int SumF(this Span<int> source)
+        public static int Sum(this Span<int> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             int sum = 0;
             checked
             {
@@ -274,6 +284,7 @@ namespace Pancake.Linq
                     sum += v;
                 }
             }
+
             return sum;
         }
 
@@ -283,7 +294,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static int SumF<T>(this Span<T> source, Func<T, int> selector)
+        public static int Sum<T>(this Span<T> source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -303,6 +314,7 @@ namespace Pancake.Linq
                     sum += selector(v);
                 }
             }
+
             return sum;
         }
 
@@ -311,12 +323,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static long SumF(this Span<long> source)
+        public static long Sum(this Span<long> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             long sum = 0;
             checked
             {
@@ -325,6 +338,7 @@ namespace Pancake.Linq
                     sum += v;
                 }
             }
+
             return sum;
         }
 
@@ -334,7 +348,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static long SumF<T>(this Span<T> source, Func<T, long> selector)
+        public static long Sum<T>(this Span<T> source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -354,6 +368,7 @@ namespace Pancake.Linq
                     sum += selector(v);
                 }
             }
+
             return sum;
         }
 
@@ -362,12 +377,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static float SumF(this Span<float> source)
+        public static float Sum(this Span<float> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             double sum = 0;
 
             foreach (var v in source)
@@ -375,7 +391,7 @@ namespace Pancake.Linq
                 sum += v;
             }
 
-            return (float)sum;
+            return (float) sum;
         }
 
         /// <summary>
@@ -384,7 +400,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static float SumF<T>(this Span<T> source, Func<T, float> selector)
+        public static float Sum<T>(this Span<T> source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -402,7 +418,7 @@ namespace Pancake.Linq
                 sum += selector(v);
             }
 
-            return (float)sum;
+            return (float) sum;
         }
 
         /// <summary>
@@ -410,12 +426,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static double SumF(this Span<double> source)
+        public static double Sum(this Span<double> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             double sum = 0;
             foreach (var v in source)
             {
@@ -431,7 +448,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static double SumF<T>(this Span<T> source, Func<T, double> selector)
+        public static double Sum<T>(this Span<T> source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -457,12 +474,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static decimal SumF(this Span<decimal> source)
+        public static decimal Sum(this Span<decimal> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             decimal sum = 0;
 
             foreach (var v in source)
@@ -479,7 +497,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static decimal SumF<T>(this Span<T> source, Func<T, decimal> selector)
+        public static decimal Sum<T>(this Span<T> source, Func<T, decimal> selector)
         {
             if (source == null)
             {
@@ -507,12 +525,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static int SumF(this List<int> source)
+        public static int Sum(this List<int> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             int sum = 0;
             checked
             {
@@ -521,6 +540,7 @@ namespace Pancake.Linq
                     sum += source[i];
                 }
             }
+
             return sum;
         }
 
@@ -530,7 +550,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static int SumF<T>(this List<T> source, Func<T, int> selector)
+        public static int Sum<T>(this List<T> source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -550,6 +570,7 @@ namespace Pancake.Linq
                     sum += selector(source[i]);
                 }
             }
+
             return sum;
         }
 
@@ -558,12 +579,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static long SumF(this List<long> source)
+        public static long Sum(this List<long> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             long sum = 0;
             checked
             {
@@ -572,6 +594,7 @@ namespace Pancake.Linq
                     sum += source[i];
                 }
             }
+
             return sum;
         }
 
@@ -581,7 +604,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static long SumF<T>(this List<T> source, Func<T, long> selector)
+        public static long Sum<T>(this List<T> source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -601,6 +624,7 @@ namespace Pancake.Linq
                     sum += selector(source[i]);
                 }
             }
+
             return sum;
         }
 
@@ -609,12 +633,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static float SumF(this List<float> source)
+        public static float Sum(this List<float> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             double sum = 0;
 
             for (int i = 0; i < source.Count; i++)
@@ -622,7 +647,7 @@ namespace Pancake.Linq
                 sum += source[i];
             }
 
-            return (float)sum;
+            return (float) sum;
         }
 
         /// <summary>
@@ -631,7 +656,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static float SumF<T>(this List<T> source, Func<T, float> selector)
+        public static float Sum<T>(this List<T> source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -649,7 +674,7 @@ namespace Pancake.Linq
                 sum += selector(source[i]);
             }
 
-            return (float)sum;
+            return (float) sum;
         }
 
         /// <summary>
@@ -657,12 +682,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static double SumF(this List<double> source)
+        public static double Sum(this List<double> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             double sum = 0;
             for (int i = 0; i < source.Count; i++)
             {
@@ -678,7 +704,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static double SumF<T>(this List<T> source, Func<T, double> selector)
+        public static double Sum<T>(this List<T> source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -704,12 +730,13 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The sequence to add.</param>
         /// <returns>The sum of the sequence.</returns>
-        public static decimal SumF(this List<decimal> source)
+        public static decimal Sum(this List<decimal> source)
         {
             if (source == null)
             {
                 throw Error.ArgumentNull("source");
             }
+
             decimal sum = 0;
 
             for (int i = 0; i < source.Count; i++)
@@ -726,7 +753,7 @@ namespace Pancake.Linq
         /// <param name="source">The sequence of values to transform then sum.</param>
         /// <param name="selector">A transformation function.</param>
         /// <returns>The sum of the transformed elements.</returns>
-        public static decimal SumF<T>(this List<T> source, Func<T, decimal> selector)
+        public static decimal Sum<T>(this List<T> source, Func<T, decimal> selector)
         {
             if (source == null)
             {
@@ -746,6 +773,5 @@ namespace Pancake.Linq
 
             return sum;
         }
-
     }
 }

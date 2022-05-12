@@ -2,7 +2,7 @@ namespace Pancake.Common
 {
     using UnityEngine;
 
-    public static partial class Util
+    public static partial class C
     {
         /// <summary> Copies the RectTransform settings </summary>
         /// <param name="source"> Target RectTransform </param>

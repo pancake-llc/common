@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6c51a48018ee2499db2f4aab756ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loopCount: 100000
+  loopCount: 1000
 --- !u!81 &672264847
 AudioListener:
   m_ObjectHideFlags: 0

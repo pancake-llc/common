@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-
-    public static partial class R
+    public static partial class L
     {
         // ----------------------------- Arrays ------------------
 
@@ -15,7 +14,7 @@ namespace Pancake.Linq
         /// <param name="predicate">The function to filter the input sequence with.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static T WhereAggregateF<T>(this T[] source, Func<T, bool> predicate, Func<T, T, T> func)
+        public static T FilterReduce<T>(this T[] source, Func<T, bool> predicate, Func<T, T, T> func)
         {
             if (source == null)
             {
@@ -26,6 +25,7 @@ namespace Pancake.Linq
             {
                 throw Error.ArgumentNull("predicate");
             }
+
             if (func == null)
             {
                 throw Error.ArgumentNull("func");
@@ -43,6 +43,7 @@ namespace Pancake.Linq
                     break;
                 }
             }
+
             for (; i < source.Length; i++)
             {
                 if (predicate(source[i]))
@@ -50,6 +51,7 @@ namespace Pancake.Linq
                     result = func(result, source[i]);
                 }
             }
+
             return result;
         }
 
@@ -60,7 +62,7 @@ namespace Pancake.Linq
         /// <param name="predicate">The function to filter the input sequence and it's index with.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static T WhereAggregateF<T>(this T[] source, Func<T, int, bool> predicate, Func<T, T,T> func)
+        public static T FilterReduce<T>(this T[] source, Func<T, int, bool> predicate, Func<T, T, T> func)
         {
             if (source == null)
             {
@@ -83,14 +85,16 @@ namespace Pancake.Linq
                     i++;
                     break;
                 }
-            }            
+            }
+
             for (; i < source.Length; i++)
             {
                 if (predicate(source[i], i))
                 {
-                    result = func(result, source[i]);                    
+                    result = func(result, source[i]);
                 }
             }
+
             return result;
         }
 
@@ -102,7 +106,11 @@ namespace Pancake.Linq
         /// <param name="seed">The initial value to aggregate on.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static TAccumulate WhereAggregateF<TSource, TAccumulate>(this TSource[] source, Func<TSource, bool> predicate, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+        public static TAccumulate FilterReduce<TSource, TAccumulate>(
+            this TSource[] source,
+            Func<TSource, bool> predicate,
+            TAccumulate seed,
+            Func<TAccumulate, TSource, TAccumulate> func)
         {
             if (source == null)
             {
@@ -125,6 +133,7 @@ namespace Pancake.Linq
                 if (predicate(v))
                     result = func(result, v);
             }
+
             return result;
         }
 
@@ -137,7 +146,12 @@ namespace Pancake.Linq
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <param name="resultSelector">A function to transform the final result.</param>
         /// <returns>The filtered then aggregated then transformed sequence.</returns>
-        public static TResult WhereAggregateF<TSource, TAccumulate, TResult>(this TSource[] source, Func<TSource, bool> predicate, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+        public static TResult FilterReduce<TSource, TAccumulate, TResult>(
+            this TSource[] source,
+            Func<TSource, bool> predicate,
+            TAccumulate seed,
+            Func<TAccumulate, TSource, TAccumulate> func,
+            Func<TAccumulate, TResult> resultSelector)
         {
             if (source == null)
             {
@@ -160,14 +174,16 @@ namespace Pancake.Linq
             }
 
             TAccumulate result = seed;
-            int count = 0;
+            //int count = 0;
             foreach (var v in source)
             {
-                if (predicate(v)) {
+                if (predicate(v))
+                {
                     result = func(result, v);
-                    count++;
-                } 
+                    //count++;
+                }
             }
+
             return resultSelector(result);
         }
 
@@ -180,7 +196,7 @@ namespace Pancake.Linq
         /// <param name="predicate">The function to filter the input sequence with.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static T WhereAggregateF<T>(this Span<T> source, Func<T, bool> predicate, Func<T, T, T> func)
+        public static T FilterReduce<T>(this Span<T> source, Func<T, bool> predicate, Func<T, T, T> func)
         {
             if (source == null)
             {
@@ -191,6 +207,7 @@ namespace Pancake.Linq
             {
                 throw Error.ArgumentNull("predicate");
             }
+
             if (func == null)
             {
                 throw Error.ArgumentNull("func");
@@ -208,6 +225,7 @@ namespace Pancake.Linq
                     break;
                 }
             }
+
             for (; i < source.Length; i++)
             {
                 if (predicate(source[i]))
@@ -215,6 +233,7 @@ namespace Pancake.Linq
                     result = func(result, source[i]);
                 }
             }
+
             return result;
         }
 
@@ -225,7 +244,7 @@ namespace Pancake.Linq
         /// <param name="predicate">The function to filter the input sequence and it's index with.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static T WhereAggregateF<T>(this Span<T> source, Func<T, int, bool> predicate, Func<T, T, T> func)
+        public static T FilterReduce<T>(this Span<T> source, Func<T, int, bool> predicate, Func<T, T, T> func)
         {
             if (source == null)
             {
@@ -249,6 +268,7 @@ namespace Pancake.Linq
                     break;
                 }
             }
+
             for (; i < source.Length; i++)
             {
                 if (predicate(source[i], i))
@@ -256,6 +276,7 @@ namespace Pancake.Linq
                     result = func(result, source[i]);
                 }
             }
+
             return result;
         }
 
@@ -267,7 +288,11 @@ namespace Pancake.Linq
         /// <param name="seed">The initial value to aggregate on.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static TAccumulate WhereAggregateF<TSource, TAccumulate>(this Span<TSource> source, Func<TSource, bool> predicate, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+        public static TAccumulate FilterReduce<TSource, TAccumulate>(
+            this Span<TSource> source,
+            Func<TSource, bool> predicate,
+            TAccumulate seed,
+            Func<TAccumulate, TSource, TAccumulate> func)
         {
             if (source == null)
             {
@@ -290,6 +315,7 @@ namespace Pancake.Linq
                 if (predicate(v))
                     result = func(result, v);
             }
+
             return result;
         }
 
@@ -302,7 +328,12 @@ namespace Pancake.Linq
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <param name="resultSelector">A function to transform the final result.</param>
         /// <returns>The filtered then aggregated then transformed sequence.</returns>
-        public static TResult WhereAggregateF<TSource, TAccumulate, TResult>(this Span<TSource> source, Func<TSource, bool> predicate, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+        public static TResult FilterReduce<TSource, TAccumulate, TResult>(
+            this Span<TSource> source,
+            Func<TSource, bool> predicate,
+            TAccumulate seed,
+            Func<TAccumulate, TSource, TAccumulate> func,
+            Func<TAccumulate, TResult> resultSelector)
         {
             if (source == null)
             {
@@ -325,15 +356,16 @@ namespace Pancake.Linq
             }
 
             TAccumulate result = seed;
-            int count = 0;
+            //int count = 0;
             foreach (var v in source)
             {
                 if (predicate(v))
                 {
                     result = func(result, v);
-                    count++;
+                    //count++;
                 }
             }
+
             return resultSelector(result);
         }
 
@@ -347,7 +379,7 @@ namespace Pancake.Linq
         /// <param name="predicate">The function to filter the input sequence with.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static T WhereAggregateF<T>(this List<T> source, Func<T, bool> predicate, Func<T, T, T> func)
+        public static T FilterReduce<T>(this List<T> source, Func<T, bool> predicate, Func<T, T, T> func)
         {
             if (source == null)
             {
@@ -376,6 +408,7 @@ namespace Pancake.Linq
                     break;
                 }
             }
+
             for (; i < source.Count; i++)
             {
                 if (predicate(source[i]))
@@ -383,6 +416,7 @@ namespace Pancake.Linq
                     result = func(result, source[i]);
                 }
             }
+
             return result;
         }
 
@@ -393,7 +427,7 @@ namespace Pancake.Linq
         /// <param name="predicate">The function to filter the input sequence and it's index with.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static T WhereAggregateF<T>(this List<T> source, Func<T, int, bool> predicate, Func<T, T, T> func)
+        public static T FilterReduce<T>(this List<T> source, Func<T, int, bool> predicate, Func<T, T, T> func)
         {
             if (source == null)
             {
@@ -416,14 +450,16 @@ namespace Pancake.Linq
                     i++;
                     break;
                 }
-            }            
+            }
+
             for (; i < source.Count; i++)
             {
                 if (predicate(source[i], i))
                 {
-                    result = func(result, source[i]);                    
+                    result = func(result, source[i]);
                 }
             }
+
             return result;
         }
 
@@ -435,7 +471,11 @@ namespace Pancake.Linq
         /// <param name="seed">The initial value to aggregate on.</param>
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <returns>The filtered then aggregated sequence.</returns>
-        public static TAccumulate WhereAggregateF<TSource, TAccumulate>(this List<TSource> source, Func<TSource, bool> predicate, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+        public static TAccumulate FilterReduce<TSource, TAccumulate>(
+            this List<TSource> source,
+            Func<TSource, bool> predicate,
+            TAccumulate seed,
+            Func<TAccumulate, TSource, TAccumulate> func)
         {
             if (source == null)
             {
@@ -459,6 +499,7 @@ namespace Pancake.Linq
                 if (predicate(v))
                     result = func(result, v);
             }
+
             return result;
         }
 
@@ -471,7 +512,12 @@ namespace Pancake.Linq
         /// <param name="func">The function to aggregate the filtered sequence.</param>
         /// <param name="resultSelector">A function to transform the final result.</param>
         /// <returns>The filtered then aggregated then transformed sequence.</returns>
-        public static TResult WhereAggregateF<TSource, TAccumulate, TResult>(this List<TSource> source, Func<TSource, bool> predicate, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+        public static TResult FilterReduce<TSource, TAccumulate, TResult>(
+            this List<TSource> source,
+            Func<TSource, bool> predicate,
+            TAccumulate seed,
+            Func<TAccumulate, TSource, TAccumulate> func,
+            Func<TAccumulate, TResult> resultSelector)
         {
             if (source == null)
             {
@@ -495,6 +541,7 @@ namespace Pancake.Linq
                 if (predicate(v))
                     result = func(result, v);
             }
+
             return resultSelector(result);
         }
     }

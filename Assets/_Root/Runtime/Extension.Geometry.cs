@@ -5,7 +5,7 @@ namespace Pancake.Common
     /// <summary>
     /// A helper class to handle geometry related operations    
     /// </summary>    
-    public static partial class Util
+    public static partial class C
     {
         // Based on https://answers.unity.com/questions/1019436/get-outeredge-vertices-c.html
         public struct Edge

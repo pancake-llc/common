@@ -10,7 +10,7 @@ namespace Pancake.Common
 #endif
 
 
-    public static partial class Util
+    public static partial class C
     {
         /// <summary>
         /// add blank button

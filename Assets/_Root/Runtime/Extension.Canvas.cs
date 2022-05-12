@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Pancake.Common
 {
-    public static partial class Util
+    public static partial class C
     {
         /// <summary>
         /// Fade out canvas group

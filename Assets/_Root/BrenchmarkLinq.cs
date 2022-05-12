@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Pancake.Common;
 using Pancake.Linq;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using Random = UnityEngine.Random;
 
 public class BrenchmarkLinq : MonoBehaviour
 {
     [SerializeField] private int loopCount = 100000;
 
-    private int[] _array = new int[1024];
+    private int[] _array = new int[10240];
     private List<int> _list = new List<int>(1024);
     private Func<int, bool> _checkOne = _ => _ == 1;
     private Func<int, bool> _checkZero = _ => _ == 0;
@@ -24,30 +26,32 @@ public class BrenchmarkLinq : MonoBehaviour
 
     public void Start()
     {
-        Aggregate();
-        Any();
-        All();
-        Averange();
-        Contains();
-        Count();
-        /*Distinct();*/
-        First();
-        Last();
-        Max();
-        Min();
+        // Aggregate();
+        // Any();
+        // All();
+        // Averange();
+        // Contains();
+        // Count();
+        // First();
+        // Last();
+        // Max();
+        // Min();
         OrderBy();
-        Range();
-        Repeat();
-        Reverse();
-        Select();
-        Single();
-        Skip();
-        Sum();
-        Take();
-        Where();
-        Zip();
+        // Range();
+        // Repeat();
+        // Reverse();
+        //  Select();
+        // Single();
+        // Skip();
+        // Sum();
+        // Take();
+        //  Where();
+        //  Where2();
+        //  Where3();
+        //  WhereSelect();
+        //  WhereSpan();
+        //   Zip();
     }
-
 
     public void Aggregate()
     {
@@ -64,7 +68,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            int result = _array.AggregateF((i1, i2) => i1 + 1);
+            int result = _array.Reduce((i1, i2) => i1 + 1);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -89,7 +93,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.AnyF(_predicateOne);
+            var result = _array.Any(_predicateOne);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -129,7 +133,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Average();
+            var result = Enumerable.Average(_array);
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -138,7 +142,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.AverageF();
+            var result = _array.Average();
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -153,7 +157,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Contains(1);
+            var result = Enumerable.Contains(_array, 1);
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -162,7 +166,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.ContainsF(1);
+            var result = _array.Contains(1);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -177,7 +181,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Count(_checkZero);
+            var result = Enumerable.Count(_array, _checkZero);
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -186,7 +190,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.CountF(_checkZero);
+            var result = _array.Count(_checkZero);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -202,7 +206,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.First(_checkOne);
+            var result = Enumerable.First(_array, _checkOne);
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -211,7 +215,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.FirstF(_checkOne);
+            var result = _array.First(_checkOne);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -238,7 +242,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.LastF(_predicateZero);
+            var result = _array.Last(_predicateZero);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -255,7 +259,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Max(_checkGreaterZero);
+            var result = Enumerable.Max(_array, _checkGreaterZero);
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -264,7 +268,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.MaxF(_checkGreaterZero);
+            var result = _array.Max(_checkGreaterZero);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -281,7 +285,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Min(_checkGreaterZero);
+            var result = Enumerable.Min(_array, _checkGreaterZero);
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -290,7 +294,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.MinF(_checkGreaterZero);
+            var result = _array.Min(_checkGreaterZero);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -302,11 +306,17 @@ public class BrenchmarkLinq : MonoBehaviour
 
     public void OrderBy()
     {
+        var list = _array.ToList();
+        for (int i = 0; i < 10000; i++)
+        {
+            list[i] = Random.Range(0, 10000);
+        }
+
         _stopwatch.Reset();
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.OrderBy(_ => _ + 1).Sum();
+            var result = Enumerable.OrderBy(list, _ => _).ToList();
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -315,7 +325,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.OrderByF(_ => _ + 1).Sum();
+            var result = list.OrderBy(_ => _);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -330,7 +340,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = Enumerable.Range(1, 10).ToArray();
+            var result = Enumerable.Range(1, 1000).ToArray();
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -339,7 +349,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = R.RangeArrayF(1, 10);
+            var result = L.RangeArray(1, 1000);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -354,7 +364,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = Enumerable.Repeat("I like programming.", 15).ToArray();
+            var result = Enumerable.Repeat("I like programming.", 1000).ToArray();
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -363,7 +373,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = R.RepeatArrayF("I like programming.", 15);
+            var result = L.RepeatArray("I like programming.", 1000);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -378,7 +388,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Reverse().ToArray();
+            var result = Enumerable.Reverse(_array).ToArray();
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -387,7 +397,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.ReverseF();
+            var result = _array.Reverse();
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -403,7 +413,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Select(_=>_ * _).ToArray();
+            var result = _array.Select(_ => _ * _).ToArray();
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -412,7 +422,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.SelectF(_=>_ * _);
+            var result = _array.Map(_ => _ * _);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -421,7 +431,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _array[1023] = 0;
         Debug.Log("[Select]:            " + duration + "     F: " + durationF);
     }
-    
+
     public void Single()
     {
         _array[1023] = 1;
@@ -429,7 +439,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Single(_checkOne);
+            var result = Enumerable.Single(_array, _checkOne);
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -438,7 +448,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.SingleF(_checkOne);
+            var result = _array.Single(_checkOne);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -454,7 +464,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Skip(1023).ToArray();
+            var result = Enumerable.Skip(_array, 1023).ToArray();
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -478,7 +488,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Sum();
+            var result = Enumerable.Sum(_array);
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -487,7 +497,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.SumF();
+            var result = _array.Sum();
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -502,7 +512,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.Take(1023).ToArray();
+            var result = Enumerable.Take(_array, 1023).ToArray();
         }
 
         long duration = _stopwatch.ElapsedMilliseconds;
@@ -511,7 +521,7 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.TakeF(1023);
+            var result = _array.Take(1023);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
@@ -522,7 +532,40 @@ public class BrenchmarkLinq : MonoBehaviour
 
     public void Where()
     {
-        _array[1023] = 1;
+        for (int i = 0; i < 5000; i++)
+        {
+            _array[i] = 1;
+        }
+
+        _stopwatch.Reset();
+        _stopwatch.Restart();
+        for (int i = 0; i < loopCount; i++)
+        {
+            var result = _array.Where(_checkZero).ToArray();
+        }
+
+        long duration = _stopwatch.ElapsedMilliseconds;
+
+        _stopwatch.Reset();
+        _stopwatch.Restart();
+        for (int i = 0; i < loopCount; i++)
+        {
+            var result = _array.Filter(_checkZero);
+        }
+
+        long durationF = _stopwatch.ElapsedMilliseconds;
+        var str = "[Where]:         " + duration + "     F: " + durationF;
+        report += str + "\n";
+        for (int i = 0; i < 5000; i++)
+        {
+            _array[i] = 0;
+        }
+
+        Debug.Log("[Where]:         " + duration + "     F: " + durationF);
+    }
+
+    public void Where2()
+    {
         _stopwatch.Reset();
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
@@ -536,14 +579,97 @@ public class BrenchmarkLinq : MonoBehaviour
         _stopwatch.Restart();
         for (int i = 0; i < loopCount; i++)
         {
-            var result = _array.WhereF(_checkOne);
+            var result = _array.Filter(_checkOne);
         }
 
         long durationF = _stopwatch.ElapsedMilliseconds;
-        _array[1023] = 0;
-        var str = "[Where]:         " + duration + "     F: " + durationF;
+        var str = "[Where2]:         " + duration + "     F: " + durationF;
         report += str + "\n";
-        Debug.Log("[Where]:         " + duration + "     F: " + durationF);
+
+        Debug.Log("[Where2]:         " + duration + "     F: " + durationF);
+    }
+
+    public void Where3()
+    {
+        _stopwatch.Reset();
+        _stopwatch.Restart();
+        for (int i = 0; i < loopCount; i++)
+        {
+            var result = _array.Where(_checkZero).ToArray();
+        }
+
+        long duration = _stopwatch.ElapsedMilliseconds;
+
+        _stopwatch.Reset();
+        _stopwatch.Restart();
+        for (int i = 0; i < loopCount; i++)
+        {
+            var result = _array.Filter(_checkZero);
+        }
+
+        long durationF = _stopwatch.ElapsedMilliseconds;
+        var str = "[Where3]:         " + duration + "     F: " + durationF;
+        report += str + "\n";
+
+        Debug.Log("[Where3]:         " + duration + "     F: " + durationF);
+    }
+
+    public void WhereSelect()
+    {
+        _stopwatch.Reset();
+        _stopwatch.Restart();
+        for (int i = 0; i < loopCount; i++)
+        {
+            var result = _array.Where(_checkZero).Select(_ => _ + 10000).ToArray();
+        }
+
+        long duration = _stopwatch.ElapsedMilliseconds;
+
+        _stopwatch.Reset();
+        _stopwatch.Restart();
+        for (int i = 0; i < loopCount; i++)
+        {
+            var result = _array.FilterMap(_checkZero, _ => _ + 10000);
+        }
+
+        long durationF = _stopwatch.ElapsedMilliseconds;
+        var str = "[WhereSelect]:         " + duration + "     F: " + durationF;
+        report += str + "\n";
+        Debug.Log("[WhereSelect]:         " + duration + "     F: " + durationF);
+    }
+
+    public void WhereSpan()
+    {
+        Span<int> span = new Span<int>(_array);
+        span.Fill(0);
+        List<int> found = null;
+        _stopwatch.Reset();
+        _stopwatch.Restart();
+        for (int i = 0; i < loopCount; i++)
+        {
+            found = new List<int>(span.Length);
+            for (int j = 0; j < span.Length; j++)
+            {
+                if (span[j] == 0)
+                {
+                    found.Add(span[j] + 10000);
+                }
+            }
+        }
+
+        long duration = _stopwatch.ElapsedMilliseconds;
+
+        _stopwatch.Reset();
+        _stopwatch.Restart();
+        for (int i = 0; i < loopCount; i++)
+        {
+            var result = span.FilterMap(_checkZero, _ => _ + 10000);
+        }
+
+        long durationF = _stopwatch.ElapsedMilliseconds;
+        var str = "[WhereSpan]:       " + duration + "       F: " + durationF;
+        report += str + "\n";
+        Debug.Log("[WhereSpan]:       " + duration + "       F: " + durationF);
     }
 
     public void Zip()
@@ -569,9 +695,6 @@ public class BrenchmarkLinq : MonoBehaviour
         report += str + "\n";
         Debug.Log("[Zip]:           " + duration + "     F: " + durationF);
     }
-    
-    void OnGUI()
-    {
-        GUI.TextArea(new Rect(0, 0, Screen.width, Screen.height), report);
-    }
+
+    void OnGUI() { GUI.TextArea(new Rect(0, 0, Screen.width, Screen.height), report); }
 }

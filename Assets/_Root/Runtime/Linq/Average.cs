@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
         // --------------------------  ARRAYS  --------------------------------------------
 
@@ -12,7 +12,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF(this int[] source)
+        public static double Average(this int[] source)
         {
             if (source == null)
             {
@@ -32,7 +32,8 @@ namespace Pancake.Linq
                     sum += source[i];
                 }
             }
-            return (double)sum / source.Length;
+
+            return (double) sum / source.Length;
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this T[] source, Func<T, int> selector)
+        public static double Average<T>(this T[] source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -67,7 +68,8 @@ namespace Pancake.Linq
                     sum += selector(source[i]);
                 }
             }
-            return (double)sum / source.Length;
+
+            return (double) sum / source.Length;
         }
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF(this long[] source)
+        public static double Average(this long[] source)
         {
             if (source == null)
             {
@@ -95,7 +97,8 @@ namespace Pancake.Linq
                     sum += source[i];
                 }
             }
-            return (double)sum / source.Length;
+
+            return (double) sum / source.Length;
         }
 
 
@@ -106,7 +109,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this T[] source, Func<T, long> selector)
+        public static double Average<T>(this T[] source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -131,7 +134,8 @@ namespace Pancake.Linq
                     sum += selector(source[i]);
                 }
             }
-            return (double)sum / source.Length;
+
+            return (double) sum / source.Length;
         }
 
         /// <summary>
@@ -139,7 +143,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static float AverageF(this float[] source)
+        public static float Average(this float[] source)
         {
             if (source == null)
             {
@@ -158,7 +162,7 @@ namespace Pancake.Linq
                 sum += source[i];
             }
 
-            return (float)(sum / source.Length);
+            return (float) (sum / source.Length);
         }
 
         /// <summary>
@@ -168,7 +172,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static float AverageF<T>(this T[] source, Func<T, float> selector)
+        public static float Average<T>(this T[] source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -192,7 +196,7 @@ namespace Pancake.Linq
                 sum += selector(source[i]);
             }
 
-            return (float)(sum / source.Length);
+            return (float) (sum / source.Length);
         }
 
         /// <summary>
@@ -200,7 +204,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF(this double[] source)
+        public static double Average(this double[] source)
         {
             if (source == null)
             {
@@ -229,7 +233,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this T[] source, Func<T, double> selector)
+        public static double Average<T>(this T[] source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -261,7 +265,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static decimal AverageF(this decimal[] source)
+        public static decimal Average(this decimal[] source)
         {
             if (source == null)
             {
@@ -290,7 +294,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static decimal AverageF<T>(this T[] source, Func<T, decimal> selector)
+        public static decimal Average<T>(this T[] source, Func<T, decimal> selector)
         {
             if (source == null)
             {
@@ -325,7 +329,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF(this Span<int> source)
+        public static double Average(this Span<int> source)
         {
             if (source == null)
             {
@@ -345,7 +349,8 @@ namespace Pancake.Linq
                     sum += source[i];
                 }
             }
-            return (double)sum / source.Length;
+
+            return (double) sum / source.Length;
         }
 
         /// <summary>
@@ -355,7 +360,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this Span<T> source, Func<T, int> selector)
+        public static double Average<T>(this Span<T> source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -380,7 +385,8 @@ namespace Pancake.Linq
                     sum += selector(source[i]);
                 }
             }
-            return (double)sum / source.Length;
+
+            return (double) sum / source.Length;
         }
 
         /// <summary>
@@ -388,7 +394,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF(this Span<long> source)
+        public static double Average(this Span<long> source)
         {
             if (source == null)
             {
@@ -408,7 +414,8 @@ namespace Pancake.Linq
                     sum += source[i];
                 }
             }
-            return (double)sum / source.Length;
+
+            return (double) sum / source.Length;
         }
 
 
@@ -419,7 +426,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this Span<T> source, Func<T, long> selector)
+        public static double Average<T>(this Span<T> source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -444,7 +451,8 @@ namespace Pancake.Linq
                     sum += selector(source[i]);
                 }
             }
-            return (double)sum / source.Length;
+
+            return (double) sum / source.Length;
         }
 
         /// <summary>
@@ -452,7 +460,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static float AverageF(this Span<float> source)
+        public static float Average(this Span<float> source)
         {
             if (source == null)
             {
@@ -471,7 +479,7 @@ namespace Pancake.Linq
                 sum += source[i];
             }
 
-            return (float)(sum / source.Length);
+            return (float) (sum / source.Length);
         }
 
         /// <summary>
@@ -481,7 +489,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static float AverageF<T>(this Span<T> source, Func<T, float> selector)
+        public static float Average<T>(this Span<T> source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -505,7 +513,7 @@ namespace Pancake.Linq
                 sum += selector(source[i]);
             }
 
-            return (float)(sum / source.Length);
+            return (float) (sum / source.Length);
         }
 
         /// <summary>
@@ -513,7 +521,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF(this Span<double> source)
+        public static double Average(this Span<double> source)
         {
             if (source == null)
             {
@@ -542,7 +550,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this Span<T> source, Func<T, double> selector)
+        public static double Average<T>(this Span<T> source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -574,7 +582,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The array to calculate the average of.</param>
         /// <returns>The average of the array.</returns>
-        public static decimal AverageF(this Span<decimal> source)
+        public static decimal Average(this Span<decimal> source)
         {
             if (source == null)
             {
@@ -603,7 +611,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static decimal AverageF<T>(this Span<T> source, Func<T, decimal> selector)
+        public static decimal Average<T>(this Span<T> source, Func<T, decimal> selector)
         {
             if (source == null)
             {
@@ -638,7 +646,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The list to calculate the average of.</param>
         /// <returns>The average of the list.</returns>
-        public static double AverageF(this List<int> source)
+        public static double Average(this List<int> source)
         {
             if (source == null)
             {
@@ -658,7 +666,8 @@ namespace Pancake.Linq
                     sum += source[i];
                 }
             }
-            return (double)sum / source.Count;
+
+            return (double) sum / source.Count;
         }
 
         /// <summary>
@@ -668,7 +677,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this List<T> source, Func<T, int> selector)
+        public static double Average<T>(this List<T> source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -693,7 +702,8 @@ namespace Pancake.Linq
                     sum += selector(source[i]);
                 }
             }
-            return (double)sum / source.Count;
+
+            return (double) sum / source.Count;
         }
 
         /// <summary>
@@ -701,7 +711,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The list to calculate the average of.</param>
         /// <returns>The average of the list.</returns>
-        public static double AverageF(this List<long> source)
+        public static double Average(this List<long> source)
         {
             if (source == null)
             {
@@ -721,7 +731,8 @@ namespace Pancake.Linq
                     sum += source[i];
                 }
             }
-            return (double)sum / source.Count;
+
+            return (double) sum / source.Count;
         }
 
         /// <summary>
@@ -731,7 +742,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this List<T> source, Func<T, long> selector)
+        public static double Average<T>(this List<T> source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -756,7 +767,8 @@ namespace Pancake.Linq
                     sum += selector(source[i]);
                 }
             }
-            return (double)sum / source.Count;
+
+            return (double) sum / source.Count;
         }
 
         /// <summary>
@@ -764,7 +776,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The list to calculate the average of.</param>
         /// <returns>The average of the list.</returns>
-        public static float AverageF(this List<float> source)
+        public static float Average(this List<float> source)
         {
             if (source == null)
             {
@@ -783,7 +795,7 @@ namespace Pancake.Linq
                 sum += source[i];
             }
 
-            return (float)(sum / source.Count);
+            return (float) (sum / source.Count);
         }
 
         /// <summary>
@@ -793,7 +805,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static float AverageF<T>(this List<T> source, Func<T, float> selector)
+        public static float Average<T>(this List<T> source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -817,7 +829,7 @@ namespace Pancake.Linq
                 sum += selector(source[i]);
             }
 
-            return (float)(sum / source.Count);
+            return (float) (sum / source.Count);
         }
 
         /// <summary>
@@ -825,7 +837,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The list to calculate the average of.</param>
         /// <returns>The average of the list.</returns>
-        public static double AverageF(this List<double> source)
+        public static double Average(this List<double> source)
         {
             if (source == null)
             {
@@ -854,7 +866,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static double AverageF<T>(this List<T> source, Func<T, double> selector)
+        public static double Average<T>(this List<T> source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -886,7 +898,7 @@ namespace Pancake.Linq
         /// </summary>
         /// <param name="source">The list to calculate the average of.</param>
         /// <returns>The average of the list.</returns>
-        public static decimal AverageF(this List<decimal> source)
+        public static decimal Average(this List<decimal> source)
         {
             if (source == null)
             {
@@ -915,7 +927,7 @@ namespace Pancake.Linq
         /// <param name="source">The array to calculate the transformed average of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The average of the array.</returns>
-        public static decimal AverageF<T>(this List<T> source, Func<T, decimal> selector)
+        public static decimal Average<T>(this List<T> source, Func<T, decimal> selector)
         {
             if (source == null)
             {

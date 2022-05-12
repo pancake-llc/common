@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
-
         // --------------------------  Arrays --------------------------------------------
 
         /// <summary>
@@ -16,7 +15,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A number that represents how many elements in the array satisfy the condition
         /// in the predicate function.</returns>
-        public static int CountF<T>(this T[] source, Func<T, bool> predicate)
+        public static int Count<T>(this T[] source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -53,7 +52,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A number that represents how many elements in the array satisfy the condition
         /// in the predicate function.</returns>
-        public static int CountF<T>(this Span<T> source, Func<T, bool> predicate)
+        public static int Count<T>(this Span<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -91,7 +90,7 @@ namespace Pancake.Linq
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>A number that represents how many elements in the list satisfy the condition
         /// in the predicate function.</returns>
-        public static int CountF<T>(this List<T> source, Func<T, bool> predicate)
+        public static int Count<T>(this List<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -117,7 +116,5 @@ namespace Pancake.Linq
 
             return count;
         }
-
-
     }
 }

@@ -27,13 +27,13 @@ namespace Pancake.Common
 
         public static DummyBehaviour Search(string label)
         {
-            var dummies = Util.GetSceneObjectsOfType<DummyBehaviour>();
+            var dummies = C.GetSceneObjectsOfType<DummyBehaviour>();
             return dummies.FirstOrDefault(d => d.IsLabel(label));
         }
 
         public static IEnumerable<DummyBehaviour> SearchAll(string label)
         {
-            var dummies = Util.GetSceneObjectsOfType<DummyBehaviour>();
+            var dummies = C.GetSceneObjectsOfType<DummyBehaviour>();
             return dummies.Where(d => d.IsLabel(label));
         }
 

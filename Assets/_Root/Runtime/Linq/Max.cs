@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Pancake.Linq
 {
     //int, long, float,double, decimal
-    public static partial class R
+    public static partial class L
     {
         // --------------------------  ARRAYS  --------------------------------------------
 
@@ -13,7 +13,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static T MaxF<T>(this T[] source)
+        public static T Max<T>(this T[] source)
         {            
             if (source == null)
             {
@@ -51,7 +51,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static TResult MaxF<T, TResult>(this T[] source, Func<T, TResult> selector)
+        public static TResult Max<T, TResult>(this T[] source, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -94,7 +94,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static int MaxF(this int[] source)
+        public static int Max(this int[] source)
         {
             if (source == null)
             {
@@ -118,7 +118,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static int MaxF<T>(this T[] source, Func<T, int> selector)
+        public static int Max<T>(this T[] source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -147,7 +147,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static long MaxF(this long[] source)
+        public static long Max(this long[] source)
         {
             if (source == null)
             {
@@ -172,7 +172,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static long MaxF<T>(this T[] source, Func<T, long> selector)
+        public static long Max<T>(this T[] source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -201,7 +201,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static float MaxF(this float[] source)
+        public static float Max(this float[] source)
         {
             if (source == null)
             {
@@ -234,7 +234,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static float MaxF<T>(this T[] source, Func<T, float> selector)
+        public static float Max<T>(this T[] source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -273,7 +273,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static double MaxF(this double[] source)
+        public static double Max(this double[] source)
         {
             if (source == null)
             {
@@ -306,7 +306,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static double MaxF<T>(this T[] source, Func<T, double> selector)
+        public static double Max<T>(this T[] source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -346,7 +346,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static decimal MaxF(this decimal[] source)
+        public static decimal Max(this decimal[] source)
         {
             if (source == null)
             {
@@ -370,7 +370,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static decimal MaxF<T>(this T[] source, Func<T, decimal> selector)
+        public static decimal Max<T>(this T[] source, Func<T, decimal> selector)
         {
             if (source == null)
             {
@@ -400,7 +400,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static T MaxF<T>(this Span<T> source)
+        public static T Max<T>(this Span<T> source)
         {
             if (source == null)
             {
@@ -438,7 +438,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static TResult MaxF<T, TResult>(this Span<T> source, Func<T, TResult> selector)
+        public static TResult Max<T, TResult>(this Span<T> source, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -481,7 +481,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static int MaxF(this Span<int> source)
+        public static int Max(this Span<int> source)
         {
             if (source == null)
             {
@@ -505,7 +505,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static int MaxF<T>(this Span<T> source, Func<T, int> selector)
+        public static int Max<T>(this Span<T> source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -534,7 +534,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static long MaxF(this Span<long> source)
+        public static long Max(this Span<long> source)
         {
             if (source == null)
             {
@@ -559,7 +559,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static long MaxF<T>(this Span<T> source, Func<T, long> selector)
+        public static long Max<T>(this Span<T> source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -588,7 +588,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static float MaxF(this Span<float> source)
+        public static float Max(this Span<float> source)
         {
             if (source == null)
             {
@@ -621,7 +621,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static float MaxF<T>(this Span<T> source, Func<T, float> selector)
+        public static float Max<T>(this Span<T> source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -660,7 +660,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static double MaxF(this Span<double> source)
+        public static double Max(this Span<double> source)
         {
             if (source == null)
             {
@@ -693,7 +693,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static double MaxF<T>(this Span<T> source, Func<T, double> selector)
+        public static double Max<T>(this Span<T> source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -733,7 +733,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static decimal MaxF(this Span<decimal> source)
+        public static decimal Max(this Span<decimal> source)
         {
             if (source == null)
             {
@@ -757,7 +757,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static decimal MaxF<T>(this Span<T> source, Func<T, decimal> selector)
+        public static decimal Max<T>(this Span<T> source, Func<T, decimal> selector)
         {
             if (source == null)
             {
@@ -787,7 +787,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static T MaxF<T>(this List<T> source)
+        public static T Max<T>(this List<T> source)
         {
             if (source == null)
             {
@@ -825,7 +825,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static TResult MaxF<T, TResult>(this List<T> source, Func<T, TResult> selector)
+        public static TResult Max<T, TResult>(this List<T> source, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -871,7 +871,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static int MaxF(this List<int> source)
+        public static int Max(this List<int> source)
         {
             if (source == null)
             {
@@ -895,7 +895,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static int MaxF<T>(this List<T> source, Func<T, int> selector)
+        public static int Max<T>(this List<T> source, Func<T, int> selector)
         {
             if (source == null)
             {
@@ -924,7 +924,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static long MaxF(this List<long> source)
+        public static long Max(this List<long> source)
         {
             if (source == null)
             {
@@ -948,7 +948,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static long MaxF<T>(this List<T> source, Func<T, long> selector)
+        public static long Max<T>(this List<T> source, Func<T, long> selector)
         {
             if (source == null)
             {
@@ -976,7 +976,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static float MaxF(this List<float> source)
+        public static float Max(this List<float> source)
         {
             if (source == null)
             {
@@ -1009,7 +1009,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static float MaxF<T>(this List<T> source, Func<T, float> selector)
+        public static float Max<T>(this List<T> source, Func<T, float> selector)
         {
             if (source == null)
             {
@@ -1047,7 +1047,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static double MaxF(this List<double> source)
+        public static double Max(this List<double> source)
         {
             if (source == null)
             {
@@ -1080,7 +1080,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static double MaxF<T>(this List<T> source, Func<T, double> selector)
+        public static double Max<T>(this List<T> source, Func<T, double> selector)
         {
             if (source == null)
             {
@@ -1118,7 +1118,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to determine the maximum of.</param>
         /// <returns>The maximum value in the sequence</returns>
-        public static decimal MaxF(this List<decimal> source)
+        public static decimal Max(this List<decimal> source)
         {
             if (source == null)
             {
@@ -1142,7 +1142,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to determine the maximum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>The maximum value in the transform of the sequence.</returns>
-        public static decimal MaxF<T>(this List<T> source, Func<T, decimal> selector)
+        public static decimal Max<T>(this List<T> source, Func<T, decimal> selector)
         {
             if (source == null)
             {

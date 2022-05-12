@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
-
         // --------------------------  ARRAYS  --------------------------------------------
 
         /// <summary>
-        ///  Projects each element of a sequence into a new form in place.
+        /// Projects each element of a sequence into a new form in place.
+        /// The result will change itself <paramref name = "source" />
         /// </summary>        
         /// <param name="source">A sequence of values to invoke a transform function on (map).</param>
         /// <param name="selector">A transform function to apply (map) to each element.</param>        
-        public static void SelectInPlaceF<T>(this T[] source, Func<T,T> selector)
+        public static void MapOrigin<T>(this T[] source, Func<T, T> selector)
         {
             if (source == null)
             {
@@ -33,11 +33,12 @@ namespace Pancake.Linq
         }
 
         /// <summary>
-        ///  Projects each element of a sequence into a new form, in place, by incorporating the element's index.
+        /// Projects each element of a sequence into a new form, in place, by incorporating the element's index.
+        /// The result will change itself <paramref name = "source" />
         /// </summary>        
         /// <param name="source">A sequence of values to invoke a transform function on.</param>
         /// <param name="selector">A transform function to apply to each source element; the second parameter of the function represents the index of the source element.</param>        
-        public static void SelectInPlaceF<T>(this T[] source, Func<T, int, T> selector)
+        public static void MapOrigin<T>(this T[] source, Func<T, int, T> selector)
         {
             if (source == null)
             {
@@ -57,12 +58,12 @@ namespace Pancake.Linq
 
 
         /// <summary>
-        ///  Projects each element of a sequence into a new form. (map in every other language)
+        /// Projects each element of a sequence into a new form. (map in every other language)
         /// </summary>        
         /// <param name="source">A sequence of values to invoke a transform function on (map).</param>
         /// <param name="selector">A transform function to apply (map) to each element.</param>
         /// <returns>A sequence whose elements are the result of invoking the transform function on each element (mapping) of source.</returns>
-        public static TResult[] SelectF<T, TResult>(this T[] source, Func<T, TResult> selector)
+        public static TResult[] Map<T, TResult>(this T[] source, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -79,18 +80,18 @@ namespace Pancake.Linq
             {
                 r[i] = selector(source[i]);
             }
+
             return r;
         }
 
-     
-     
+
         /// <summary>
-        ///  Projects each element of a sequence into a new form by incorporating the element's index.
+        /// Projects each element of a sequence into a new form by incorporating the element's index.
         /// </summary>        
         /// <param name="source">A sequence of values to invoke a transform function on.</param>
         /// <param name="selector">A transform function to apply to each source element; the second parameter of the function represents the index of the source element.</param>
         /// <returns>A sequence whose elements are the result of invoking the transform function on each element of source.</returns>
-        public static TResult[] SelectF<T, TResult>(this T[] source, Func<T, int, TResult> selector)
+        public static TResult[] Map<T, TResult>(this T[] source, Func<T, int, TResult> selector)
         {
             if (source == null)
             {
@@ -101,22 +102,25 @@ namespace Pancake.Linq
             {
                 throw Error.ArgumentNull("selector");
             }
+
             var r = new TResult[source.Length];
             for (int i = 0; i < source.Length; i++)
             {
                 r[i] = selector(source[i], i);
             }
+
             return r;
         }
 
         // --------------------------  this SpanS  --------------------------------------------
 
         /// <summary>
-        ///  Projects each element of a sequence into a new form in place.
+        /// Projects each element of a sequence into a new form in place.
+        /// The result will change itself <paramref name = "source" />
         /// </summary>        
         /// <param name="source">A sequence of values to invoke a transform function on (map).</param>
         /// <param name="selector">A transform function to apply (map) to each element.</param>        
-        public static void SelectInPlaceF<T>(this Span<T> source, Func<T, T> selector)
+        public static void MapOrigin<T>(this Span<T> source, Func<T, T> selector)
         {
             if (source == null)
             {
@@ -135,11 +139,12 @@ namespace Pancake.Linq
         }
 
         /// <summary>
-        ///  Projects each element of a sequence into a new form, in place, by incorporating the element's index.
+        /// Projects each element of a sequence into a new form, in place, by incorporating the element's index.
+        /// The result will change itself <paramref name = "source" />
         /// </summary>        
         /// <param name="source">A sequence of values to invoke a transform function on.</param>
         /// <param name="selector">A transform function to apply to each source element; the second parameter of the function represents the index of the source element.</param>        
-        public static void SelectInPlaceF<T>(this Span<T> source, Func<T, int, T> selector)
+        public static void MapOrigin<T>(this Span<T> source, Func<T, int, T> selector)
         {
             if (source == null)
             {
@@ -164,7 +169,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to invoke a transform function on (map).</param>
         /// <param name="selector">A transform function to apply (map) to each element.</param>
         /// <returns>A sequence whose elements are the result of invoking the transform function on each element (mapping) of source.</returns>
-        public static TResult[] SelectF<T, TResult>(this Span<T> source, Func<T, TResult> selector)
+        public static TResult[] Map<T, TResult>(this Span<T> source, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -181,9 +186,9 @@ namespace Pancake.Linq
             {
                 r[i] = selector(source[i]);
             }
+
             return r;
         }
-
 
 
         /// <summary>
@@ -192,7 +197,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to invoke a transform function on.</param>
         /// <param name="selector">A transform function to apply to each source element; the second parameter of the function represents the index of the source element.</param>
         /// <returns>A sequence whose elements are the result of invoking the transform function on each element of source.</returns>
-        public static TResult[] SelectF<T, TResult>(this Span<T> source, Func<T, int, TResult> selector)
+        public static TResult[] Map<T, TResult>(this Span<T> source, Func<T, int, TResult> selector)
         {
             if (source == null)
             {
@@ -203,22 +208,25 @@ namespace Pancake.Linq
             {
                 throw Error.ArgumentNull("selector");
             }
+
             var r = new TResult[source.Length];
             for (int i = 0; i < source.Length; i++)
             {
                 r[i] = selector(source[i], i);
             }
+
             return r;
         }
 
         // --------------------------  LISTS --------------------------------------------
 
         /// <summary>
-        ///  Projects each element of a sequence into a new form in place.
+        /// Projects each element of a sequence into a new form in place.
+        /// The result will change itself <paramref name = "source" />
         /// </summary>        
         /// <param name="source">A sequence of values to invoke a transform function on (map).</param>
         /// <param name="selector">A transform function to apply (map) to each element.</param>        
-        public static void SelectInPlaceF<T>(this List<T> source, Func<T, T> selector)
+        public static void MapOrigin<T>(this List<T> source, Func<T, T> selector)
         {
             if (source == null)
             {
@@ -237,11 +245,12 @@ namespace Pancake.Linq
         }
 
         /// <summary>
-        ///  Projects each element of a sequence into a new form, in place, by incorporating the element's index.
+        /// Projects each element of a sequence into a new form, in place, by incorporating the element's index.
+        /// The result will change itself <paramref name = "source" />
         /// </summary>        
         /// <param name="source">A sequence of values to invoke a transform function on.</param>
         /// <param name="selector">A transform function to apply to each source element; the second parameter of the function represents the index of the source element.</param>        
-        public static void SelectInPlaceF<T>(this List<T> source, Func<T, int, T> selector)
+        public static void MapOrigin<T>(this List<T> source, Func<T, int, T> selector)
         {
             if (source == null)
             {
@@ -266,7 +275,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to invoke a transform function on (map).</param>
         /// <param name="selector">A transform function to apply (map) to each element.</param>
         /// <returns>A sequence whose elements are the result of invoking the transform function on each element (mapping) of source.</returns>
-        public static List<TResult> SelectF<T, TResult>(this List<T> source, Func<T, TResult> selector)
+        public static List<TResult> Map<T, TResult>(this List<T> source, Func<T, TResult> selector)
         {
             if (source == null)
             {
@@ -295,7 +304,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence of values to invoke a transform function on.</param>
         /// <param name="selector">A transform function to apply to each source element; the second parameter of the function represents the index of the source element.</param>
         /// <returns>A sequence whose elements are the result of invoking the transform function on each element of source.</returns>
-        public static List<TResult> SelectF<T, TResult>(this List<T> source, Func<T, int, TResult> selector)
+        public static List<TResult> Map<T, TResult>(this List<T> source, Func<T, int, TResult> selector)
         {
             if (source == null)
             {
@@ -311,11 +320,10 @@ namespace Pancake.Linq
 
             for (int i = 0; i < source.Count; i++)
             {
-                r.Add(selector(source[i],i));
+                r.Add(selector(source[i], i));
             }
 
             return r;
         }
-
     }
 }

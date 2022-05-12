@@ -3,7 +3,7 @@ namespace Pancake.Common
     using System;
     using System.Collections.Generic;
     using UnityEngine.SceneManagement;
-    public static partial class Util
+    public static partial class C
     {
         /// <summary>
         /// Returns an array filled with all the currently loaded scenes

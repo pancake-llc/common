@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pancake.Linq
 {
-    public static partial class R
+    public static partial class L
     {
         // --------------------------- Arrays ----------------------------
 
@@ -12,7 +12,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence to return the single element of</param>
         /// <returns>The single element of the input sequence or default if no elements exist.</returns>
-        public static T SingleF<T>(this T[] source)
+        public static T Single<T>(this T[] source)
         {
             if (source == null)
             {
@@ -24,7 +24,8 @@ namespace Pancake.Linq
                 throw Error.NoElements();
             }
 
-            if (source.Length > 1) {
+            if (source.Length > 1)
+            {
                 throw Error.MoreThanOneElement();
             }
 
@@ -36,7 +37,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence to return the single element of</param>
         /// <returns>The single element of the input sequence</returns>
-        public static T SingleOrDefaultF<T>(this T[] source)
+        public static T SingleOrDefault<T>(this T[] source)
         {
             if (source == null)
             {
@@ -48,7 +49,8 @@ namespace Pancake.Linq
                 return default(T);
             }
 
-            if (source.Length > 1) {
+            if (source.Length > 1)
+            {
                 throw Error.MoreThanOneElement();
             }
 
@@ -61,7 +63,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return a single element from.</param>
         /// <param name="predicate">A function to test an element for a condition.</param>
         /// <returns>The single element of the input sequence that satisfies a condition.</returns>
-        public static T SingleF<T>(this T[] source, Func<T, bool> predicate)
+        public static T Single<T>(this T[] source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -106,7 +108,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return a single element from.</param>
         /// <param name="predicate">A function to test an element for a condition.</param>
         /// <returns>The single element of the input sequence that satisfies a condition or default value if no such element is found.</returns>
-        public static T SingleOrDefaultF<T>(this T[] source, Func<T, bool> predicate)
+        public static T SingleOrDefault<T>(this T[] source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -117,7 +119,7 @@ namespace Pancake.Linq
             {
                 throw Error.ArgumentNull("predicate");
             }
-          
+
 
             T result = default(T);
             bool foundMatch = false;
@@ -137,7 +139,7 @@ namespace Pancake.Linq
 
             return result;
         }
-       
+
         // --------------------------- Spans ----------------------------
 
         /// <summary>
@@ -145,7 +147,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence to return the single element of</param>
         /// <returns>The single element of the input sequence or default if no elements exist.</returns>
-        public static T SingleF<T>(this Span<T> source)
+        public static T Single<T>(this Span<T> source)
         {
             if (source == null)
             {
@@ -170,7 +172,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence to return the single element of</param>
         /// <returns>The single element of the input sequence</returns>
-        public static T SingleOrDefaultF<T>(this Span<T> source)
+        public static T SingleOrDefault<T>(this Span<T> source)
         {
             if (source == null)
             {
@@ -196,7 +198,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return a single element from.</param>
         /// <param name="predicate">A function to test an element for a condition.</param>
         /// <returns>The single element of the input sequence that satisfies a condition.</returns>
-        public static T SingleF<T>(this Span<T> source, Func<T, bool> predicate)
+        public static T Single<T>(this Span<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -241,7 +243,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return a single element from.</param>
         /// <param name="predicate">A function to test an element for a condition.</param>
         /// <returns>The single element of the input sequence that satisfies a condition or default value if no such element is found.</returns>
-        public static T SingleOrDefaultF<T>(this Span<T> source, Func<T, bool> predicate)
+        public static T SingleOrDefault<T>(this Span<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -280,7 +282,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence to return the single element of</param>
         /// <returns>The single element of the input sequence</returns>
-        public static T SingleF<T>(this List<T> source)
+        public static T Single<T>(this List<T> source)
         {
             if (source == null)
             {
@@ -292,7 +294,8 @@ namespace Pancake.Linq
                 throw Error.NoElements();
             }
 
-            if (source.Count > 1) {
+            if (source.Count > 1)
+            {
                 throw Error.MoreThanOneElement();
             }
 
@@ -304,7 +307,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence to return the single element of</param>
         /// <returns>The single element of the input sequence or default if no elements exist.</returns>
-        public static T SingleOrDefaultF<T>(this List<T> source)
+        public static T SingleOrDefault<T>(this List<T> source)
         {
             if (source == null)
             {
@@ -316,7 +319,8 @@ namespace Pancake.Linq
                 return default(T);
             }
 
-            if (source.Count > 1) {
+            if (source.Count > 1)
+            {
                 throw Error.MoreThanOneElement();
             }
 
@@ -329,7 +333,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return a single element from.</param>
         /// <param name="predicate">A function to test an element for a condition.</param>
         /// <returns>The single element of the input sequence that satisfies a condition.</returns>
-        public static T SingleF<T>(this List<T> source, Func<T, bool> predicate)
+        public static T Single<T>(this List<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -374,7 +378,7 @@ namespace Pancake.Linq
         /// <param name="source">A sequence to return a single element from.</param>
         /// <param name="predicate">A function to test an element for a condition.</param>
         /// <returns>The single element of the input sequence that satisfies a condition or default value if no such element is found.</returns>
-        public static T SingleOrDefaultF<T>(this List<T> source, Func<T, bool> predicate)
+        public static T SingleOrDefault<T>(this List<T> source, Func<T, bool> predicate)
         {
             if (source == null)
             {
@@ -404,6 +408,5 @@ namespace Pancake.Linq
 
             return result;
         }
-
     }
 }
