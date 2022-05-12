@@ -8,7 +8,7 @@ namespace Pancake.Common
 
     public class DummyBehaviour : MonoBehaviour
     {
-        [SerializeField] string label = "";
+        [SerializeField] private string label = "";
 
         public static DummyBehaviour Add(GameObject go, string label = null)
         {

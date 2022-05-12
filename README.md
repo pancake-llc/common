@@ -2,9 +2,9 @@
 
 Add 
 
-- for version 1.2.0 require Unity 2021+
+- for version 1.2.1 require Unity 2021+
 ```csharp
-"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.0",
+"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.1",
 ```
 
 
