@@ -42,6 +42,40 @@ namespace Pancake.Editor
         private static Texture2D verticalBorderPic;
         private static Texture2D horizontalBorderPic;
 
+        private static Texture2D aboutIcon;
+        private static Texture2D helpOutlineIcon;
+        private static Texture2D arrowLeftIcon;
+        private static Texture2D arrowRightIcon;
+        private static Texture2D autoFixIcon;
+        private static Texture2D cleanIcon;
+        private static Texture2D clearIcon;
+        private static Texture2D collapseIcon;
+        private static Texture2D copyIcon;
+        private static Texture2D deleteIcon;
+        private static Texture2D doubleArrowLeftIcon;
+        private static Texture2D doubleArrowRightIcon;
+        private static Texture2D expandIcon;
+        private static Texture2D exportIcon;
+        private static Texture2D findIcon;
+        private static Texture2D filterIcon;
+        private static Texture2D gearIcon;
+        private static Texture2D hideIcon;
+        private static Texture2D homeIcon;
+        private static Texture2D issueIcon;
+        private static Texture2D logIcon;
+        private static Texture2D minusIcon;
+        private static Texture2D plusIcon;
+        private static Texture2D moreIcon;
+        private static Texture2D restoreIcon;
+        private static Texture2D revealIcon;
+        private static Texture2D revealBigIcon;
+        private static Texture2D selectAllIcon;
+        private static Texture2D selectNoneIcon;
+        private static Texture2D showIcon;
+        private static Texture2D starIcon;
+        private static Texture2D supportIcon;
+        private static Texture2D repeatIcon;
+
         private const int CHEVRON_ICON_WIDTH = 10;
         private const int CHEVRON_ICON_RIGHT_MARGIN = 5;
         private const float SPACE_HALF_LINE = 2f;
@@ -282,7 +316,7 @@ namespace Pancake.Editor
                 return freeParentModeOffPic;
             }
         }
-        
+
         public static Texture2D AllBorderPic
         {
             get
@@ -291,7 +325,7 @@ namespace Pancake.Editor
                 return allBorderPic;
             }
         }
-        
+
         public static Texture2D PointPic
         {
             get
@@ -300,7 +334,7 @@ namespace Pancake.Editor
                 return pointPic;
             }
         }
-        
+
         public static Texture2D HorizontalPointPic
         {
             get
@@ -309,7 +343,7 @@ namespace Pancake.Editor
                 return horizontalPointPic;
             }
         }
-        
+
         public static Texture2D VerticalPointPic
         {
             get
@@ -318,7 +352,7 @@ namespace Pancake.Editor
                 return verticalPointPic;
             }
         }
-        
+
         public static Texture2D HorizontalBorderPic
         {
             get
@@ -327,13 +361,310 @@ namespace Pancake.Editor
                 return horizontalBorderPic;
             }
         }
-        
+
         public static Texture2D VerticalBorderPic
         {
             get
             {
                 if (verticalBorderPic == null) G(ref verticalBorderPic, "Icons/Tools/snap_vertical_edges.png");
                 return verticalBorderPic;
+            }
+        }
+
+        public static Texture2D AboutIcon
+        {
+            get
+            {
+                if (aboutIcon == null) G(ref aboutIcon, "Icons/Finder/about.png");
+                return aboutIcon;
+            }
+        }
+
+        public static Texture2D HelpOutlineIcon
+        {
+            get
+            {
+                if (helpOutlineIcon == null) G(ref helpOutlineIcon, "Icons/Finder/help_outline.png");
+                return helpOutlineIcon;
+            }
+        }
+
+        public static Texture2D ArrowLeftIcon
+        {
+            get
+            {
+                if (arrowLeftIcon == null) G(ref arrowLeftIcon, "Icons/Finder/arrow_left.png");
+                return arrowLeftIcon;
+            }
+        }
+
+        public static Texture2D ArrowRightIcon
+        {
+            get
+            {
+                if (arrowRightIcon == null) G(ref arrowRightIcon, "Icons/Finder/arrow_right.png");
+                return arrowRightIcon;
+            }
+        }
+
+        public static Texture2D AutoFixIcon
+        {
+            get
+            {
+                if (autoFixIcon == null) G(ref autoFixIcon, "Icons/Finder/auto_fix.png");
+                return autoFixIcon;
+            }
+        }
+
+        public static Texture2D CleanIcon
+        {
+            get
+            {
+                if (cleanIcon == null) G(ref cleanIcon, "Icons/Finder/clean.png");
+                return cleanIcon;
+            }
+        }
+
+        public static Texture2D ClearIcon
+        {
+            get
+            {
+                if (clearIcon == null) G(ref clearIcon, "Icons/Finder/clear.png");
+                return clearIcon;
+            }
+        }
+
+        public static Texture2D CollapseIcon
+        {
+            get
+            {
+                if (collapseIcon == null) G(ref collapseIcon, "Icons/Finder/collapse.png");
+                return collapseIcon;
+            }
+        }
+
+        public static Texture2D CopyIcon
+        {
+            get
+            {
+                if (copyIcon == null) G(ref copyIcon, "Icons/Finder/copy.png");
+                return copyIcon;
+            }
+        }
+
+        public static Texture2D DeleteIcon
+        {
+            get
+            {
+                if (deleteIcon == null) G(ref deleteIcon, "Icons/Finder/delete.png");
+                return deleteIcon;
+            }
+        }
+
+        public static Texture2D DoubleArrowLeftIcon
+        {
+            get
+            {
+                if (doubleArrowLeftIcon == null) G(ref doubleArrowLeftIcon, "Icons/Finder/double_arrow_left.png");
+                return doubleArrowLeftIcon;
+            }
+        }
+
+        public static Texture2D DoubleArrowRightIcon
+        {
+            get
+            {
+                if (doubleArrowRightIcon == null) G(ref doubleArrowRightIcon, "Icons/Finder/double_arrow_right.png");
+                return doubleArrowRightIcon;
+            }
+        }
+
+        public static Texture2D ExpandIcon
+        {
+            get
+            {
+                if (expandIcon == null) G(ref expandIcon, "Icons/Finder/expand.png");
+                return expandIcon;
+            }
+        }
+
+        public static Texture2D ExportIcon
+        {
+            get
+            {
+                if (exportIcon == null) G(ref exportIcon, "Icons/Finder/export.png");
+                return exportIcon;
+            }
+        }
+
+        public static Texture2D FindIcon
+        {
+            get
+            {
+                if (findIcon == null) G(ref findIcon, "Icons/Finder/find.png");
+                return findIcon;
+            }
+        }
+
+        public static Texture2D FilterIcon
+        {
+            get
+            {
+                if (filterIcon == null) G(ref filterIcon, "Icons/Finder/filter.png");
+                return filterIcon;
+            }
+        }
+
+        public static Texture2D GearIcon
+        {
+            get
+            {
+                if (gearIcon == null) G(ref gearIcon, "Icons/Finder/gear.png");
+                return gearIcon;
+            }
+        }
+
+        public static Texture2D HideIcon
+        {
+            get
+            {
+                if (hideIcon == null) G(ref hideIcon, "Icons/Finder/hide.png");
+                return hideIcon;
+            }
+        }
+
+        public static Texture2D HomeIcon
+        {
+            get
+            {
+                if (homeIcon == null) G(ref homeIcon, "Icons/Finder/home.png");
+                return homeIcon;
+            }
+        }
+
+        public static Texture2D IssueIcon
+        {
+            get
+            {
+                if (issueIcon == null) G(ref issueIcon, "Icons/Finder/issue.png");
+                return issueIcon;
+            }
+        }
+
+        public static Texture2D LogIcon
+        {
+            get
+            {
+                if (logIcon == null) G(ref logIcon, "Icons/Finder/log.png");
+                return logIcon;
+            }
+        }
+
+        public static Texture2D MinusIcon
+        {
+            get
+            {
+                if (minusIcon == null) G(ref minusIcon, "Icons/Finder/minus.png");
+                return minusIcon;
+            }
+        }
+
+        public static Texture2D PlusIcon
+        {
+            get
+            {
+                if (plusIcon == null) G(ref plusIcon, "Icons/Finder/plus.png");
+                return plusIcon;
+            }
+        }
+
+        public static Texture2D MoreIcon
+        {
+            get
+            {
+                if (moreIcon == null) G(ref moreIcon, "Icons/Finder/more.png");
+                return moreIcon;
+            }
+        }
+
+        public static Texture2D RestoreIcon
+        {
+            get
+            {
+                if (restoreIcon == null) G(ref restoreIcon, "Icons/Finder/restore.png");
+                return restoreIcon;
+            }
+        }
+
+        public static Texture2D RevealIcon
+        {
+            get
+            {
+                if (revealIcon == null) G(ref revealIcon, "Icons/Finder/reveal.png");
+                return revealIcon;
+            }
+        }
+
+        public static Texture2D RevealBigIcon
+        {
+            get
+            {
+                if (revealBigIcon == null) G(ref revealBigIcon, "Icons/Finder/reveal_big.png");
+                return revealBigIcon;
+            }
+        }
+
+        public static Texture2D SelectAllIcon
+        {
+            get
+            {
+                if (selectAllIcon == null) G(ref selectAllIcon, "Icons/Finder/select_all.png");
+                return selectAllIcon;
+            }
+        }
+
+        public static Texture2D SelectNoneIcon
+        {
+            get
+            {
+                if (selectNoneIcon == null) G(ref selectNoneIcon, "Icons/Finder/select_none.png");
+                return selectNoneIcon;
+            }
+        }
+
+        public static Texture2D ShowIcon
+        {
+            get
+            {
+                if (showIcon == null) G(ref showIcon, "Icons/Finder/show.png");
+                return showIcon;
+            }
+        }
+
+        public static Texture2D StarIcon
+        {
+            get
+            {
+                if (starIcon == null) G(ref starIcon, "Icons/Finder/star.png");
+                return starIcon;
+            }
+        }
+
+        public static Texture2D SupportIcon
+        {
+            get
+            {
+                if (supportIcon == null) G(ref supportIcon, "Icons/Finder/support.png");
+                return supportIcon;
+            }
+        }
+
+        public static Texture2D RepeatIcon
+        {
+            get
+            {
+                if (repeatIcon == null) G(ref repeatIcon, "Icons/Finder/repeat.png");
+                return repeatIcon;
             }
         }
 
