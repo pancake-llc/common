@@ -159,7 +159,6 @@ namespace Pancake.Linq
 
             throw Error.NoMatch();
         }
-#endif
 
 
         /// <summary>
@@ -213,7 +212,8 @@ namespace Pancake.Linq
 
             return default;
         }
-
+#endif
+        
         // --------------------------  Lists --------------------------------------------
 
         /// <summary>
