@@ -318,8 +318,12 @@
             else
             {
                 var prefabNeedsToBeOpened = true;
-
+#if UNITY_2021_1_OR_NEWER
                 var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#else
+                var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#endif
+                
                 if (prefabStage != null)
                 {
 #if UNITY_2020_1_OR_NEWER
@@ -338,8 +342,12 @@
                     return false;
                 }
 
+#if UNITY_2021_1_OR_NEWER
                 prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
-
+#else
+                prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#endif
+                
                 if (prefabStage == null)
                 {
                     Debug.LogError(Finder.ConstructError("Couldn't get prefab stage for prefab at " + path + "!"));

@@ -137,7 +137,12 @@ namespace Pancake.Editor.Finder
 				return DragAndDropVisualMode.Rejected;
 			}
 
+#if UNITY_2021_1_OR_NEWER
 			var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#else
+			var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#endif
+			
 			var validItems = new List<Object>(objectReferences.Length);
 
 			foreach (var reference in objectReferences)
@@ -162,7 +167,12 @@ namespace Pancake.Editor.Finder
 
 				if (gameObject != null)
 				{
-					if (prefabStage != null && UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject) == prefabStage)
+#if UNITY_2021_1_OR_NEWER
+					var temp = UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject);
+#else
+					var temp = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject);
+#endif
+					if (prefabStage != null && temp == prefabStage)
 					{
 						validObject = true;
 					}

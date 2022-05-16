@@ -24,7 +24,12 @@
         public void DrawLeftColumnHeader()
         {
             var assetPath = SceneManager.GetActiveScene().path;
+#if UNITY_2021_1_OR_NEWER
             var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#else
+            var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#endif
+            
             if (prefabStage != null)
             {
 #if UNITY_2020_1_OR_NEWER
