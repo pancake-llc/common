@@ -60,7 +60,7 @@
 #if !UNITY_2020_1_OR_NEWER
 			if (updateStep == -1)
 			{
-				updateStep = Math.Max(total / ProjectSettings.UpdateProgressStep, 1);
+				updateStep = System.Math.Max(total / ProjectSettings.UpdateProgressStep, 1);
 			}
 #endif
 
