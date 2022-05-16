@@ -6,7 +6,6 @@ namespace Pancake.Editor.Finder.Entry
 	using UnityEditor;
 	using UnityEngine;
 	using Object = UnityEngine.Object;
-	using UnityEditor.SceneManagement;
 
 	internal static class ProjectEntryFinder
 	{
@@ -18,7 +17,7 @@ namespace Pancake.Editor.Finder.Entry
 			var count = conjunctionInfoList.Count;
 		
 #if !UNITY_2020_1_OR_NEWER
-			var updateStep = Math.Max(count / ProjectSettings.UpdateProgressStep, 1);
+			var updateStep = System.Math.Max(count / ProjectSettings.UpdateProgressStep, 1);
 #endif
 
 			for (var i = 0; i < count; i++)
@@ -202,7 +201,12 @@ namespace Pancake.Editor.Finder.Entry
 
 			if (prefabOpened)
 			{
-				StageUtility.GoBackToPreviousStage();
+#if UNITY_2021_1_OR_NEWER
+				UnityEditor.SceneManagement.StageUtility.GoBackToPreviousStage();
+#else
+				UnityEditor.Experimental.SceneManagement.StageUtility.GoBackToPreviousStage();
+#endif
+				
 			}
 		}
 
@@ -217,8 +221,12 @@ namespace Pancake.Editor.Finder.Entry
 			{
 				return null;
 			}
-
-			var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+#if UNITY_2021_1_OR_NEWER
+			var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#else
+			var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#endif
+			
 			if (prefabStage != null)
 			{
 #if UNITY_2020_1_OR_NEWER
@@ -235,8 +243,11 @@ namespace Pancake.Editor.Finder.Entry
 			{
 				return null;
 			}
-
-			prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+#if UNITY_2021_1_OR_NEWER
+			prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#else
+			prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+#endif
 			if (prefabStage == null)
 			{
 				return null;
