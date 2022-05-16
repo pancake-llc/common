@@ -99,16 +99,32 @@ namespace Pancake.Editor
 
         public static UtilEditor.ProjectSetting<UniformFoldoutState> FoldoutSettings { get; set; } = new UtilEditor.ProjectSetting<UniformFoldoutState>();
 
-        public static GUIStyle UppercaseSectionHeaderExpand { get { return uppercaseSectionHeaderExpand ??= GetCustomStyle("Uppercase Section Header"); } }
+        public static GUIStyle UppercaseSectionHeaderExpand { get
+        {
+            if (uppercaseSectionHeaderExpand == null) uppercaseSectionHeaderExpand = GetCustomStyle("Uppercase Section Header");
+            return uppercaseSectionHeaderExpand;
+        } }
 
         public static GUIStyle UppercaseSectionHeaderCollapse
         {
-            get { return uppercaseSectionHeaderCollapse ??= new GUIStyle(GetCustomStyle("Uppercase Section Header")) {normal = new GUIStyleState()}; }
+            get
+            {
+                if (uppercaseSectionHeaderCollapse == null) uppercaseSectionHeaderCollapse = new GUIStyle(GetCustomStyle("Uppercase Section Header")) {normal = new GUIStyleState()};
+                return uppercaseSectionHeaderCollapse;
+            }
         }
 
-        public static GUIStyle ToggleButtonToolbar { get { return toggleButtonToolbar ??= new GUIStyle(GetCustomStyle("ToggleButton")); } }
+        public static GUIStyle ToggleButtonToolbar { get
+        {
+            if (toggleButtonToolbar == null) toggleButtonToolbar = new GUIStyle(GetCustomStyle("ToggleButton"));
+            return toggleButtonToolbar;
+        } }
 
-        public static GUIStyle BoxArea { get { return boxArea ??= new GUIStyle(GetCustomStyle("BoxArea")); } }
+        public static GUIStyle BoxArea { get
+        {
+            if (boxArea == null) boxArea = new GUIStyle(GetCustomStyle("BoxArea"));
+            return boxArea;
+        } }
 
         public static GUIStyle GetCustomStyle(string styleName)
         {
