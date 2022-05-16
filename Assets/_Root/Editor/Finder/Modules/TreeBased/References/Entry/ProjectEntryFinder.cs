@@ -201,12 +201,7 @@ namespace Pancake.Editor.Finder.Entry
 
 			if (prefabOpened)
 			{
-#if UNITY_2021_1_OR_NEWER
 				UnityEditor.SceneManagement.StageUtility.GoBackToPreviousStage();
-#else
-				UnityEditor.Experimental.SceneManagement.StageUtility.GoBackToPreviousStage();
-#endif
-				
 			}
 		}
 
