@@ -44,6 +44,7 @@ namespace Pancake.Linq
 
         // --------------------------  this Spans --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Returns a number that represents how many elements in the specified
         /// array satisfy a condition.
@@ -78,6 +79,7 @@ namespace Pancake.Linq
 
             return count;
         }
+#endif
 
 
         // ------------------------------ Lists ---------------------

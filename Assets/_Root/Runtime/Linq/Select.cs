@@ -114,6 +114,7 @@ namespace Pancake.Linq
 
         // --------------------------  this SpanS  --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Projects each element of a sequence into a new form in place.
         /// The result will change itself <paramref name = "source" />
@@ -217,6 +218,7 @@ namespace Pancake.Linq
 
             return r;
         }
+#endif
 
         // --------------------------  LISTS --------------------------------------------
 

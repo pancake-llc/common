@@ -100,6 +100,7 @@ namespace Pancake.Linq
 
         // --------------------------  this Spans --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Returns the last element of a sequence.
         /// </summary>        
@@ -195,6 +196,7 @@ namespace Pancake.Linq
 
             return default;
         }
+#endif
 
         // --------------------------  Lists --------------------------------------------
 

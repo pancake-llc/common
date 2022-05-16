@@ -395,6 +395,7 @@ namespace Pancake.Linq
 
         // --------------------------  this Spans  --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Returns the maximum value in a sequence of values.
         /// </summary>        
@@ -779,6 +780,7 @@ namespace Pancake.Linq
             }
             return r;
         }
+#endif
 
         // --------------------------  LISTS  --------------------------------------------
 

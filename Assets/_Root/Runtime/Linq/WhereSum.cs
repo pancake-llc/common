@@ -304,6 +304,7 @@ namespace Pancake.Linq
 
         // --------------------------  SPANS  --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         ///  Adds the values in the sequence that match the where predicate.
         /// </summary>
@@ -597,7 +598,8 @@ namespace Pancake.Linq
 
             return sum;
         }
-
+        
+#endif
         // --------------------------  LISTS  --------------------------------------------
 
         /// <summary>

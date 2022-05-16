@@ -114,6 +114,7 @@ namespace Pancake.Linq
 
         // ------------------------------ this Spans --------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Applies an accumulator function over an array.
         /// </summary>        
@@ -214,6 +215,7 @@ namespace Pancake.Linq
 
             return resultSelector(result);
         }
+#endif
 
         // ------------------------------ Lists --------------------------
 

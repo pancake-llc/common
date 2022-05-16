@@ -76,6 +76,7 @@ namespace Pancake.Linq
 
         // --------------------------  Spans --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Filters a sequence of values based on a predicate.
         /// </summary>        
@@ -142,6 +143,7 @@ namespace Pancake.Linq
             Array.Resize(ref result, idx);
             return result;
         }
+#endif
 
         // --------------------------  LISTS --------------------------------------------
 

@@ -105,6 +105,7 @@ namespace Pancake.Linq
         }
 
         /*---- spans ---- */
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Returns a specified number of contiguous elements from the start of a sequence.
         /// </summary>        
@@ -204,6 +205,7 @@ namespace Pancake.Linq
 
             return result;
         }
+#endif
 
 
         // ------------- Lists ----------------

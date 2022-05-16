@@ -152,6 +152,7 @@ namespace Pancake.Linq
         }
 
         /*---- Spans ----*/
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Determines whether two sequences are equal by comparing the elements by using the 
         /// provided comparer or the default equality comparer for their type if none is provided.
@@ -261,6 +262,7 @@ namespace Pancake.Linq
 
             return true;
         }
+#endif
 
         /* ------------ List ---------------- */
 

@@ -31,6 +31,7 @@ namespace Pancake.Linq
         public static void ReverseOrigin<T>(this T[] source) { Array.Reverse(source); }
 
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Inverts the order of the elements in a sequence.
         /// </summary>        
@@ -54,6 +55,7 @@ namespace Pancake.Linq
         /// </summary>        
         /// <param name="source">A sequence of values to reverse.</param>        
         public static void ReverseOrigin<T>(this Span<T> source) { MemoryExtensions.Reverse(source); }
+#endif
 
         /// <summary>
         /// Inverts the order of the elements in a sequence.

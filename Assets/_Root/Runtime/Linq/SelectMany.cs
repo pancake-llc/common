@@ -73,6 +73,7 @@ namespace Pancake.Linq
 
         // --------------------------  this Spans --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Projects each element of a sequence to another sequence and flattens the resulting sequences into one sequence.
         /// Yo dawg, I heard you like sequences.
@@ -136,6 +137,7 @@ namespace Pancake.Linq
 
             return result.ToArray();
         }
+#endif
         // --------------------------  LISTS --------------------------------------------
 
         /// <summary>

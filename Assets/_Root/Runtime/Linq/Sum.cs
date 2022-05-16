@@ -264,6 +264,7 @@ namespace Pancake.Linq
 
         /*---- Spans ---*/
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         ///  Adds a sequence of values.
         /// </summary>
@@ -517,6 +518,7 @@ namespace Pancake.Linq
 
             return sum;
         }
+#endif
 
         // --------------------------  LISTS  --------------------------------------------
 

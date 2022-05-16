@@ -142,6 +142,7 @@ namespace Pancake.Linq
 
         // --------------------------- Spans ----------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Returns the only element of a sequence, and throws an exception if there is not exactly one element in the sequence.
         /// </summary>        
@@ -274,6 +275,7 @@ namespace Pancake.Linq
 
             return result;
         }
+#endif
 
         // --------------------------- Lists ----------------------------
 

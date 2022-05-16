@@ -71,6 +71,7 @@ namespace Pancake.Linq
 
         /*------------- SPans ---------------- */
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Bypasses a specified number of elements in a sequence and then returns the remaining elements.
         /// </summary>        
@@ -134,6 +135,7 @@ namespace Pancake.Linq
 
             return result;
         }
+#endif
 
 
         // ------------- Lists ----------------

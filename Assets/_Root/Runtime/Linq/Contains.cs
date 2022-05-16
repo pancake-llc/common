@@ -41,6 +41,7 @@ namespace Pancake.Linq
 
         // --------------------------  this SpanS  --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Determines whether an array contains a specified element by using the 
         /// provided IEqualityComparer.
@@ -72,6 +73,7 @@ namespace Pancake.Linq
 
             return false;
         }
+#endif
 
 
         // --------------------------  Lists --------------------------------------------

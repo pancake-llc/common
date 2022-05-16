@@ -52,6 +52,7 @@ namespace Pancake.Linq
             }
         }
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results.
         /// </summary>
@@ -98,6 +99,7 @@ namespace Pancake.Linq
                 return result;
             }
         }
+#endif
 
         /// <summary>
         /// Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results.

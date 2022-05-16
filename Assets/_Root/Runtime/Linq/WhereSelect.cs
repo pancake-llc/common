@@ -91,6 +91,7 @@ namespace Pancake.Linq
         // --------------------------  SPANS --------------------------------------------
 
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Combined Where and Select for optimal performance.
         /// </summary>        
@@ -169,6 +170,7 @@ namespace Pancake.Linq
             Array.Resize(ref result, idx);
             return result;
         }
+#endif
 
 
         // --------------------------  LISTS --------------------------------------------

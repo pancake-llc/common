@@ -110,6 +110,7 @@ namespace Pancake.Linq
         }
         // --------------------------  this Span --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Returns the first element of an array.
         /// </summary>        
@@ -158,6 +159,7 @@ namespace Pancake.Linq
 
             throw Error.NoMatch();
         }
+#endif
 
 
         /// <summary>

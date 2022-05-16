@@ -324,6 +324,7 @@ namespace Pancake.Linq
 
         // --------------------------  this SpanS  --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Computes the average of an array
         /// </summary>
@@ -638,6 +639,7 @@ namespace Pancake.Linq
 
             return sum / source.Length;
         }
+#endif
 
         // --------------------------  Lists  --------------------------------------------
 

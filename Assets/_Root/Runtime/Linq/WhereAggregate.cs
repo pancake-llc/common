@@ -189,6 +189,7 @@ namespace Pancake.Linq
 
         // ----------------------------- Spans ------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Combines Where and Aggregate for optimal performance
         /// </summary>        
@@ -368,6 +369,7 @@ namespace Pancake.Linq
 
             return resultSelector(result);
         }
+#endif
 
 
         // --------------------------- Lists -------------------------

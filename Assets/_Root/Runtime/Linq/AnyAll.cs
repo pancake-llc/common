@@ -69,6 +69,7 @@ namespace Pancake.Linq
 
         // --------------------------  this SpanS --------------------------------------------
 
+#if UNITY_2021_1_OR_NEWER
         /// <summary>
         /// Determines whether an array contains any elements
         /// </summary>        
@@ -138,6 +139,7 @@ namespace Pancake.Linq
 
             return true;
         }
+#endif
 
 
         // --------------------------  Lists --------------------------------------------
