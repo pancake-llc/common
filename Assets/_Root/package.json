@@ -13,7 +13,7 @@
   "license": "MIT",
   "keywords": [ "common","util","useful","upm","unity" ],
   "dependencies": {
-    "com.unity.nuget.newtonsoft-json": "3.0.1"
+    "com.unity.nuget.newtonsoft-json": "3.0.2"
   },
   "repository": {
     "type": "git",
