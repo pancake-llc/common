@@ -2,7 +2,7 @@
   "name": "com.pancake.common",
   "displayName": "Common",
   "description": "Provide common useful script for unity",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "unity": "2021.1",
   "category": "pancake",
   "author": {
