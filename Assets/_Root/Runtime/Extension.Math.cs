@@ -6,46 +6,6 @@ namespace Pancake.Common
 
     public static partial class C
     {
-        /// <summary>
-        /// safe convert the <paramref name="value"/> parameter in range [<paramref name="oldMin"/> to <paramref name="oldMax"/>] to new value in range [<paramref name="newMin"/> to <paramref name="newMax"/>].
-        /// <paramref name="value"/> parameter can not out_of_range [<paramref name="oldMin"/> to <paramref name="oldMax"/>]
-        /// <paramref name="oldMax"/> parameter must greater than <paramref name="oldMin"/> parameter
-        /// <paramref name="newMax"/> parameter must greater than <paramref name="newMin"/> parameter
-        /// </summary>
-        /// <param name="oldMin">old min value</param>
-        /// <param name="oldMax">old max value</param>
-        /// <param name="value">value compare</param>
-        /// <param name="newMin">new min value</param>
-        /// <param name="newMax">new max value</param>
-        /// <returns>new value in range [<paramref name="newMin"/> to <paramref name="newMax"/>]</returns>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">out_of_range</exception>
-        public static float ClampRemap(this float value, float oldMin, float oldMax, float newMin, float newMax)
-        {
-            if (value < oldMin || value > oldMax) throw new ArgumentOutOfRangeException($"value out of range [{oldMin}..{oldMax}]");
-            if (oldMax <= oldMin) throw new ArgumentOutOfRangeException($"[{oldMin}..{oldMax}] range not correct!");
-            if (newMax <= newMin) throw new ArgumentOutOfRangeException($"[{newMin}..{newMax}] range not correct!");
-
-            return Remap(value,
-                oldMin,
-                oldMax,
-                newMin,
-                newMax);
-        }
-
-        /// <summary>
-        /// convert the <paramref name="value"/> parameter in range [<paramref name="oldMin"/> to <paramref name="oldMax"/>] to new value in range [<paramref name="newMin"/> to <paramref name="newMax"/>].
-        /// </summary>
-        /// <param name="oldMin">old min value</param>
-        /// <param name="oldMax">old max value</param>
-        /// <param name="value">value compare</param>
-        /// <param name="newMin">new min value</param>
-        /// <param name="newMax">new max value</param>
-        /// <returns>new value in range [<paramref name="newMin"/> to <paramref name="newMax"/>]</returns>
-        public static float Remap(this float value, float oldMin, float oldMax, float newMin, float newMax)
-        {
-            return (value - oldMin) / (oldMax - oldMin) * (newMax - newMin) + newMin;
-        }
-
         public static void ShiftEnum<T>(ref T val) where T : struct, IConvertible { val = GetNextEnum(val); }
 
         public static T GetNextEnum<T>(T val) where T : struct, IConvertible
@@ -420,7 +380,7 @@ namespace Pancake.Common
 
         #endregion
 
-        #region math
+        #region M
 
         /// <summary>
         /// Internal method used to compute the spring velocity
@@ -936,28 +896,6 @@ namespace Pancake.Common
             float num2 = Mathf.Clamp(Vector3.Dot(lhs, rhs), 0f, magnitude);
             return lineStart + lhs * num2;
         }
-
-        /// <summary>
-        /// Returns the sum of all the int passed in parameters
-        /// </summary>
-        /// <param name="thingsToAdd">Things to add.</param>
-        public static int Sum(params int[] thingsToAdd)
-        {
-            int result = 0;
-            for (int i = 0; i < thingsToAdd.Length; i++)
-            {
-                result += thingsToAdd[i];
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Returns the result of rolling a dice of the specified number of sides
-        /// </summary>
-        /// <returns>The result of the dice roll.</returns>
-        /// <param name="numberOfSides">Number of sides of the dice.</param>
-        public static int RollADice(int numberOfSides) { return UnityEngine.Random.Range(1, numberOfSides + 1); }
 
         /// <summary>
         /// Returns a random success based on X% of chance.

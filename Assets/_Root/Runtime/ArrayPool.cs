@@ -1,4 +1,6 @@
-﻿namespace Pancake.Common
+﻿// ReSharper disable InconsistentNaming
+
+namespace Pancake.Common
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +8,7 @@
 
     public static class ArrayPool<T>
     {
+        // ReSharper disable once StaticMemberInGenericType
         private static readonly object @lock = new object();
         private static readonly Dictionary<int, Stack<T[]>> free = new Dictionary<int, Stack<T[]>>();
         private static readonly HashSet<T[]> busy = new HashSet<T[]>();

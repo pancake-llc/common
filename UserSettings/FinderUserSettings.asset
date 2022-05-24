@@ -43,7 +43,7 @@ MonoBehaviour:
       m_SearchString: 
     projectReferencesTreeHeaderState:
       m_Columns:
-      - width: 490
+      - width: 666
         sortedAscending: 1
         headerContent:
           m_Text: Path
@@ -206,7 +206,7 @@ MonoBehaviour:
         userData: 0
       m_VisibleColumns: 0000000001000000020000000300000004000000
       m_SortedColumns: 0400000001000000
-    splitterState: '{"ID":868928,"splitterInitialOffset":422.0,"currentActiveSplitter":-1,"realSizes":[385.0,192.0],"relativeSizes":[0.6672443747520447,0.3327556252479553],"minSizes":[90.0,47.0],"maxSizes":[0.0,0.0],"lastTotalSize":577.0,"splitSize":6.0,"xOffset":0.0,"m_Version":1,"oldRealSizes":[],"oldMinSizes":[],"oldMaxSizes":[],"oldSplitSize":0}'
+    splitterState: '{"ID":16335,"splitterInitialOffset":422.0,"currentActiveSplitter":-1,"realSizes":[366.0,182.0],"relativeSizes":[0.6672443747520447,0.3327556252479553],"minSizes":[90.0,47.0],"maxSizes":[0.0,0.0],"lastTotalSize":548.0,"splitSize":6.0,"xOffset":0.0,"m_Version":1,"oldRealSizes":[],"oldMinSizes":[],"oldMaxSizes":[],"oldSplitSize":0}'
     selectedTab: 0
   referencesFinderSettings:
     showAssetsWithoutReferences: 0
