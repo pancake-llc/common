@@ -99,12 +99,7 @@ namespace Pancake.Common
         /// </summary>
         /// <param name="v"></param>
         /// <returns></returns>
-        public static bool IsZero(this Vector3 v) => v == Vector3.zero;
-
-        public static Vector3 Clamp(this Vector3 v, Vector3 min, Vector3 max)
-        {
-            return new Vector3(Mathf.Clamp(v.x, min.x, max.x), Mathf.Clamp(v.y, min.y, max.y), Mathf.Clamp(v.z, min.z, max.z));
-        }
+        public static bool IsZero(this Vector3 v) => v.x == 0 && v.y == 0 && v.z == 0;
 
         public static Vector3 Flat(this Vector3 v) { return new Vector3(v.x, 0, v.z); }
 
@@ -123,9 +118,7 @@ namespace Pancake.Common
         #endregion
 
         #region Vector2
-
-        public static Vector2 Clamp(this Vector2 v, Vector2 min, Vector2 max) { return new Vector2(Mathf.Clamp(v.x, min.x, max.x), Mathf.Clamp(v.y, min.y, max.y)); }
-
+        
         public static Vector2 Multiply(this Vector2 v, float x, float y) { return v.Multiply(new Vector2(x, y)); }
 
         public static Vector2 Multiply(this Vector2 v, Vector2 other) { return Vector2.Scale(v, other); }
