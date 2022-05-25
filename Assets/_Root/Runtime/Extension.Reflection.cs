@@ -1,4 +1,4 @@
-#if SNORLAX_REFLACTION
+#if PANCAKE_REFLECTION
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;

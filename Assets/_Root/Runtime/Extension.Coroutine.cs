@@ -1,10 +1,10 @@
 namespace Pancake.Common
 {
-    public static class LanceRoutine
+    public static class Routine
     {
         /// <summary>
         /// Waits for the specified amount of frames
-        /// use : yield return LanceRoutine.WaitForFrames(1);
+        /// use : yield return Routine.WaitForFrames(1);
         /// </summary>
         /// <param name="frameCount"></param>
         /// <returns></returns>

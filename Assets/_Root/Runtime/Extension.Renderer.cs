@@ -30,9 +30,9 @@ namespace Pancake.Common
             while (Time.time < flickerStop)
             {
                 renderer.material.color = flickerColor;
-                yield return LanceRoutine.WaitFor(flickerSpeed);
+                yield return Routine.WaitFor(flickerSpeed);
                 renderer.material.color = initialColor;
-                yield return LanceRoutine.WaitFor(flickerSpeed);
+                yield return Routine.WaitFor(flickerSpeed);
             }
 
             renderer.material.color = initialColor;
