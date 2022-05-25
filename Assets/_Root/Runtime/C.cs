@@ -10,102 +10,142 @@ namespace Pancake.Common
         #region helper
 
         /// <summary>
-        /// Indicates the random value in the <paramref name="collection"/>
-        /// if <paramref name="collection"/> is empty return default vaule of T
+        /// <para>Indicates the random value in the <paramref name="collection"/>. If <paramref name="collection"/> is empty return default vaule of T</para>
+        /// 
+        /// <para>Return a random value of index within [0..maxExclusive) (Read Only).</para>
+        /// <para>maxExclusive = length of <paramref name="collection"/></para>
+        /// <para>maxExcusive is exclusive, so for example <paramref name="collection"/> has 10 element will return a value of index between 0 and 9, each with approximately equal probability.</para>
+        ///
+        /// <para>If maxExclusive equal 0, value of index 0 will be returned.</para>
+        ///
         /// </summary>
         /// <param name="collection"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
+        /// http://docs.unity3d.com/ScriptReference/Random.Range.html
         public static T PickRandom<T>(this T[] collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            return collection.Length == 0 ? default : collection[UnityEngine.Random.Range(0, collection.Length - 1)];
+            return collection.Length == 0 ? default : collection[UnityEngine.Random.Range(0, collection.Length)];
         }
 
         /// <summary>
-        /// Indicates the random value in the <paramref name="collection"/>
-        /// if <paramref name="collection"/> is empty return default vaule of T
+        /// <para>Indicates the random value in the <paramref name="collection"/>. If <paramref name="collection"/> is empty return default vaule of T</para>
+        /// 
+        /// <para>Return a random value of index within [0..maxExclusive) (Read Only).</para>
+        /// <para>maxExclusive = length of <paramref name="collection"/></para>
+        /// <para>maxExcusive is exclusive, so for example <paramref name="collection"/> has 10 element will return a value of index between 0 and 9, each with approximately equal probability.</para>
+        ///
+        /// <para>If maxExclusive equal 0, value of index 0 will be returned.</para>
+        ///
         /// </summary>
         /// <param name="collection"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
+        /// http://docs.unity3d.com/ScriptReference/Random.Range.html
         public static (T, int) PickRandomWithIndex<T>(this T[] collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            var index = UnityEngine.Random.Range(0, collection.Length - 1);
+            var index = UnityEngine.Random.Range(0, collection.Length);
             return collection.Length == 0 ? (default, -1) : (collection[index], index);
         }
 
         /// <summary>
-        /// Indicates the random value in the <paramref name="collection"/>
-        /// if <paramref name="collection"/> is empty return default vaule of T
+        /// <para>Indicates the random value in the <paramref name="collection"/>. If <paramref name="collection"/> is empty return default vaule of T</para>
+        /// 
+        /// <para>Return a random value of index within [0..maxExclusive) (Read Only).</para>
+        /// <para>maxExclusive = length of <paramref name="collection"/></para>
+        /// <para>maxExcusive is exclusive, so for example <paramref name="collection"/> has 10 element will return a value of index between 0 and 9, each with approximately equal probability.</para>
+        ///
+        /// <para>If maxExclusive equal 0, value of index 0 will be returned.</para>
+        ///
         /// </summary>
         /// <param name="collection"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
+        /// http://docs.unity3d.com/ScriptReference/Random.Range.html
         public static T PickRandom<T>(this IList<T> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            return collection.Count == 0 ? default : collection[UnityEngine.Random.Range(0, collection.Count - 1)];
+            return collection.Count == 0 ? default : collection[UnityEngine.Random.Range(0, collection.Count)];
         }
 
         /// <summary>
-        /// Indicates the random value in the <paramref name="collection"/>
-        /// if <paramref name="collection"/> is empty return default vaule of T
+        /// <para>Indicates the random value in the <paramref name="collection"/>. If <paramref name="collection"/> is empty return default vaule of T</para>
+        /// 
+        /// <para>Return a random value of index within [0..maxExclusive) (Read Only).</para>
+        /// <para>maxExclusive = length of <paramref name="collection"/></para>
+        /// <para>maxExcusive is exclusive, so for example <paramref name="collection"/> has 10 element will return a value of index between 0 and 9, each with approximately equal probability.</para>
+        ///
+        /// <para>If maxExclusive equal 0, value of index 0 will be returned.</para>
+        ///
         /// </summary>
         /// <param name="collection"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
+        /// http://docs.unity3d.com/ScriptReference/Random.Range.html
         public static (T, int) PickRandomWithIndex<T>(this IList<T> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            var index = UnityEngine.Random.Range(0, collection.Count - 1);
+            var index = UnityEngine.Random.Range(0, collection.Count);
             return collection.Count == 0 ? (default, -1) : (collection[index], index);
         }
 
         /// <summary>
-        /// Indicates the random value in the <paramref name="collection"/> and also remove that element
-        /// if <paramref name="collection"/> is empty return default vaule of T
+        /// <para>Indicates the random value in the <paramref name="collection"/> and also remove that element. If <paramref name="collection"/> is empty return default vaule of T</para>
+        /// <para>Return a random value of index within [0..maxExclusive) (Read Only).</para>
+        /// <para>maxExclusive = length of <paramref name="collection"/></para>
+        /// <para>maxExcusive is exclusive, so for example <paramref name="collection"/> has 10 element will return a value of index between 0 and 9, each with approximately equal probability.</para>
+        ///
+        /// <para>If maxExclusive equal 0, value of index 0 will be returned.</para>
+        ///
         /// </summary>
         /// <param name="collection"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
+        /// http://docs.unity3d.com/ScriptReference/Random.Range.html
         public static T PopRandom<T>(this IList<T> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             if (collection.Count == 0)
                 return default;
-            var i = UnityEngine.Random.Range(0, collection.Count - 1);
+            var i = UnityEngine.Random.Range(0, collection.Count);
             var value = collection[i];
             collection.RemoveAt(i);
             return value;
         }
 
         /// <summary>
-        /// Indicates the random value in the <paramref name="collection"/> and also remove that element and return index of element
-        /// if <paramref name="collection"/> is empty return default vaule of T
+        /// <para>Indicates the random value in the <paramref name="collection"/> and also remove that element. If <paramref name="collection"/> is empty return default vaule of T</para>
+        /// <para>Return a random value of index within [0..maxExclusive) (Read Only).</para>
+        /// <para>maxExclusive = length of <paramref name="collection"/></para>
+        /// <para>maxExcusive is exclusive, so for example <paramref name="collection"/> has 10 element will return a value of index between 0 and 9, each with approximately equal probability.</para>
+        ///
+        /// <para>If maxExclusive equal 0, value of index 0 will be returned.</para>
+        ///
         /// </summary>
         /// <param name="collection"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
+        /// http://docs.unity3d.com/ScriptReference/Random.Range.html
         public static (T, int) PopRandomWithIndex<T>(this IList<T> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             if (collection.Count == 0)
                 return default;
-            var i = UnityEngine.Random.Range(0, collection.Count - 1);
+            var i = UnityEngine.Random.Range(0, collection.Count);
             var value = collection[i];
             collection.RemoveAt(i);
             return (value, i);
