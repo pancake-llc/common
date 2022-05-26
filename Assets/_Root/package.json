@@ -2,8 +2,8 @@
   "name": "com.pancake.common",
   "displayName": "Common",
   "description": "Provide common useful script for unity",
-  "version": "1.1.8",
-  "unity": "2019.1",
+  "version": "1.2.5",
+  "unity": "2021.1",
   "category": "pancake",
   "author": {
     "name": "yenmoc",
@@ -13,7 +13,7 @@
   "license": "MIT",
   "keywords": [ "common","util","useful","upm","unity" ],
   "dependencies": {
-    "com.unity.nuget.newtonsoft-json": "3.0.1"
+    "com.unity.nuget.newtonsoft-json": "3.0.2"
   },
   "repository": {
     "type": "git",
