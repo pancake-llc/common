@@ -97,7 +97,7 @@ namespace Pancake.Editor
             public Property(GUIContent content) { this.content = content; }
         }
 
-        public static UtilEditor.ProjectSetting<UniformFoldoutState> FoldoutSettings { get; set; } = new UtilEditor.ProjectSetting<UniformFoldoutState>();
+        public static InEditor.ProjectSetting<UniformFoldoutState> FoldoutSettings { get; set; } = new InEditor.ProjectSetting<UniformFoldoutState>();
 
         public static GUIStyle UppercaseSectionHeaderExpand { get
         {

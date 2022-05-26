@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Pancake.Editor
 {
-    public static partial class UtilEditor
+    public static partial class InEditor
     {
         public static void DrawSprite(Sprite sprite, Vector3 worldSpace, Vector3 size)
         {

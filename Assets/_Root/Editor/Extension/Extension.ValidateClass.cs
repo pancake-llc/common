@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Pancake.Editor
 {
-    public static partial class UtilEditor
+    public static partial class InEditor
     {
         /// <summary>
         /// Check if the given namespace exists within the current domain's assemblies.

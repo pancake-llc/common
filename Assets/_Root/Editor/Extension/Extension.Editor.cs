@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 
 namespace Pancake.Editor
 {
-    public static partial class UtilEditor
+    public static partial class InEditor
     {
         /// <summary>
         /// Find all components <typeparamref name="T"/> of root prefab GameObjects

@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using UnityEngine;
 
-// ReSharper disable InconsistentNaming=
+// ReSharper disable InconsistentNaming
 namespace Pancake.Editor
 {
     public class GradleConfig

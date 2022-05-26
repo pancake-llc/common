@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Pancake.Editor
 {
-    public static partial class UtilEditor
+    public static partial class InEditor
     {
         public static ProbeHit? GetMousePosition(out Vector3 mousePosition, SceneView sceneView)
         {

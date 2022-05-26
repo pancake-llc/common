@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Pancake.Editor
 {
-    public static partial class UtilEditor
+    public static partial class InEditor
     {
         private const string DEFAULT_PROJECT_SETTING_PATH = "ProjectSettings/{0}.asset";
 
