@@ -590,7 +590,12 @@ namespace Pancake.Common
 
         /// <inheritdoc cref="M.Remap(float,float,float,float,int)"/>
         [MethodImpl(INLINE)]
-        public static float Remap(this int value, float iMin, float iMax, float oMin, float oMax) => M.Lerp(oMin, oMax, M.InverseLerp(iMin, iMax, value));
+        public static float Remap(this int value, float iMin, float iMax, float oMin, float oMax) =>
+            M.Remap(iMin,
+                iMax,
+                oMin,
+                oMax,
+                value);
 
         /// <inheritdoc cref="M.Remap(Vector2,Vector2,Vector2,Vector2,Vector2)"/>
         [MethodImpl(INLINE)]
@@ -612,7 +617,12 @@ namespace Pancake.Common
 
         /// <inheritdoc cref="M.Remap(Vector4,Vector4,Vector4,Vector4,Vector4)"/>
         [MethodImpl(INLINE)]
-        public static Vector4 Remap(this Vector4 v, Vector4 iMin, Vector4 iMax, Vector4 oMin, Vector4 oMax) => M.Lerp(oMin, oMax, M.InverseLerp(iMin, iMax, v));
+        public static Vector4 Remap(this Vector4 v, Vector4 iMin, Vector4 iMax, Vector4 oMin, Vector4 oMax) =>
+            M.Remap(iMin,
+                iMax,
+                oMin,
+                oMax,
+                v);
 
         /// <inheritdoc cref="M.Remap(Rect,Rect,Vector2)"/>
         [MethodImpl(INLINE)]
