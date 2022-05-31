@@ -1,7 +1,6 @@
-using System;
+﻿using System;
 using UnityEngine;
 
-// ReSharper disable InconsistentNaming
 namespace Pancake.Common
 {
     /// <summary>A value range between two values a and b</summary>

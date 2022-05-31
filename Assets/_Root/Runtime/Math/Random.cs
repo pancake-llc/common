@@ -21,7 +21,7 @@ namespace Pancake.Common
         /// <param name="min">The minimum value</param>
         /// <param name="max">The maximum value</param>
         public static float Range(float min, float max) => UnityRandom.Range(min, max);
-        
+
         /// <summary>Randomly returns a value between <c>min</c> [inclusive] and <c>max</c> [inclusive]</summary>
         /// <param name="min">The minimum value</param>
         /// <param name="max">The maximum value</param>

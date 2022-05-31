@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Uei = UnityEngine.Internal;
 using System.Linq; // used for arbitrary count min/max functions, so it's safe and won't allocate garbage don't worry~
 using System.Runtime.CompilerServices;
-// ReSharper disable InconsistentNaming
 
+// ReSharper disable InconsistentNaming
 namespace Pancake.Common
 {
     /// <summary>The core math helper class. It has functions mostly for single values, but also vector helpers</summary>
@@ -39,11 +40,11 @@ namespace Pancake.Common
 
         #endregion
 
-        #region M operations
+        #region Math operations
 
         /// <summary>Returns the square root of the given value</summary>
         [MethodImpl(INLINE)]
-        public static float Sqrt(float value) => (float) System.Math.Sqrt(value);
+        public static float Sqrt(float value) => (float) Math.Sqrt(value);
 
         /// <summary>Returns the square root of each component</summary>
         [MethodImpl(INLINE)]
@@ -63,23 +64,23 @@ namespace Pancake.Common
 
         /// <summary>Returns <c>value</c> raised to the power of <c>exponent</c></summary>
         [MethodImpl(INLINE)]
-        public static float Pow(float value, float exponent) => (float) System.Math.Pow(value, exponent);
+        public static float Pow(float value, float exponent) => (float) Math.Pow(value, exponent);
 
         /// <summary>Returns e to the power of the given value</summary>
         [MethodImpl(INLINE)]
-        public static float Exp(float power) => (float) System.Math.Exp(power);
+        public static float Exp(float power) => (float) Math.Exp(power);
 
         /// <summary>Returns the logarithm of a value, with the given base</summary>
         [MethodImpl(INLINE)]
-        public static float Log(float value, float @base) => (float) System.Math.Log(value, @base);
+        public static float Log(float value, float @base) => (float) Math.Log(value, @base);
 
         /// <summary>Returns the natural logarithm of the given value</summary>
         [MethodImpl(INLINE)]
-        public static float Log(float value) => (float) System.Math.Log(value);
+        public static float Log(float value) => (float) Math.Log(value);
 
         /// <summary>Returns the base 10 logarithm of the given value</summary>
         [MethodImpl(INLINE)]
-        public static float Log10(float value) => (float) System.Math.Log10(value);
+        public static float Log10(float value) => (float) Math.Log10(value);
 
         /// <summary>Returns the binomial coefficient n over k</summary>
         public static ulong BinomialCoef(uint n, uint k)
@@ -106,8 +107,8 @@ namespace Pancake.Common
             if (value <= 12)
                 return factorialInt[value];
             if (value <= 20)
-                throw new System.OverflowException($"The Factorial of {value} is too big for integer representation, please use {nameof(FactorialLong)} instead");
-            throw new System.OverflowException($"The Factorial of {value} is too big for integer representation");
+                throw new OverflowException($"The Factorial of {value} is too big for integer representation, please use {nameof(FactorialLong)} instead");
+            throw new OverflowException($"The Factorial of {value} is too big for integer representation");
         }
 
         /// <summary>Returns the Factorial of a given value from 0 to 20</summary>
@@ -117,7 +118,7 @@ namespace Pancake.Common
         {
             if (value <= 20)
                 return factorialLong[value];
-            throw new System.OverflowException($"The Factorial of {value} is too big for integer representation, even unsigned longs, soooo, rip");
+            throw new OverflowException($"The Factorial of {value} is too big for integer representation, even unsigned longs, soooo, rip");
         }
 
         static readonly long[] factorialLong =
@@ -208,68 +209,68 @@ namespace Pancake.Common
         /// <summary>Returns the cosine of the given angle. Equivalent to the x-component of a unit vector with the same angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Cos(float angRad) => (float) System.Math.Cos(angRad);
+        public static float Cos(float angRad) => (float) Math.Cos(angRad);
 
         /// <summary>Returns the sine of the given angle. Equivalent to the y-component of a unit vector with the same angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Sin(float angRad) => (float) System.Math.Sin(angRad);
+        public static float Sin(float angRad) => (float) Math.Sin(angRad);
 
         /// <summary>Returns the tangent of the given angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Tan(float angRad) => (float) System.Math.Tan(angRad);
+        public static float Tan(float angRad) => (float) Math.Tan(angRad);
 
         /// <summary>Returns the arc cosine of the given value, in radians</summary>
         /// <param name="value">A value between -1 and 1</param>
         [MethodImpl(INLINE)]
-        public static float Acos(float value) => (float) System.Math.Acos(value);
+        public static float Acos(float value) => (float) Math.Acos(value);
 
         /// <summary>Returns the arc sine of the given value, in radians</summary>
         /// <param name="value">A value between -1 and 1</param>
         [MethodImpl(INLINE)]
-        public static float Asin(float value) => (float) System.Math.Asin(value);
+        public static float Asin(float value) => (float) Math.Asin(value);
 
         /// <summary>Returns the arc tangent of the given value, in radians</summary>
         /// <param name="value">A value between -1 and 1</param>
         [MethodImpl(INLINE)]
-        public static float Atan(float value) => (float) System.Math.Atan(value);
+        public static float Atan(float value) => (float) Math.Atan(value);
 
         /// <summary>Returns the angle of a vector. I don't recommend using this function, it's confusing~ Use M.DirToAng instead</summary>
         /// <param name="y">The y component of the vector. They're flipped yeah I know but this is how everyone implements if for some godforsaken reason</param>
         /// <param name="x">The x component of the vector. They're flipped yeah I know but this is how everyone implements if for some godforsaken reason</param>
         [MethodImpl(INLINE)]
-        public static float Atan2(float y, float x) => (float) System.Math.Atan2(y, x);
+        public static float Atan2(float y, float x) => (float) Math.Atan2(y, x);
 
         /// <summary>Returns the cosecant of the given angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Csc(float angRad) => 1f / (float) System.Math.Sin(angRad);
+        public static float Csc(float angRad) => 1f / (float) Math.Sin(angRad);
 
         /// <summary>Returns the secant of the given angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Sec(float angRad) => 1f / (float) System.Math.Cos(angRad);
+        public static float Sec(float angRad) => 1f / (float) Math.Cos(angRad);
 
         /// <summary>Returns the cotangent of the given angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Cot(float angRad) => 1f / (float) System.Math.Tan(angRad);
+        public static float Cot(float angRad) => 1f / (float) Math.Tan(angRad);
 
         /// <summary>Returns the versine of the given angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Ver(float angRad) => 1 - (float) System.Math.Cos(angRad);
+        public static float Ver(float angRad) => 1 - (float) Math.Cos(angRad);
 
         /// <summary>Returns the coversine of the given angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Cvs(float angRad) => 1 - (float) System.Math.Sin(angRad);
+        public static float Cvs(float angRad) => 1 - (float) Math.Sin(angRad);
 
         /// <summary>Returns the chord of the given angle</summary>
         /// <param name="angRad">Angle in radians</param>
         [MethodImpl(INLINE)]
-        public static float Crd(float angRad) => 2 * (float) System.Math.Sin(angRad / 2);
+        public static float Crd(float angRad) => 2 * (float) Math.Sin(angRad / 2);
 
         #endregion
 
@@ -277,27 +278,27 @@ namespace Pancake.Common
 
         /// <summary>Returns the hyperbolic cosine of the given hyperbolic angle</summary>
         [MethodImpl(INLINE)]
-        public static float Cosh(float x) => (float) System.Math.Cosh(x);
+        public static float Cosh(float x) => (float) Math.Cosh(x);
 
         /// <summary>Returns the hyperbolic sine of the given hyperbolic angle</summary>
         [MethodImpl(INLINE)]
-        public static float Sinh(float x) => (float) System.Math.Sinh(x);
+        public static float Sinh(float x) => (float) Math.Sinh(x);
 
         /// <summary>Returns the hyperbolic tangent of the given hyperbolic angle</summary>
         [MethodImpl(INLINE)]
-        public static float Tanh(float x) => (float) System.Math.Tanh(x);
+        public static float Tanh(float x) => (float) Math.Tanh(x);
 
         /// <summary>Returns the hyperbolic arc cosine of the given value</summary>
         [MethodImpl(INLINE)]
-        public static float Acosh(float x) => (float) System.Math.Log(x + Mathf.Sqrt(x * x - 1));
+        public static float Acosh(float x) => (float) Math.Log(x + Mathf.Sqrt(x * x - 1));
 
         /// <summary>Returns the hyperbolic arc sine of the given value</summary>
         [MethodImpl(INLINE)]
-        public static float Asinh(float x) => (float) System.Math.Log(x + Mathf.Sqrt(x * x + 1));
+        public static float Asinh(float x) => (float) Math.Log(x + Mathf.Sqrt(x * x + 1));
 
         /// <summary>Returns the hyperbolic arc tangent of the given value</summary>
         [MethodImpl(INLINE)]
-        public static float Atanh(float x) => (float) (0.5 * System.Math.Log((1 + x) / (1 - x)));
+        public static float Atanh(float x) => (float) (0.5 * Math.Log((1 + x) / (1 - x)));
 
         #endregion
 
@@ -305,11 +306,11 @@ namespace Pancake.Common
 
         /// <summary>Returns the absolute value. Basically makes negative numbers positive</summary>
         [MethodImpl(INLINE)]
-        public static float Abs(float value) => System.Math.Abs(value);
+        public static float Abs(float value) => Math.Abs(value);
 
         /// <inheritdoc cref="M.Abs(float)"/>
         [MethodImpl(INLINE)]
-        public static int Abs(int value) => System.Math.Abs(value);
+        public static int Abs(int value) => Math.Abs(value);
 
         /// <summary>Returns the absolute value, per component. Basically makes negative numbers positive</summary>
         [MethodImpl(INLINE)]
@@ -541,86 +542,78 @@ namespace Pancake.Common
 
         /// <summary>Rounds the value down to the nearest integer</summary>
         [MethodImpl(INLINE)]
-        public static float Floor(float value) => (float) System.Math.Floor(value);
+        public static float Floor(float value) => (float) Math.Floor(value);
 
         /// <summary>Rounds the vector components down to the nearest integer</summary>
         [MethodImpl(INLINE)]
-        public static Vector2 Floor(Vector2 value) => new Vector2((float) System.Math.Floor(value.x), (float) System.Math.Floor(value.y));
+        public static Vector2 Floor(Vector2 value) => new Vector2((float) Math.Floor(value.x), (float) Math.Floor(value.y));
 
         /// <inheritdoc cref="M.Floor(Vector2)"/>
         [MethodImpl(INLINE)]
-        public static Vector3 Floor(Vector3 value) =>
-            new Vector3((float) System.Math.Floor(value.x), (float) System.Math.Floor(value.y), (float) System.Math.Floor(value.z));
+        public static Vector3 Floor(Vector3 value) => new Vector3((float) Math.Floor(value.x), (float) Math.Floor(value.y), (float) Math.Floor(value.z));
 
         /// <inheritdoc cref="M.Floor(Vector2)"/>
         [MethodImpl(INLINE)]
         public static Vector4 Floor(Vector4 value) =>
-            new Vector4((float) System.Math.Floor(value.x), (float) System.Math.Floor(value.y), (float) System.Math.Floor(value.z), (float) System.Math.Floor(value.w));
+            new Vector4((float) Math.Floor(value.x), (float) Math.Floor(value.y), (float) Math.Floor(value.z), (float) Math.Floor(value.w));
 
         /// <summary>Rounds the value down to the nearest integer, returning an int value</summary>
         [MethodImpl(INLINE)]
-        public static int FloorToInt(float value) => (int) System.Math.Floor(value);
+        public static int FloorToInt(float value) => (int) Math.Floor(value);
 
         /// <summary>Rounds the vector components down to the nearest integer, returning an integer vector</summary>
         [MethodImpl(INLINE)]
-        public static Vector2Int FloorToInt(Vector2 value) => new Vector2Int((int) System.Math.Floor(value.x), (int) System.Math.Floor(value.y));
+        public static Vector2Int FloorToInt(Vector2 value) => new Vector2Int((int) Math.Floor(value.x), (int) Math.Floor(value.y));
 
         /// <inheritdoc cref="M.FloorToInt(Vector2)"/>
         [MethodImpl(INLINE)]
-        public static Vector3Int FloorToInt(Vector3 value) =>
-            new Vector3Int((int) System.Math.Floor(value.x), (int) System.Math.Floor(value.y), (int) System.Math.Floor(value.z));
+        public static Vector3Int FloorToInt(Vector3 value) => new Vector3Int((int) Math.Floor(value.x), (int) Math.Floor(value.y), (int) Math.Floor(value.z));
 
         /// <summary>Rounds the value up to the nearest integer</summary>
         [MethodImpl(INLINE)]
-        public static float Ceil(float value) => (float) System.Math.Ceiling(value);
+        public static float Ceil(float value) => (float) Math.Ceiling(value);
 
         /// <summary>Rounds the vector components up to the nearest integer</summary>
         [MethodImpl(INLINE)]
-        public static Vector2 Ceil(Vector2 value) => new Vector2((float) System.Math.Ceiling(value.x), (float) System.Math.Ceiling(value.y));
+        public static Vector2 Ceil(Vector2 value) => new Vector2((float) Math.Ceiling(value.x), (float) Math.Ceiling(value.y));
 
         /// <inheritdoc cref="M.Ceil(Vector2)"/>
         [MethodImpl(INLINE)]
-        public static Vector3 Ceil(Vector3 value) =>
-            new Vector3((float) System.Math.Ceiling(value.x), (float) System.Math.Ceiling(value.y), (float) System.Math.Ceiling(value.z));
+        public static Vector3 Ceil(Vector3 value) => new Vector3((float) Math.Ceiling(value.x), (float) Math.Ceiling(value.y), (float) Math.Ceiling(value.z));
 
         /// <inheritdoc cref="M.Ceil(Vector2)"/>
         [MethodImpl(INLINE)]
         public static Vector4 Ceil(Vector4 value) =>
-            new Vector4((float) System.Math.Ceiling(value.x),
-                (float) System.Math.Ceiling(value.y),
-                (float) System.Math.Ceiling(value.z),
-                (float) System.Math.Ceiling(value.w));
+            new Vector4((float) Math.Ceiling(value.x), (float) Math.Ceiling(value.y), (float) Math.Ceiling(value.z), (float) Math.Ceiling(value.w));
 
         /// <summary>Rounds the value up to the nearest integer, returning an int value</summary>
         [MethodImpl(INLINE)]
-        public static int CeilToInt(float value) => (int) System.Math.Ceiling(value);
+        public static int CeilToInt(float value) => (int) Math.Ceiling(value);
 
         /// <summary>Rounds the vector components up to the nearest integer, returning an integer vector</summary>
         [MethodImpl(INLINE)]
-        public static Vector2Int CeilToInt(Vector2 value) => new Vector2Int((int) System.Math.Ceiling(value.x), (int) System.Math.Ceiling(value.y));
+        public static Vector2Int CeilToInt(Vector2 value) => new Vector2Int((int) Math.Ceiling(value.x), (int) Math.Ceiling(value.y));
 
         /// <inheritdoc cref="M.CeilToInt(Vector2)"/>
         [MethodImpl(INLINE)]
-        public static Vector3Int CeilToInt(Vector3 value) =>
-            new Vector3Int((int) System.Math.Ceiling(value.x), (int) System.Math.Ceiling(value.y), (int) System.Math.Ceiling(value.z));
+        public static Vector3Int CeilToInt(Vector3 value) => new Vector3Int((int) Math.Ceiling(value.x), (int) Math.Ceiling(value.y), (int) Math.Ceiling(value.z));
 
         /// <summary>Rounds the value to the nearest integer</summary>
         [MethodImpl(INLINE)]
-        public static float Round(float value) => (float) System.Math.Round(value);
+        public static float Round(float value) => (float) Math.Round(value);
 
         /// <summary>Rounds the vector components to the nearest integer</summary>
         [MethodImpl(INLINE)]
-        public static Vector2 Round(Vector2 value) => new Vector2((float) System.Math.Round(value.x), (float) System.Math.Round(value.y));
+        public static Vector2 Round(Vector2 value) => new Vector2((float) Math.Round(value.x), (float) Math.Round(value.y));
 
         /// <inheritdoc cref="M.Round(Vector2)"/>
         [MethodImpl(INLINE)]
-        public static Vector3 Round(Vector3 value) =>
-            new Vector3((float) System.Math.Round(value.x), (float) System.Math.Round(value.y), (float) System.Math.Round(value.z));
+        public static Vector3 Round(Vector3 value) => new Vector3((float) Math.Round(value.x), (float) Math.Round(value.y), (float) Math.Round(value.z));
 
         /// <inheritdoc cref="M.Round(Vector2)"/>
         [MethodImpl(INLINE)]
         public static Vector4 Round(Vector4 value) =>
-            new Vector4((float) System.Math.Round(value.x), (float) System.Math.Round(value.y), (float) System.Math.Round(value.z), (float) System.Math.Round(value.w));
+            new Vector4((float) Math.Round(value.x), (float) Math.Round(value.y), (float) Math.Round(value.z), (float) Math.Round(value.w));
 
         /// <summary>Rounds the value to the nearest value, snapped to the given interval size</summary>
         [MethodImpl(INLINE)]
@@ -642,16 +635,15 @@ namespace Pancake.Common
 
         /// <summary>Rounds the value to the nearest integer, returning an int value</summary>
         [MethodImpl(INLINE)]
-        public static int RoundToInt(float value) => (int) System.Math.Round(value);
+        public static int RoundToInt(float value) => (int) Math.Round(value);
 
         /// <summary>Rounds the vector components to the nearest integer, returning an integer vector</summary>
         [MethodImpl(INLINE)]
-        public static Vector2Int RoundToInt(Vector2 value) => new Vector2Int((int) System.Math.Round(value.x), (int) System.Math.Round(value.y));
+        public static Vector2Int RoundToInt(Vector2 value) => new Vector2Int((int) Math.Round(value.x), (int) Math.Round(value.y));
 
         /// <inheritdoc cref="M.RoundToInt(Vector2)"/>
         [MethodImpl(INLINE)]
-        public static Vector3Int RoundToInt(Vector3 value) =>
-            new Vector3Int((int) System.Math.Round(value.x), (int) System.Math.Round(value.y), (int) System.Math.Round(value.z));
+        public static Vector3Int RoundToInt(Vector3 value) => new Vector3Int((int) Math.Round(value.x), (int) Math.Round(value.y), (int) Math.Round(value.z));
 
         #endregion
 
@@ -1161,13 +1153,13 @@ namespace Pancake.Common
 
         /// <summary>Returns the direction of the input angle, as a normalized vector</summary>
         /// <param name="aRad">The input angle, in radians</param>
-        /// <seealso cref="MathExtension.Angle"/>
+        /// <seealso cref="MathfsExtensions.Angle"/>
         [MethodImpl(INLINE)]
         public static Vector2 AngToDir(float aRad) => new Vector2(Mathf.Cos(aRad), Mathf.Sin(aRad));
 
         /// <summary>Returns the angle of the input vector, in radians. You can also use <c>myVector.Angle()</c></summary>
         /// <param name="vec">The vector to get the angle of. It does not have to be normalized</param>
-        /// <seealso cref="MathExtension.Angle"/>
+        /// <seealso cref="MathfsExtensions.Angle"/>
         [MethodImpl(INLINE)]
         public static float DirToAng(Vector2 vec) => Mathf.Atan2(vec.y, vec.x);
 

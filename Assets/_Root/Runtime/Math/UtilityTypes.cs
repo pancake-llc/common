@@ -119,6 +119,21 @@ namespace Pancake.Common
             throw new InvalidCastException("Failed to cast ResultsMax2 to ResultsMax3");
         }
 
+        /// <summary>Explicitly casts ResultsMax3 to ResultsMax2</summary>
+        /// <param name="m3">The results to cast</param>
+        public static explicit operator ResultsMax2<T>(ResultsMax3<T> m3)
+        {
+            switch (m3.count)
+            {
+                case 0: return default;
+                case 1: return new ResultsMax2<T>(m3.a);
+                case 2: return new ResultsMax2<T>(m3.a, m3.b);
+                case 3: throw new IndexOutOfRangeException("Attempt to cast ResultsMax3 to ResultsMax2 when it had 3 results");
+            }
+
+            throw new InvalidCastException("Failed to cast ResultsMax2 to ResultsMax3");
+        }
+
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator() => GetEnumerator();
 
@@ -126,18 +141,18 @@ namespace Pancake.Common
 
         public struct ResultsMax3Enumerator : IEnumerator<T>
         {
-            private int _currentIndex;
-            private readonly ResultsMax3<T> _value;
+            int currentIndex;
+            readonly ResultsMax3<T> value;
 
             public ResultsMax3Enumerator(ResultsMax3<T> value)
             {
-                this._value = value;
-                _currentIndex = -1;
+                this.value = value;
+                currentIndex = -1;
             }
 
-            public bool MoveNext() => ++_currentIndex < _value.count;
-            public void Reset() => _currentIndex = -1;
-            public T Current => _value[_currentIndex];
+            public bool MoveNext() => ++currentIndex < value.count;
+            public void Reset() => currentIndex = -1;
+            public T Current => value[currentIndex];
             object IEnumerator.Current => Current;
             public void Dispose() => _ = 0;
         }
@@ -148,23 +163,23 @@ namespace Pancake.Common
     /// <summary>Contains either 0, 1 or 2 valid return values</summary>
     public readonly struct ResultsMax2<T> : IEnumerable<T> where T : struct
     {
-        /// <inheritdoc cref="ResultsMax3{T}.count"/>
+        /// <inheritdoc cref="Freya.ResultsMax3{T}.count"/>
         public readonly int count;
 
-        /// <inheritdoc cref="ResultsMax3{T}.a"/>
+        /// <inheritdoc cref="Freya.ResultsMax3{T}.a"/>
         public readonly T a;
 
-        /// <inheritdoc cref="ResultsMax3{T}.b"/>
+        /// <inheritdoc cref="Freya.ResultsMax3{T}.b"/>
         public readonly T b;
 
-        /// <inheritdoc cref="ResultsMax3{T}"/>
+        /// <inheritdoc cref="Freya.ResultsMax3{T}(T,T)"/>
         public ResultsMax2(T a, T b)
         {
             (this.a, this.b) = (a, b);
             count = 2;
         }
 
-        /// <inheritdoc cref="ResultsMax3{T}"/>
+        /// <inheritdoc cref="Freya.ResultsMax3{T}(T)"/>
         public ResultsMax2(T a)
         {
             (this.a, this.b) = (a, default);
@@ -189,7 +204,7 @@ namespace Pancake.Common
             }
         }
 
-        /// <inheritdoc cref="ResultsMax3{T}.Add(T)"/>
+        /// <inheritdoc cref="Freya.ResultsMax3{T}.Add(T)"/>
         public ResultsMax2<T> Add(T value)
         {
             switch (count)
@@ -207,18 +222,18 @@ namespace Pancake.Common
 
         public struct ResultsMax2Enumerator : IEnumerator<T>
         {
-            private int _currentIndex;
-            private readonly ResultsMax2<T> _value;
+            int currentIndex;
+            readonly ResultsMax2<T> value;
 
             public ResultsMax2Enumerator(ResultsMax2<T> value)
             {
-                this._value = value;
-                _currentIndex = -1;
+                this.value = value;
+                currentIndex = -1;
             }
 
-            public bool MoveNext() => ++_currentIndex < _value.count;
-            public void Reset() => _currentIndex = -1;
-            public T Current => _value[_currentIndex];
+            public bool MoveNext() => ++currentIndex < value.count;
+            public void Reset() => currentIndex = -1;
+            public T Current => value[currentIndex];
             object IEnumerator.Current => Current;
             public void Dispose() => _ = 0;
         }

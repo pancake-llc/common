@@ -15,7 +15,7 @@ namespace Pancake.Common
         /// <param name="tA">The t-value of the intersection of the first linear type</param>
         /// <param name="tB">The t-value of the intersection of the second linear type</param>
         [MethodImpl(INLINE)]
-        public static bool LinearTValues<T, TU>(T a, TU b, out float tA, out float tB) where T : ILinear2D where TU : ILinear2D
+        public static bool LinearTValues<T, U>(T a, U b, out float tA, out float tB) where T : ILinear2D where U : ILinear2D
         {
             return IntersectionTest.LinearTValues(a.Origin,
                 a.Dir,
@@ -29,13 +29,13 @@ namespace Pancake.Common
         /// <param name="a">The first Ray, Line or LineSegment</param>
         /// <param name="b">The second Ray, Line or LineSegment</param>
         [MethodImpl(INLINE)]
-        public static bool Linear<T, TU>(T a, TU b) where T : ILinear2D where TU : ILinear2D => LinearTValues(a, b, out _, out _);
+        public static bool Linear<T, U>(T a, U b) where T : ILinear2D where U : ILinear2D => LinearTValues(a, b, out _, out _);
 
         /// <summary>Returns whether or not two linear 2D types (Ray2D, Line2D or LineSegment2D) intersect, and the point where they did, if they did</summary>
         /// <param name="a">The first Ray, Line or LineSegment</param>
         /// <param name="b">The second Ray, Line or LineSegment</param>
         /// <param name="intersectionPoint">The point at which they intersect</param>
-        public static bool LinearIntersectionPoint<T, TU>(T a, TU b, out Vector2 intersectionPoint) where T : ILinear2D where TU : ILinear2D
+        public static bool LinearIntersectionPoint<T, U>(T a, U b, out Vector2 intersectionPoint) where T : ILinear2D where U : ILinear2D
         {
             bool intersects = LinearTValues(a, b, out float tA, out _);
             intersectionPoint = intersects ? a.GetPoint(tA) : default;

@@ -10,8 +10,8 @@ namespace Pancake.Common
     public static partial class IntersectionTest
     {
         // internal
-        private const float PARALLEL_DETERMINANT_THRESHOLD = 0.00001f;
-        private const MethodImplOptions INLINE = MethodImplOptions.AggressiveInlining;
+        const float PARALLEL_DETERMINANT_THRESHOLD = 0.00001f;
+        const MethodImplOptions INLINE = MethodImplOptions.AggressiveInlining;
 
         /// <summary>Returns whether or not these infinite lines intersect, and if they do, also returns the t-value for each infinite line</summary>
         /// <param name="aOrigin">First line origin</param>
