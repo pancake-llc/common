@@ -2,15 +2,32 @@
 
 Add the lines below to `Packages/manifest.json`
 
-- for version 1.2.5 
+- for version 1.2.6 
 ```csharp
 "com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.5",
+"com.system-community.systemruntimecompilerservicesunsafe": "https://github.com/system-community/SystemRuntimeCompilerServicesUnsafe.git?path=Assets/_Root#4.5.3",
 ```
 
 - for version 1.0.11 or older
 ```csharp
 "com.snorlax.common": "https://github.com/snorluxe/common.git?path=Assets/_Root#1.0.11",
 ```
+
+# Ulid
+
+Similar api to Guid.
+
+- Ulid.NewUlid()
+- Ulid.Parse()
+- Ulid.TryParse()
+- new Ulid()
+- .ToString()
+- .ToByteArray()
+- .TryWriteBytes()
+- .TryWriteStringify()
+- .ToBase64()
+- .Time
+- .Random
 
 
 # Unity Timer
