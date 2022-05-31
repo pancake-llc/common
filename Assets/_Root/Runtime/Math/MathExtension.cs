@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Pancake.Common
 {
     /// <summary>Various extensions for floats, vectors and colors</summary>
-    public static class MathExtensions
+    public static class MathExtension
     {
         private const MethodImplOptions INLINE = MethodImplOptions.AggressiveInlining;
 

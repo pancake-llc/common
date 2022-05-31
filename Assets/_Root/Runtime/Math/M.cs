@@ -1161,13 +1161,13 @@ namespace Pancake.Common
 
         /// <summary>Returns the direction of the input angle, as a normalized vector</summary>
         /// <param name="aRad">The input angle, in radians</param>
-        /// <seealso cref="MathExtensions.Angle"/>
+        /// <seealso cref="MathExtension.Angle"/>
         [MethodImpl(INLINE)]
         public static Vector2 AngToDir(float aRad) => new Vector2(Mathf.Cos(aRad), Mathf.Sin(aRad));
 
         /// <summary>Returns the angle of the input vector, in radians. You can also use <c>myVector.Angle()</c></summary>
         /// <param name="vec">The vector to get the angle of. It does not have to be normalized</param>
-        /// <seealso cref="MathExtensions.Angle"/>
+        /// <seealso cref="MathExtension.Angle"/>
         [MethodImpl(INLINE)]
         public static float DirToAng(Vector2 vec) => Mathf.Atan2(vec.y, vec.x);
 
