@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using UnityEngine;
 
-
+// ReSharper disable InconsistentNaming
 namespace Pancake.Common
 {
     /// <summary>Various extensions for floats, vectors and colors</summary>
@@ -588,10 +588,29 @@ namespace Pancake.Common
                 oMax,
                 value);
 
+        /// <inheritdoc cref="M.RemapClamped(float,float,float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float RemapClamped(this float value, float iMin, float iMax, float oMin, float oMax) =>
+            M.RemapClamped(iMin,
+                iMax,
+                oMin,
+                oMax,
+                value);
+
         /// <inheritdoc cref="M.Remap(float,float,float,float,int)"/>
         [MethodImpl(INLINE)]
         public static float Remap(this int value, float iMin, float iMax, float oMin, float oMax) =>
             M.Remap(iMin,
+                iMax,
+                oMin,
+                oMax,
+                value);
+
+
+        /// <inheritdoc cref="M.RemapClamped(float,float,float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float RemapClamped(this int value, float iMin, float iMax, float oMin, float oMax) =>
+            M.RemapClamped(iMin,
                 iMax,
                 oMin,
                 oMax,
@@ -641,10 +660,6 @@ namespace Pancake.Common
                 oBounds.min,
                 oBounds.max,
                 iPos);
-
-        /// <inheritdoc cref="M.Remap(float,float,float,float,float)"/>
-        [MethodImpl(INLINE)]
-        public static float RemapClamped(this float value, float iMin, float iMax, float oMin, float oMax) => M.Lerp(oMin, oMax, M.InverseLerpClamped(iMin, iMax, value));
 
         #endregion
 
