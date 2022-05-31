@@ -1,7 +1,7 @@
 ﻿namespace Pancake.Common
 {
     /// <summary>The type/degree of a polynomial</summary>
-    public enum PolynomialType
+    public enum PolynomialDegree
     {
         /// <summary>A polynomial that is just a, straight up constant value</summary>
         Constant,
