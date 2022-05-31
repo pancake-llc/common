@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Pancake.Common
 {
     /// <summary>Various extensions for floats, vectors and colors</summary>
-    public static class MathfsExtensions
+    public static class MathExtensions
     {
         private const MethodImplOptions INLINE = MethodImplOptions.AggressiveInlining;
 
@@ -63,7 +63,7 @@ namespace Pancake.Common
 
         /// <summary>Returns X and Y as a Vector2, equivalent to <c>new Vector2(v.x,v.y)</c></summary>
         [MethodImpl(INLINE)]
-        public static Vector2 XY(this Vector2 v) => new Vector2(v.y, v.x);
+        public static Vector2 XY(this Vector2 v) => new Vector2(v.x, v.y);
 
         /// <summary>Returns Y and X as a Vector2, equivalent to <c>new Vector2(v.y,v.x)</c></summary>
         [MethodImpl(INLINE)]
@@ -634,8 +634,7 @@ namespace Pancake.Common
 
         /// <inheritdoc cref="M.Remap(float,float,float,float,float)"/>
         [MethodImpl(INLINE)]
-        public static float RemapClamped(this float value, float iMin, float iMax, float oMin, float oMax) =>
-            M.Lerp(oMin, oMax, M.InverseLerpClamped(iMin, iMax, value));
+        public static float RemapClamped(this float value, float iMin, float iMax, float oMin, float oMax) => M.Lerp(oMin, oMax, M.InverseLerpClamped(iMin, iMax, value));
 
         #endregion
 
