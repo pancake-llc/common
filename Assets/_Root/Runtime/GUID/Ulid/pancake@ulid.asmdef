@@ -1,0 +1,18 @@
+{
+    "name": "pancake@ulid",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b7d258362c2b06342bf6220fba18596a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "System.Runtime.CompilerServices.Unsafe.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

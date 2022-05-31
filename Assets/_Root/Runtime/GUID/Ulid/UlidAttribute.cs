@@ -6,12 +6,12 @@ using UnityEditor;
 
 namespace Pancake.Common
 {
-    public class SnowflakeAttribute : PropertyAttribute
+    public class UlidAttribute : PropertyAttribute
     {
     }
 
 #if UNITY_EDITOR
-    [CustomPropertyDrawer(typeof(SnowflakeAttribute))]
+    [CustomPropertyDrawer(typeof(UlidAttribute))]
     public class SnowflakeAttributeDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -39,8 +39,8 @@ namespace Pancake.Common
             if (e.type == EventType.MouseDown && e.button == 1 && position.Contains(e.mousePosition))
             {
                 var context = new GenericMenu();
-                context.AddItem(new GUIContent("Copy"), false, p => Copy(property), property);
-                context.AddItem(new GUIContent("Recreate"), false, p => Recreate(property), property);
+                context.AddItem(new GUIContent("Copy"), false, _ => Copy(property), property);
+                context.AddItem(new GUIContent("Recreate"), false, _ => Recreate(property), property);
                 context.ShowAsContext();
             }
         }
@@ -48,7 +48,7 @@ namespace Pancake.Common
         private void Recreate(SerializedProperty property)
         {
             if (property.propertyType != SerializedPropertyType.String) return;
-            property.stringValue = new IdStringGeneratorWrapper(new Id64Generator(10)).GenerateId();
+            property.stringValue = System.Ulid.NewUlid().ToString();
             property.serializedObject.ApplyModifiedProperties();
         }
 
