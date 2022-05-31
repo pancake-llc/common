@@ -616,6 +616,22 @@ namespace Pancake.Common
                 oMax,
                 value);
 
+        /// <inheritdoc cref="M.Lerp(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float Lerp(this float t, float a, float b) => M.Lerp(a, b, t);
+
+        /// <inheritdoc cref="M.InverseLerp(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float InverseLerp(this float value, float a, float b) => M.InverseLerp(a, b, value);
+
+        /// <inheritdoc cref="M.LerpClamped(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float LerpClamped(this float t, float a, float b) => M.LerpClamped(a, b, t);
+
+        /// <inheritdoc cref="M.InverseLerpClamped(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float InverseLerpClamped(this float value, float a, float b) => M.InverseLerpClamped(a, b, value);
+
         /// <inheritdoc cref="M.Remap(Vector2,Vector2,Vector2,Vector2,Vector2)"/>
         [MethodImpl(INLINE)]
         public static Vector2 Remap(this Vector2 v, Vector2 iMin, Vector2 iMax, Vector2 oMin, Vector2 oMax) =>
