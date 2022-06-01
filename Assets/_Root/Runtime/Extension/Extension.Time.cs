@@ -1,3 +1,6 @@
+using System.Collections;
+using UnityEngine;
+
 namespace Pancake.Common
 {
     using System;
@@ -20,7 +23,7 @@ namespace Pancake.Common
             bool displaySeconds = true,
             bool displayMilliseconds = false)
         {
-            int intTime = (int)t;
+            int intTime = (int) t;
             int hours = intTime / 3600;
             int minutes = intTime / 60;
             int seconds = intTime % 60;
@@ -42,19 +45,22 @@ namespace Pancake.Common
 
             if (!displayHours && !displayMinutes && displaySeconds && displayMilliseconds)
             {
-                return string.Format("{0:00}.{2:00}", seconds, milliseconds);
+                return string.Format("{0:00}.{1:00}", seconds, milliseconds);
             }
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (!displayHours && !displayMinutes && displaySeconds && !displayMilliseconds)
             {
                 return string.Format("{0:00}", seconds);
             }
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (displayHours && displayMinutes && displaySeconds && !displayMilliseconds)
             {
                 return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
             }
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (!displayHours && displayMinutes && displaySeconds && !displayMilliseconds)
             {
                 return string.Format("{0:00}:{1:00}", minutes, seconds);
@@ -75,7 +81,7 @@ namespace Pancake.Common
                 throw new Exception("The time in the TimeStringToFloat method must be specified using a hh:mm:ss:SSS syntax");
             }
 
-            string[] timeStringArray = timeInStringNotation.Split(new string[] { ":" }, StringSplitOptions.None);
+            string[] timeStringArray = timeInStringNotation.Split(new string[] {":"}, StringSplitOptions.None);
 
             float startTime = 0f;
             float result;
@@ -109,5 +115,49 @@ namespace Pancake.Common
         /// <param name="timeA">time A. need bigger than time B</param>
         /// <param name="timeB">time end.</param>
         public static TimeSpan SameTimeZoneSubtract(this DateTime timeA, DateTime timeB) { return timeA.ToLocalTime().Subtract(timeB.ToLocalTime()); }
+
+        public static float timeScale = 1f;
+        public static float timeScaleCinematic = 1f;
+        public static readonly int ReferenceFPS = 30;
+
+        public enum ETimeScale
+        {
+            Default = 0,
+            Unscaled = 1,
+            GameCinematic = 2
+        }
+
+        public static float GetTimeScale(ETimeScale timeType)
+        {
+            switch (timeType)
+            {
+                case ETimeScale.Default: return timeScale;
+                case ETimeScale.GameCinematic: return timeScaleCinematic;
+                case ETimeScale.Unscaled:
+                default: return 1f;
+            }
+        }
+
+        public static float FramesToDuration(int frames) { return frames / (float) ReferenceFPS; }
+
+        public static IEnumerator ExecuteDelay(float delay, ETimeScale timeScale = ETimeScale.Default)
+        {
+            float num;
+            for (var i = 0f; i < delay; i += num)
+            {
+                yield return null;
+                num = AdjustDeltaTime(Time.deltaTime, timeScale);
+            }
+        }
+
+        public static float AdjustDeltaTime(float deltaTime, ETimeScale timeType = ETimeScale.Default) { return deltaTime * GetTimeScale(timeType); }
+
+        public static float AdjustDuration(float duration, ETimeScale timeType = ETimeScale.Default)
+        {
+            float t = GetTimeScale(timeType);
+            var num = 0f;
+            if (t > 0f) num = 1f / t;
+            return duration * num;
+        }
     }
 }
