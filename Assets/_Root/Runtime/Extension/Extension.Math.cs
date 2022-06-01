@@ -40,6 +40,7 @@ namespace Pancake.Common
             return Mathf.Lerp(from, to, ratio);
         }
 
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
         public static float InverseLerpUnclamped(float a, float b, float x) { return b != a ? (x - a) / (b - a) : float.PositiveInfinity * (x - a); }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace Pancake.Common
         #endregion
 
         #region Vector2
-        
+
         public static Vector2 Multiply(this Vector2 v, float x, float y) { return v.Multiply(new Vector2(x, y)); }
 
         public static Vector2 Multiply(this Vector2 v, Vector2 other) { return Vector2.Scale(v, other); }
@@ -974,6 +975,7 @@ namespace Pancake.Common
                 {
                     closestValue = possibleValue;
                 }
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
                 else if (closestDistance == possibleDistance)
                 {
                     if (pickSmallestDistance && closestValue > possibleValue || !pickSmallestDistance && closestValue < possibleValue)
@@ -1018,6 +1020,86 @@ namespace Pancake.Common
             direction.y = Mathf.Sin(angle * Mathf.Deg2Rad);
             direction.z = 0f;
             return direction;
+        }
+
+        #endregion
+
+        #region Simple Harmonic Motion
+
+        public static void CalcDampedSimpleHarmonicMotion(
+            ref float pPos,
+            ref float pVel,
+            float equilibriumPos,
+            float deltaTime,
+            float angularFrequency,
+            float dampingRatio)
+        {
+            if (angularFrequency < 0.0001f) return;
+            if (dampingRatio < 0f) dampingRatio = 0f;
+
+            float num = pPos - equilibriumPos;
+            float num2 = pVel;
+            if (dampingRatio > 1.0001f)
+            {
+                float num3 = -angularFrequency * dampingRatio;
+                float num4 = angularFrequency * M.Sqrt(dampingRatio * dampingRatio - 1f);
+                float num5 = num3 - num4;
+                float num6 = num3 + num4;
+                float num7 = M.Exp(num5 * deltaTime);
+                float num8 = M.Exp(num6 * deltaTime);
+                float num9 = (num2 - num * num6) / (-2f * num4);
+                float num10 = num - num9;
+                pPos = equilibriumPos + num9 * num7 + num10 * num8;
+                pVel = num9 * num5 * num7 + num10 * num6 * num8;
+                return;
+            }
+
+            if (dampingRatio > 0.9999f)
+            {
+                float num11 = M.Exp(-angularFrequency * deltaTime);
+                float num12 = num2 + angularFrequency * num;
+                float num14 = (num12 * deltaTime + num) * num11;
+                pPos = equilibriumPos + num14;
+                pVel = num12 * num11 - num14 * angularFrequency;
+                return;
+            }
+
+            float num15 = angularFrequency * dampingRatio;
+            float num16 = angularFrequency * M.Sqrt(1f - dampingRatio * dampingRatio);
+            float exp = M.Exp(-num15 * deltaTime);
+            float cos = M.Cos(num16 * deltaTime);
+            float sin = M.Sin(num16 * deltaTime);
+            float num21 = (num2 + num15 * num) / num16;
+            pPos = equilibriumPos + exp * (num * cos + num21 * sin);
+            pVel = -exp * ((num * num15 - num21 * num16) * cos + (num * num16 + num21 * num15) * sin);
+        }
+
+        public static void CalcDampedSimpleHarmonicMotion(
+            ref Vector3 pPos,
+            ref Vector3 pVel,
+            Vector3 equilibriumPos,
+            float deltaTime,
+            float angularFrequency,
+            float dampingRatio)
+        {
+            CalcDampedSimpleHarmonicMotion(ref pPos.x,
+                ref pVel.x,
+                equilibriumPos.x,
+                deltaTime,
+                angularFrequency,
+                dampingRatio);
+            CalcDampedSimpleHarmonicMotion(ref pPos.y,
+                ref pVel.y,
+                equilibriumPos.y,
+                deltaTime,
+                angularFrequency,
+                dampingRatio);
+            CalcDampedSimpleHarmonicMotion(ref pPos.z,
+                ref pVel.z,
+                equilibriumPos.z,
+                deltaTime,
+                angularFrequency,
+                dampingRatio);
         }
 
         #endregion
