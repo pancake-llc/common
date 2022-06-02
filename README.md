@@ -2,10 +2,16 @@
 
 Add the lines below to `Packages/manifest.json`
 
-- for version 1.2.6 
+- for version `1.2.6` with unity 2021 or newer
+   
 ```csharp
-"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.5",
+"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.6",
 "com.system-community.systemruntimecompilerservicesunsafe": "https://github.com/system-community/SystemRuntimeCompilerServicesUnsafe.git?path=Assets/_Root#4.5.3",
+```
+
+- for version 1.2.3 still work well with unity 2019+
+```csharp
+"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.3",
 ```
 
 - for version 1.0.11 or older
@@ -28,6 +34,10 @@ Similar api to Guid.
 - .ToBase64()
 - .Time
 - .Random
+
+```
+var id = Ulid.NewUlid(); //01D7CB31YQKCJPY9FDTN2WTAFF
+```
 
 
 # Unity Timer
