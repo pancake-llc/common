@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using MEC;
 using UnityEngine;
 
 namespace Pancake.Common
@@ -12,7 +11,7 @@ namespace Pancake.Common
         public C.ETimeScale timeType;
         protected float goal;
         protected float value;
-        protected CoroutineHandle handle;
+        protected Coroutine routine;
         protected float lastInterpretValue;
         private bool _interpretSet;
         private GameObject _cacheGameObject;
@@ -26,7 +25,7 @@ namespace Pancake.Common
         protected float Goal => goal;
 
         protected float Value => value;
-        public bool IsSleeping => handle.IsRunning;
+        public bool IsSleeping => routine == null;
 
         private void Start()
         {
@@ -70,7 +69,11 @@ namespace Pancake.Common
 
         protected virtual void StopInterpret()
         {
-            if (handle.IsRunning) Timing.KillCoroutines(handle);
+            if (routine != null)
+            {
+                StopCoroutine(routine);
+                routine = null;
+            }
             value = goal;
             UpdatePosition(true);
         }
