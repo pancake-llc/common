@@ -1,11 +1,12 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
 namespace Pancake.Common
 {
     /// <summary>Various extensions for floats, vectors and colors</summary>
-    public static class MExtensions
+    public static class Extensions
     {
         const MethodImplOptions INLINE = MethodImplOptions.AggressiveInlining;
 
@@ -243,6 +244,55 @@ namespace Pancake.Common
 
         #endregion
 
+        #region String extensions
+
+        public static string ToValueTableString(this string[,] m)
+        {
+            int rowCount = m.GetLength(0);
+            int colCount = m.GetLength(1);
+            string[] r = new string[rowCount];
+            for (int i = 0; i < rowCount; i++)
+                r[i] = "";
+
+            for (int c = 0; c < colCount; c++)
+            {
+                string endBit = c == colCount - 1 ? "" : ", ";
+
+                int colWidth = 4; // min width
+                string[] columnEntries = new string[rowCount];
+                for (int row = 0; row < rowCount; row++)
+                {
+                    string s = m[row, c].StartsWith('-') ? "" : " ";
+                    columnEntries[row] = $"{s}{m[row, c]}{endBit}";
+                    colWidth = M.Max(colWidth, columnEntries[row].Length);
+                }
+
+                for (int row = 0; row < rowCount; row++)
+                {
+                    r[row] += columnEntries[row].PadRight(colWidth, ' ');
+                }
+            }
+
+            return string.Join('\n', r);
+        }
+
+        #endregion
+
+        #region Matrix extensions
+
+        public static Matrix4x1 MultiplyColumnVector(this Matrix4x4 m, Matrix4x1 v) =>
+            new Matrix4x1(m.m00 * v.m0 + m.m01 * v.m1 + m.m02 * v.m2 + m.m03 * v.m3,
+                m.m10 * v.m0 + m.m11 * v.m1 + m.m12 * v.m2 + m.m13 * v.m3,
+                m.m20 * v.m0 + m.m21 * v.m1 + m.m22 * v.m2 + m.m23 * v.m3,
+                m.m30 * v.m0 + m.m31 * v.m1 + m.m32 * v.m2 + m.m33 * v.m3);
+
+        public static Vector2Matrix4x1 MultiplyColumnVector(this Matrix4x4 m, Vector2Matrix4x1 v) => new(m.MultiplyColumnVector(v.X), m.MultiplyColumnVector(v.Y));
+
+        public static Vector3Matrix4x1 MultiplyColumnVector(this Matrix4x4 m, Vector3Matrix4x1 v) =>
+            new(m.MultiplyColumnVector(v.X), m.MultiplyColumnVector(v.Y), m.MultiplyColumnVector(v.Z));
+
+        #endregion
+
         #region Extension method counterparts of the static M functions - lots of boilerplate in here
 
         #region Math operations
@@ -270,6 +320,40 @@ namespace Pancake.Common
         /// <inheritdoc cref="M.Pow(float, float)"/>
         [MethodImpl(INLINE)]
         public static float Pow(this float value, float exponent) => M.Pow(value, exponent);
+
+        /// <summary>Calculates exact positive integer powers</summary>
+        /// <param name="value"></param>
+        /// <param name="pow">A positive integer power</param>
+        [MethodImpl(INLINE)]
+        public static int Pow(this int value, int pow)
+        {
+            if (pow < 0)
+                throw new ArithmeticException("int.Pow(int) doesn't support negative powers");
+            checked
+            {
+                switch (pow)
+                {
+                    case 0: return 1;
+                    case 1: return value;
+                    case 2: return value * value;
+                    case 3: return value * value * value;
+                    default:
+                        if (value == 2)
+                            return 1 << pow;
+                        // from: https://stackoverflow.com/questions/383587/how-do-you-do-integer-exponentiation-in-c
+                        int ret = 1;
+                        while (pow != 0)
+                        {
+                            if ((pow & 1) == 1)
+                                ret *= value;
+                            value *= value;
+                            pow >>= 1;
+                        }
+
+                        return ret;
+                }
+            }
+        }
 
         #endregion
 
