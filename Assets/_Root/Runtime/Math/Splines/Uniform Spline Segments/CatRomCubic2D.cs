@@ -120,24 +120,14 @@ namespace Pancake.Common
 
         #region Object Comparison & ToString
 
-        public static bool operator ==(CatRomCubic2D a, CatRomCubic2D b) => a.P0 == b.P0 && a.P1 == b.P1 && a.P2 == b.P2 && a.P3 == b.P3;
+        public static bool operator ==( CatRomCubic2D a, CatRomCubic2D b ) => a.p0 == b.p0 && a.p1 == b.p1 && a.p2 == b.p2 && a.p3 == b.p3;
         public static bool operator !=(CatRomCubic2D a, CatRomCubic2D b) => !(a == b);
-        public bool Equals(CatRomCubic2D other) => P0.Equals(other.P0) && P1.Equals(other.P1) && P2.Equals(other.P2) && P3.Equals(other.P3);
+        public bool Equals( CatRomCubic2D other ) => p0.Equals( other.p0 ) && p1.Equals( other.p1 ) && p2.Equals( other.p2 ) && p3.Equals( other.p3 );
         public override bool Equals(object obj) => obj is CatRomCubic2D other && Equals(other);
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                int hashCode = P0.GetHashCode();
-                hashCode = (hashCode * 397) ^ P1.GetHashCode();
-                hashCode = (hashCode * 397) ^ P2.GetHashCode();
-                hashCode = (hashCode * 397) ^ P3.GetHashCode();
-                return hashCode;
-            }
-        }
+        public override int GetHashCode() => HashCode.Combine( p0, p1, p2, p3 );
 
-        public override string ToString() => $"{P0}, {P1}, {P2}, {P3}";
+        public override string ToString() => $"{p0}, {p1}, {p2}, {p3}";
 
         #endregion
 
