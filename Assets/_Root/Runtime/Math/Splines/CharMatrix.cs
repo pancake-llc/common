@@ -216,11 +216,7 @@ namespace Pancake.Common
                 p0 * m20 + p1 * m21 + p2 * m22 + p3 * m23,
                 p0 * m30 + p1 * m31 + p2 * m32 + p3 * m33);
 
-        /// <summary>Returns the curve this characteristic matrix represents, given 4 points</summary>
-        /// <param name="p0">The first point</param>
-        /// <param name="p1">The second point</param>
-        /// <param name="p2">The third point</param>
-        /// <param name="p3">The fourth point</param>
+        /// <inheritdoc cref="GetCurve(Vector2,Vector2,Vector2,Vector2)"/>
         public Polynomial2D GetCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3) =>
             new(GetEvalPolynomial(p0.x, p1.x, p2.x, p3.x), GetEvalPolynomial(p0.y, p1.y, p2.y, p3.y));
 
