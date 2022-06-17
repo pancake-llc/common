@@ -184,16 +184,14 @@ namespace Pancake.Editor
         [MenuItem("Assets/Run Math Codegen")]
         public static void Regenerate()
         {
-            for (int dim = 1; dim < 5; dim++)
-            {
-                // 1D, 2D, 3D, 4D
-                GenerateType(typeBezier, dim);
-                GenerateType(typeBezierQuad, dim);
-                GenerateType(typeHermite, dim);
-                GenerateType(typeBspline, dim);
-                GenerateType(typeCatRom, dim);
-                GenerateMatrix(3, dim);
-                GenerateMatrix(4, dim);
+            for( int dim = 1; dim < 5; dim++ ) { // 1D, 2D, 3D, 4D
+                GenerateUniformSplineType( typeBezier, dim );
+                GenerateUniformSplineType( typeBezierQuad, dim );
+                GenerateUniformSplineType( typeHermite, dim );
+                GenerateUniformSplineType( typeBspline, dim );
+                GenerateUniformSplineType( typeCatRom, dim );
+                GenerateMatrix( 3, dim );
+                GenerateMatrix( 4, dim );
             }
         }
 
@@ -296,7 +294,7 @@ namespace Pancake.Editor
             File.WriteAllLines(path, code.content);
         }
 
-        static void GenerateType(SplineType type, int dim)
+        static void GenerateUniformSplineType(SplineType type, int dim)
         {
             int degree = type.degree;
             string dataType = dim == 1 ? "float" : $"Vector{dim}";
@@ -344,11 +342,15 @@ namespace Pancake.Editor
                     code.LineBreak();
 
                     // constructor
-                    code.Summary($"Creates a uniform {dim}D {degFullLower} {type.prettyNameLower} segment, from {ptCount} control points");
+                    string ctorSummary = $"Creates a uniform {dim}D {degFullLower} {type.prettyNameLower} segment, from {ptCount} control points"; 
+                    code.Summary( ctorSummary );
                     for (int i = 0; i < ptCount; i++)
                         type.AppendParamStrings(code, degree, i);
-                    code.Append($"public {structName}( {ctorParams} ) => (pointMatrix,curve,validCoefficients) = (new {pointMatrixType}({csPoints}),default,false);");
+                    code.Append( $"public {structName}( {ctorParams} ) : this(new {pointMatrixType}({csPoints})){{}}" );
 
+                    code.Summary( ctorSummary );
+                    code.Param( "pointMatrix", "The matrix containing the control points of this spline" );
+                    code.Append( $"public {structName}( {pointMatrixType} pointMatrix ) => (this.pointMatrix,curve,validCoefficients) = (pointMatrix,default,false);" );
                     code.LineBreak();
 
                     // properties

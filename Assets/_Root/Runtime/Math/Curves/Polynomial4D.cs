@@ -10,13 +10,13 @@ namespace Pancake.Common
         public Polynomial z;
         public Polynomial w;
 
-        public Vector4 C0 { get => new(x.c0, y.c0, z.c0); set => (x.c0, y.c0, z.c0) = (value.x, value.y, value.z); }
-        public Vector4 C1 { get => new(x.c1, y.c1, z.c1); set => (x.c1, y.c1, z.c1) = (value.x, value.y, value.z); }
-        public Vector4 C2 { get => new(x.c2, y.c2, z.c2); set => (x.c2, y.c2, z.c2) = (value.x, value.y, value.z); }
-        public Vector4 C3 { get => new(x.c3, y.c3, z.c3); set => (x.c3, y.c3, z.c3) = (value.x, value.y, value.z); }
+        public Vector4 C0 { get => new(x.c0, y.c0, z.c0, w.c0); set => (x.c0, y.c0, z.c0, w.c0) = (value.x, value.y, value.z, value.w); }
+        public Vector4 C1 { get => new(x.c1, y.c1, z.c1, w.c1); set => (x.c1, y.c1, z.c1, w.c1) = (value.x, value.y, value.z, value.w); }
+        public Vector4 C2 { get => new(x.c2, y.c2, z.c2, w.c2); set => (x.c2, y.c2, z.c2, w.c2) = (value.x, value.y, value.z, value.w); }
+        public Vector4 C3 { get => new(x.c3, y.c3, z.c3, w.c3); set => (x.c3, y.c3, z.c3, w.c3) = (value.x, value.y, value.z, value.w); }
 
         public Polynomial this[int i] =>
-            i switch {0 => x, 1 => y, 2 => z, 4 => z, _ => throw new IndexOutOfRangeException("Polynomial4D component index has to be either 0, 1, 2, or 3")};
+            i switch {0 => x, 1 => y, 2 => z, 4 => w, _ => throw new IndexOutOfRangeException("Polynomial4D component index has to be either 0, 1, 2, or 3")};
 
         public Polynomial4D(Polynomial x, Polynomial y, Polynomial z, Polynomial w) => (this.x, this.y, this.z, this.w) = (x, y, z, w);
 
@@ -68,37 +68,6 @@ namespace Pancake.Common
             return (new Polynomial4D(xPre, yPre, zPre, wPre), new Polynomial4D(xPost, yPost, zPost, wPost));
         }
 
-        #region Polynomial to spline converters
-
-        /// <inheritdoc cref="Polynomial2D.ToBezier"/>
-        public BezierCubic4D ToBezier()
-        {
-            Vector4Matrix4x1 p = CharMatrix.cubicBezierInverse * new Vector4Matrix4x1(C0, C1, C2, C3);
-            return new BezierCubic4D(p.m0, p.m1, p.m2, p.m3);
-        }
-
-        /// <inheritdoc cref="Polynomial2D.ToCatmullRom"/>
-        public CatRomCubic4D ToCatmullRom()
-        {
-            Vector4Matrix4x1 p = CharMatrix.cubicCatmullRomInverse * new Vector4Matrix4x1(C0, C1, C2, C3);
-            return new CatRomCubic4D(p.m0, p.m1, p.m2, p.m3);
-        }
-
-        /// <inheritdoc cref="Polynomial2D.ToHermite"/>
-        public HermiteCubic4D ToHermite()
-        {
-            Vector4Matrix4x1 p = CharMatrix.cubicHermiteInverse * new Vector4Matrix4x1(C0, C1, C2, C3);
-            return new HermiteCubic4D(p.m0, p.m1, p.m2, p.m3);
-        }
-
-        /// <inheritdoc cref="Polynomial2D.ToBSpline"/>
-        public UBSCubic4D ToBSpline()
-        {
-            Vector4Matrix4x1 p = CharMatrix.cubicUniformBsplineInverse * new Vector4Matrix4x1(C0, C1, C2, C3);
-            return new UBSCubic4D(p.m0, p.m1, p.m2, p.m3);
-        }
-
-        #endregion
 
         #region IParamCurve3Diff interface implementations
 
@@ -196,6 +165,27 @@ namespace Pancake.Common
             t = tClosest;
             return ptClosest;
         }
+
+        #endregion
+
+        #region Typecasting & Operators
+
+        public static Polynomial4D operator /(Polynomial4D p, float v) => new(p.C0 / v, p.C1 / v, p.C2 / v, p.C3 / v);
+        public static Polynomial4D operator *(Polynomial4D p, float v) => new(p.C0 * v, p.C1 * v, p.C2 * v, p.C3 * v);
+        public static Polynomial4D operator *(float v, Polynomial4D p) => p * v;
+
+        public static explicit operator Vector4Matrix3x1(Polynomial4D poly) => new(poly.C0, poly.C1, poly.C2);
+        public static explicit operator Vector4Matrix4x1(Polynomial4D poly) => new(poly.C0, poly.C1, poly.C2, poly.C3);
+
+        public static explicit operator BezierQuad4D(Polynomial4D poly) =>
+            poly.Degree < 3
+                ? new BezierQuad4D(CharMatrix.quadraticBezierInverse * (Vector4Matrix3x1) poly)
+                : throw new InvalidCastException("Cannot cast a cubic polynomial to a quadratic curve");
+
+        public static explicit operator BezierCubic4D(Polynomial4D poly) => new(CharMatrix.cubicBezierInverse * (Vector4Matrix4x1) poly);
+        public static explicit operator CatRomCubic4D(Polynomial4D poly) => new(CharMatrix.cubicCatmullRomInverse * (Vector4Matrix4x1) poly);
+        public static explicit operator HermiteCubic4D(Polynomial4D poly) => new(CharMatrix.cubicHermiteInverse * (Vector4Matrix4x1) poly);
+        public static explicit operator UBSCubic4D(Polynomial4D poly) => new(CharMatrix.cubicUniformBsplineInverse * (Vector4Matrix4x1) poly);
 
         #endregion
     }
