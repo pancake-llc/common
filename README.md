@@ -2,10 +2,10 @@
 
 Add the lines below to `Packages/manifest.json`
 
-- for version `1.2.6` with unity 2021 or newer
+- for version `1.2.9` with unity 2021 or newer
    
 ```csharp
-"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.6",
+"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.9",
 "com.system-community.systemruntimecompilerservicesunsafe": "https://github.com/system-community/SystemRuntimeCompilerServicesUnsafe.git?path=Assets/_Root#4.5.3",
 ```
 
