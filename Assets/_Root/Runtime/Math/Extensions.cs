@@ -788,6 +788,12 @@ namespace Pancake.Common
                 oBounds.max,
                 iPos);
 
+        /// <inheritdoc cref="M.Eerp(float,float,float)"/>
+        [MethodImpl( INLINE )] public static float Eerp( this float t, float a, float b ) => M.Eerp( a, b, t );
+
+        /// <inheritdoc cref="M.InverseEerp(float,float,float)"/>
+        [MethodImpl( INLINE )] public static float InverseEerp( this float v, float a, float b ) => M.InverseEerp( a, b, v );
+        
         #endregion
 
         #region Vector Math
