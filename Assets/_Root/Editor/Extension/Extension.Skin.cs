@@ -82,7 +82,14 @@ namespace Pancake.Editor
         private const float SPACE_ONE_LINE = 4f;
         private const float SPACE_TWO_LINE = 8f;
         private const float SPACE_THREE_LINE = 12f;
-
+        
+        public static readonly Color Green = new Color(0.18f, 1f, 0.45f, 0.66f);
+        public static readonly Color Orange = new Color(1f, 0.46f, 0f, 0.66f);
+        public static readonly Color Blue = new Color(0f, 0.75f, 1f, 0.27f);
+        public static readonly Color Purple = new Color(1f, 0.56f, 1f, 0.39f);
+        public static readonly Color Red = new Color(1f, 0.1f, 0.13f, 0.66f);
+        public static readonly Color InspectorLock = new Color(.6f, .6f, .6f, 1);
+        public static readonly Color InspectorNullError = new Color(1f, .5f, .5f, 1);
         public class Property
         {
             public SerializedProperty property;
