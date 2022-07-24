@@ -165,6 +165,7 @@ namespace Pancake.Common
 
         #region Typecasting & Operators
 
+        public static explicit operator Polynomial2D( Polynomial3D p ) => new(p.x, p.y);
         public static Polynomial3D operator /(Polynomial3D p, float v) => new(p.C0 / v, p.C1 / v, p.C2 / v, p.C3 / v);
         public static Polynomial3D operator *(Polynomial3D p, float v) => new(p.C0 * v, p.C1 * v, p.C2 * v, p.C3 * v);
         public static Polynomial3D operator *(float v, Polynomial3D p) => p * v;
